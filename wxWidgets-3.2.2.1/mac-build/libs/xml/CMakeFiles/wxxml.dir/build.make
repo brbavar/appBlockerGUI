@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 # Include any dependencies generated for this target.
 include libs/xml/CMakeFiles/wxxml.dir/depend.make
@@ -73,48 +73,48 @@ libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch: libs/xml/CMakeFiles/wxxml
 libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx
 libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx
 libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch: libs/xml/CMakeFiles/wxxml.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -MD -MT libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch -MF CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch.d -o CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -MD -MT libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch -MF CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch.d -o CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx
 
 libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx > CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx > CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.i
 
 libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx -o CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -x c++-header -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.cxx -o CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.s
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/flags.make
-libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/xml/xml.cpp
+libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/xml/xml.cpp
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -MD -MT libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o -MF CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o.d -o CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/xml/xml.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -MD -MT libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o -MF CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o.d -o CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/xml/xml.cpp
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/xml/xml.cpp > CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/xml/xml.cpp > CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.i
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/xml/xml.cpp -o CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/xml/xml.cpp -o CMakeFiles/wxxml.dir/__/__/__/__/src/xml/xml.cpp.s
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/flags.make
-libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/xtixml.cpp
+libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/xtixml.cpp
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx.pch
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o: libs/xml/CMakeFiles/wxxml.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -MD -MT libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o -MF CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o.d -o CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/xtixml.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -MD -MT libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o -MF CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o.d -o CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/xtixml.cpp
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/xtixml.cpp > CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/xtixml.cpp > CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.i
 
 libs/xml/CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/xtixml.cpp -o CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/xtixml.cpp -o CMakeFiles/wxxml.dir/__/__/__/__/src/common/xtixml.cpp.s
 
 # Object files for target wxxml
 wxxml_OBJECTS = \
@@ -131,9 +131,9 @@ lib/libwx_baseu_xml-3.2.0.2.1.dylib: libs/xml/CMakeFiles/wxxml.dir/build.make
 lib/libwx_baseu_xml-3.2.0.2.1.dylib: lib/libwx_baseu-3.2.0.2.1.dylib
 lib/libwx_baseu_xml-3.2.0.2.1.dylib: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libexpat.tbd
 lib/libwx_baseu_xml-3.2.0.2.1.dylib: libs/xml/CMakeFiles/wxxml.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library ../../lib/libwx_baseu_xml-3.2.dylib"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxxml.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_baseu_xml-3.2.0.2.1.dylib ../../lib/libwx_baseu_xml-3.2.0.dylib ../../lib/libwx_baseu_xml-3.2.dylib
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library ../../lib/libwx_baseu_xml-3.2.dylib"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxxml.dir/link.txt --verbose=$(VERBOSE)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_baseu_xml-3.2.0.2.1.dylib ../../lib/libwx_baseu_xml-3.2.0.dylib ../../lib/libwx_baseu_xml-3.2.dylib
 
 lib/libwx_baseu_xml-3.2.0.dylib: lib/libwx_baseu_xml-3.2.0.2.1.dylib
 	@$(CMAKE_COMMAND) -E touch_nocreate lib/libwx_baseu_xml-3.2.0.dylib
@@ -146,10 +146,10 @@ libs/xml/CMakeFiles/wxxml.dir/build: lib/libwx_baseu_xml-3.2.dylib
 .PHONY : libs/xml/CMakeFiles/wxxml.dir/build
 
 libs/xml/CMakeFiles/wxxml.dir/clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -P CMakeFiles/wxxml.dir/cmake_clean.cmake
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml && $(CMAKE_COMMAND) -P CMakeFiles/wxxml.dir/cmake_clean.cmake
 .PHONY : libs/xml/CMakeFiles/wxxml.dir/clean
 
 libs/xml/CMakeFiles/wxxml.dir/depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/lib/xml /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/lib/xml /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/CMakeFiles/wxxml.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : libs/xml/CMakeFiles/wxxml.dir/depend
 

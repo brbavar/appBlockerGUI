@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 # Include any dependencies generated for this target.
 include libs/gl/CMakeFiles/wxgl.dir/depend.make
@@ -73,62 +73,62 @@ libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch: libs/gl/CMakeFiles/wxgl.dir
 libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx
 libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx
 libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch: libs/gl/CMakeFiles/wxgl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -MD -MT libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch -MF CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch.d -o CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -MD -MT libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch -MF CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch.d -o CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx
 
 libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx > CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx > CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.i
 
 libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx -o CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGSarm64) -Winvalid-pch -Xclang -emit-pch -Xclang -include -Xclang /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -x c++-header -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.cxx -o CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.s
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: libs/gl/CMakeFiles/wxgl.dir/flags.make
-libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/glcmn.cpp
+libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/glcmn.cpp
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o: libs/gl/CMakeFiles/wxgl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/glcmn.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/glcmn.cpp
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/glcmn.cpp > CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/glcmn.cpp > CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.i
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/glcmn.cpp -o CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/glcmn.cpp -o CMakeFiles/wxgl.dir/__/__/__/__/src/common/glcmn.cpp.s
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o: libs/gl/CMakeFiles/wxgl.dir/flags.make
-libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm
+libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o: libs/gl/CMakeFiles/wxgl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building OBJCXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) -x objective-c++ $(OBJCXX_FLAGS) -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building OBJCXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) -x objective-c++ $(OBJCXX_FLAGS) -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing OBJCXX source to CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) $(OBJCXX_FLAGS) -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm > CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) $(OBJCXX_FLAGS) -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm > CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.i
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling OBJCXX source to assembly CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) $(OBJCXX_FLAGS) -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) $(OBJCXX_FLAGS) -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/cocoa/glcanvas.mm -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/cocoa/glcanvas.mm.s
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: libs/gl/CMakeFiles/wxgl.dir/flags.make
-libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp
+libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx.pch
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o: libs/gl/CMakeFiles/wxgl.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -MD -MT libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o -MF CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o.d -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp > CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp > CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.i
 
 libs/gl/CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -Xarch_arm64 -include/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/cmake_pch_arm64.hxx -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/osx/glcanvas_osx.cpp -o CMakeFiles/wxgl.dir/__/__/__/__/src/osx/glcanvas_osx.cpp.s
 
 # Object files for target wxgl
 wxgl_OBJECTS = \
@@ -149,9 +149,9 @@ lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib: /Applications/Xcode.app/Contents/Develo
 lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
 lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib: lib/libwx_baseu-3.2.0.2.1.dylib
 lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib: libs/gl/CMakeFiles/wxgl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library ../../lib/libwx_osx_cocoau_gl-3.2.dylib"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxgl.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib ../../lib/libwx_osx_cocoau_gl-3.2.0.dylib ../../lib/libwx_osx_cocoau_gl-3.2.dylib
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library ../../lib/libwx_osx_cocoau_gl-3.2.dylib"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxgl.dir/link.txt --verbose=$(VERBOSE)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib ../../lib/libwx_osx_cocoau_gl-3.2.0.dylib ../../lib/libwx_osx_cocoau_gl-3.2.dylib
 
 lib/libwx_osx_cocoau_gl-3.2.0.dylib: lib/libwx_osx_cocoau_gl-3.2.0.2.1.dylib
 	@$(CMAKE_COMMAND) -E touch_nocreate lib/libwx_osx_cocoau_gl-3.2.0.dylib
@@ -164,10 +164,10 @@ libs/gl/CMakeFiles/wxgl.dir/build: lib/libwx_osx_cocoau_gl-3.2.dylib
 .PHONY : libs/gl/CMakeFiles/wxgl.dir/build
 
 libs/gl/CMakeFiles/wxgl.dir/clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -P CMakeFiles/wxgl.dir/cmake_clean.cmake
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl && $(CMAKE_COMMAND) -P CMakeFiles/wxgl.dir/cmake_clean.cmake
 .PHONY : libs/gl/CMakeFiles/wxgl.dir/clean
 
 libs/gl/CMakeFiles/wxgl.dir/depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/lib/gl /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/lib/gl /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/CMakeFiles/wxgl.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : libs/gl/CMakeFiles/wxgl.dir/depend
 

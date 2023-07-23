@@ -1,7 +1,7 @@
 libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/CaseFolder.cxx.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx.cxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/Scintilla.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx.cxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/Scintilla.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdint.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config_site \
@@ -32,8 +32,8 @@ libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/CaseFolder
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uintptr_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_intmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uintmax_t.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/Sci_Position.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.cxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/Sci_Position.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.cxx \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdexcept \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__verbose_abort \
@@ -643,6 +643,6 @@ libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/CaseFolder
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/shift_left.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/shift_right.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/transform.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseConvert.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/UniConversion.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseConvert.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/UniConversion.h

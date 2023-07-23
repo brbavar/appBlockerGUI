@@ -1,4 +1,4 @@
-# Install script for directory: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/lib
+# Install script for directory: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,22 +39,22 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/base/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/net/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/core/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/aui/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/html/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/propgrid/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/ribbon/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/richtext/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/webview/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/stc/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xrc/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/media/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/gl/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/qa/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/xml/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/base/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/net/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/core/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/aui/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/html/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/propgrid/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/ribbon/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/richtext/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/webview/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/stc/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xrc/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/media/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/gl/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/qa/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/xml/cmake_install.cmake")
 
 endif()
 

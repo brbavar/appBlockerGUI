@@ -2,5 +2,5 @@
 
 #pragma clang system_header
 #ifdef __cplusplus
-#include "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wxprec.h"
+#include "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wxprec.h"
 #endif // __cplusplus

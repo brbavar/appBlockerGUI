@@ -1,28 +1,28 @@
 libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/core/CMakeFiles/wxcore.dir/cmake_pch_arm64.hxx.cxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/core/CMakeFiles/wxcore.dir/cmake_pch_arm64.hxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wxprec.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/defs.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/platform.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/compiler.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2/wx/setup.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/core/CMakeFiles/wxcore.dir/cmake_pch_arm64.hxx.cxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/core/CMakeFiles/wxcore.dir/cmake_pch_arm64.hxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wxprec.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/defs.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/platform.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/compiler.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2/wx/setup.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/TargetConditionals.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityVersions.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityInternal.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/chkconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/chkconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/cocoa/chkconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/unix/chkconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/version.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/cpp.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dlimpexp.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/chkconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/chkconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/cocoa/chkconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/unix/chkconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/version.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/cpp.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dlimpexp.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config_site \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/__stddef_max_align_t.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/types.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/appleapiopts.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/cdefs.h \
@@ -105,7 +105,7 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_pthread/_pthread_key_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_fsblkcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/debug.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/debug.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
@@ -136,7 +136,7 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/syslimits.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/chartype.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/chartype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wchar.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wchar.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_mbstate_t.h \
@@ -157,25 +157,25 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/ctype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/runetype.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/features.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wx.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/object.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/memory.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/string.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/features.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wx.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/object.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/memory.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/strings.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wxcrtbase.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wxcrtbase.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wctype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wctype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_wctrans_t.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/strvararg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/strconv.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/buffer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/fontenc.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/unichar.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stringimpl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/beforestd.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/strvararg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/strconv.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/buffer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/fontenc.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/unichar.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stringimpl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/beforestd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp.h \
@@ -730,54 +730,54 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/afterstd.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stringops.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/iosfwrap.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/msgout.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/xti.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/rtti.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/flags.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/xti2.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dynarray.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/vector.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/scopeguard.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/except.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/movable.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/pod.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/if.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/list.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/hash.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/hashmap.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wxcrt.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/arrstr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/intl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/localedefs.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/translation.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/language.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/scopedptr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/checkeddelete.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/log.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/time.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/longlong.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/thread.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/logg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/event.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/clntdata.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/math.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/gdicmn.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/cursor.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/gdiobj.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/cursor.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/bitmap.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/colour.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/variant.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/datetime.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/anystr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/any.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/typeinfo.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/colour.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/core/colour.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/core/cfref.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/afterstd.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stringops.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/iosfwrap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/msgout.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/xti.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/rtti.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/flags.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/xti2.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dynarray.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/vector.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/scopeguard.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/except.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/movable.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/pod.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/if.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/list.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/hash.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/hashmap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wxcrt.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/arrstr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/intl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/localedefs.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/translation.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/language.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/scopedptr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/checkeddelete.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/log.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/time.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/longlong.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/thread.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/logg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/event.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/clntdata.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/math.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/gdicmn.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/cursor.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/gdiobj.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/cursor.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/bitmap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/colour.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/variant.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/datetime.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/anystr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/any.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/typeinfo.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/colour.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/core/colour.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/core/cfref.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_posix_vdisable.h \
@@ -786,9 +786,9 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_select.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uuid_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/gethostuuid.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/image.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stream.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/filefn.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/image.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stream.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/filefn.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/stat.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_s_ifmt.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_filesec_t.h \
@@ -798,138 +798,138 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/fcntl.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_o_sync.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_o_dsync.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagbmp.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagpng.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/versioninfo.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imaggif.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagpcx.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagjpeg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagtga.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagtiff.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagpnm.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagxpm.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imagiff.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/bitmap.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/palette.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/palette.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/utils.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/implicitconversion.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/mousestate.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/kbdstate.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/platinfo.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/tracker.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/convertible.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/removeref.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/app.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/eventfilter.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/build.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/cmdargs.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/init.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/unix/app.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagbmp.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagpng.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/versioninfo.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imaggif.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagpcx.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagjpeg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagtga.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagtiff.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagpnm.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagxpm.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imagiff.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/bitmap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/palette.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/palette.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/utils.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/implicitconversion.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/mousestate.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/kbdstate.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/platinfo.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/tracker.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/convertible.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/removeref.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/app.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/eventfilter.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/build.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/cmdargs.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/init.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/unix/app.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/signal.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/app.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stopwatch.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/timer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/module.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/wxcrtvararg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/window.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/font.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/font.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/region.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/region.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/carbon/region.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/validate.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/windowid.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/accel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/accel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/window.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/brush.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/brush.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dc.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/pen.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/peninfobase.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/pen.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/affinematrix2d.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/affinematrix2dbase.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/geometry.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/containr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/panel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/panelg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/toplevel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/nonownedwnd.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/nonownedwnd.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/graphics.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/iconbndl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/icon.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/iconloc.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/icon.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/weakref.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/meta/int2type.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/toplevel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/frame.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/statusbr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/control.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/control.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/statusbr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/statusbr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/frame.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/toolbar.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/tbarbase.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/bmpbndl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/toolbar.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dcclient.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dcmemory.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dcprint.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dcscreen.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/button.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/anybutton.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/anybutton.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/button.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/menuitem.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/menuitem.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/menu.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/menu.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dialog.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/sharedptr.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/atomic.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/dialog.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/settings.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/msgdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stockitem.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/msgdlgg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/msgdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dataobj.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/dataform.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/core/cfstring.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/dataobj.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/dataobj2.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/ctrlsub.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/bmpbuttn.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/bmpbuttn.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/checkbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/checkbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/checklst.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/listbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/listbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/checklst.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/choice.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/choice.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/scrolbar.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/scrolbar.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/stattext.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/stattext.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/statbmp.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/statbmp.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/statbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/statbox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/radiobox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/radiobox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/radiobut.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/radiobut.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/textctrl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/textentry.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/textentry.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/ioswrap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/app.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stopwatch.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/timer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/module.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/wxcrtvararg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/window.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/font.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/font.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/region.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/region.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/carbon/region.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/validate.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/windowid.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/accel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/accel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/window.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/brush.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/brush.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dc.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/pen.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/peninfobase.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/pen.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/affinematrix2d.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/affinematrix2dbase.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/geometry.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/containr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/panel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/panelg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/toplevel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/nonownedwnd.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/nonownedwnd.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/graphics.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/iconbndl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/icon.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/iconloc.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/icon.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/weakref.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/meta/int2type.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/toplevel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/frame.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/statusbr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/control.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/control.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/statusbr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/statusbr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/frame.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/toolbar.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/tbarbase.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/bmpbndl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/toolbar.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dcclient.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dcmemory.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dcprint.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dcscreen.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/button.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/anybutton.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/anybutton.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/button.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/menuitem.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/menuitem.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/menu.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/menu.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dialog.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/sharedptr.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/atomic.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/dialog.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/settings.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/msgdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stockitem.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/msgdlgg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/msgdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dataobj.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/dataform.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/core/cfstring.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/dataobj.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/dataobj2.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/ctrlsub.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/bmpbuttn.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/bmpbuttn.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/checkbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/checkbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/checklst.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/listbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/listbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/checklst.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/choice.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/choice.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/scrolbar.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/scrolbar.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/stattext.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/stattext.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/statbmp.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/statbmp.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/statbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/statbox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/radiobox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/radiobox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/radiobut.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/radiobut.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/textctrl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/textentry.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/textentry.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/ioswrap.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__locale \
@@ -960,38 +960,38 @@ libs/core/CMakeFiles/wxcore.dir/__/__/__/__/src/generic/treebkg.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/nl_types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/textctrl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/slider.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/slider.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/compositewin.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/gauge.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/gauge.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/scrolwin.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/scrolwin.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/recguard.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/dirdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/dirdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/combobox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/combobox.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/layout.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/sizer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/choicdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/choicdgg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/textdlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/textdlgg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/valtext.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/filedlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/filedlg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/generic/treebkg.cpp \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/treebook.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/bookctrl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/withimages.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/imaglist.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/imaglist.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/notebook.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/osx/notebook.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/treebase.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/itemid.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/treectrl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/systhemectrl.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx/generic/treectlg.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/textctrl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/slider.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/slider.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/compositewin.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/gauge.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/gauge.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/scrolwin.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/scrolwin.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/recguard.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/dirdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/dirdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/combobox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/combobox.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/layout.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/sizer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/choicdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/choicdgg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/textdlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/textdlgg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/valtext.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/filedlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/filedlg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/generic/treebkg.cpp \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/treebook.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/bookctrl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/withimages.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/imaglist.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/imaglist.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/notebook.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/osx/notebook.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/treebase.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/itemid.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/treectrl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/systhemectrl.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx/generic/treectlg.h

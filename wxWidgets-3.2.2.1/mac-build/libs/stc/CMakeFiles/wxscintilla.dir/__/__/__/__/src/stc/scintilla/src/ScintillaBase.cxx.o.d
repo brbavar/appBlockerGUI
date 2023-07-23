@@ -1,7 +1,7 @@
 libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/ScintillaBase.cxx.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx.cxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/Scintilla.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx.cxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/stc/CMakeFiles/wxscintilla.dir/cmake_pch_arm64.hxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/Scintilla.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdint.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config_site \
@@ -32,8 +32,8 @@ libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/ScintillaB
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uintptr_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_intmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uintmax_t.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/Sci_Position.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/ScintillaBase.cxx \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/Sci_Position.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/ScintillaBase.cxx \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
@@ -682,34 +682,34 @@ libs/stc/CMakeFiles/wxscintilla.dir/__/__/__/__/src/stc/scintilla/src/ScintillaB
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_negate.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/map \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__tree \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/Platform.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/ILexer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/include/SciLexer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/lexlib/PropSetSimple.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/lexlib/LexerModule.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Catalogue.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Position.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/SplitVector.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Partitioning.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/RunStyles.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/ContractionState.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CellBuffer.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CallTip.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/KeyMap.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Indicator.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/XPM.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/LineMarker.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Style.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/ViewStyle.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CharClassify.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Decoration.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Document.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Selection.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/PositionCache.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/EditModel.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/MarginView.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/EditView.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/Editor.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/AutoComplete.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/stc/scintilla/src/ScintillaBase.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/Platform.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/ILexer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/include/SciLexer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/lexlib/PropSetSimple.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/lexlib/LexerModule.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Catalogue.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Position.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/SplitVector.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Partitioning.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/RunStyles.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/ContractionState.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CellBuffer.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CallTip.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/KeyMap.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Indicator.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/XPM.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/LineMarker.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Style.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/ViewStyle.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CharClassify.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Decoration.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/CaseFolder.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Document.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Selection.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/PositionCache.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/EditModel.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/MarginView.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/EditView.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/Editor.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/AutoComplete.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/stc/scintilla/src/ScintillaBase.h

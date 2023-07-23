@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/qa//CMakeFiles/progress.marks
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles 0
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/qa//CMakeFiles/progress.marks
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/clean
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/preinstall
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/preinstall
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 libs/qa/CMakeFiles/wxqa.dir/rule:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/CMakeFiles/wxqa.dir/rule
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/qa/CMakeFiles/wxqa.dir/rule
 .PHONY : libs/qa/CMakeFiles/wxqa.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ wxqa: libs/qa/CMakeFiles/wxqa.dir/rule
 
 # fast build rule for target.
 wxqa/fast:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/build
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/build
 .PHONY : wxqa/fast
 
 __/__/__/__/src/common/debugrpt.o: __/__/__/__/src/common/debugrpt.cpp.o
@@ -180,7 +180,7 @@ __/__/__/__/src/common/debugrpt.o: __/__/__/__/src/common/debugrpt.cpp.o
 
 # target to build an object file
 __/__/__/__/src/common/debugrpt.cpp.o:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.o
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.o
 .PHONY : __/__/__/__/src/common/debugrpt.cpp.o
 
 __/__/__/__/src/common/debugrpt.i: __/__/__/__/src/common/debugrpt.cpp.i
@@ -188,7 +188,7 @@ __/__/__/__/src/common/debugrpt.i: __/__/__/__/src/common/debugrpt.cpp.i
 
 # target to preprocess a source file
 __/__/__/__/src/common/debugrpt.cpp.i:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.i
 .PHONY : __/__/__/__/src/common/debugrpt.cpp.i
 
 __/__/__/__/src/common/debugrpt.s: __/__/__/__/src/common/debugrpt.cpp.s
@@ -196,7 +196,7 @@ __/__/__/__/src/common/debugrpt.s: __/__/__/__/src/common/debugrpt.cpp.s
 
 # target to generate assembly for a file
 __/__/__/__/src/common/debugrpt.cpp.s:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/common/debugrpt.cpp.s
 .PHONY : __/__/__/__/src/common/debugrpt.cpp.s
 
 __/__/__/__/src/generic/dbgrptg.o: __/__/__/__/src/generic/dbgrptg.cpp.o
@@ -204,7 +204,7 @@ __/__/__/__/src/generic/dbgrptg.o: __/__/__/__/src/generic/dbgrptg.cpp.o
 
 # target to build an object file
 __/__/__/__/src/generic/dbgrptg.cpp.o:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.o
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.o
 .PHONY : __/__/__/__/src/generic/dbgrptg.cpp.o
 
 __/__/__/__/src/generic/dbgrptg.i: __/__/__/__/src/generic/dbgrptg.cpp.i
@@ -212,7 +212,7 @@ __/__/__/__/src/generic/dbgrptg.i: __/__/__/__/src/generic/dbgrptg.cpp.i
 
 # target to preprocess a source file
 __/__/__/__/src/generic/dbgrptg.cpp.i:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.i
 .PHONY : __/__/__/__/src/generic/dbgrptg.cpp.i
 
 __/__/__/__/src/generic/dbgrptg.s: __/__/__/__/src/generic/dbgrptg.cpp.s
@@ -220,22 +220,22 @@ __/__/__/__/src/generic/dbgrptg.s: __/__/__/__/src/generic/dbgrptg.cpp.s
 
 # target to generate assembly for a file
 __/__/__/__/src/generic/dbgrptg.cpp.s:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/__/__/__/__/src/generic/dbgrptg.cpp.s
 .PHONY : __/__/__/__/src/generic/dbgrptg.cpp.s
 
 # target to build an object file
 cmake_pch_arm64.hxx.pch:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.pch
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.pch
 .PHONY : cmake_pch_arm64.hxx.pch
 
 # target to preprocess a source file
 cmake_pch_arm64.hxx.i:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.i
 .PHONY : cmake_pch_arm64.hxx.i
 
 # target to generate assembly for a file
 cmake_pch_arm64.hxx.s:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/qa/CMakeFiles/wxqa.dir/build.make libs/qa/CMakeFiles/wxqa.dir/cmake_pch_arm64.hxx.s
 .PHONY : cmake_pch_arm64.hxx.s
 
 # Help Target
@@ -271,6 +271,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

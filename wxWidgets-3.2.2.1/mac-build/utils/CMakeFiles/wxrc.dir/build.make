@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 # Include any dependencies generated for this target.
 include utils/CMakeFiles/wxrc.dir/depend.make
@@ -70,18 +70,18 @@ include utils/CMakeFiles/wxrc.dir/progress.make
 include utils/CMakeFiles/wxrc.dir/flags.make
 
 utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o: utils/CMakeFiles/wxrc.dir/flags.make
-utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp
+utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp
 utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o: utils/CMakeFiles/wxrc.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o -MF CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o.d -o CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o -MF CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o.d -o CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp
 
 utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp > CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp > CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.i
 
 utils/CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp -o CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/utils/wxrc/wxrc.cpp -o CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.s
 
 # Object files for target wxrc
 wxrc_OBJECTS = \
@@ -95,18 +95,18 @@ lib/wxrc-3.2: utils/CMakeFiles/wxrc.dir/build.make
 lib/wxrc-3.2: lib/libwx_baseu_xml-3.2.0.2.1.dylib
 lib/wxrc-3.2: lib/libwx_baseu-3.2.0.2.1.dylib
 lib/wxrc-3.2: utils/CMakeFiles/wxrc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../lib/wxrc-3.2"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxrc.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../lib/wxrc-3.2"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxrc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 utils/CMakeFiles/wxrc.dir/build: lib/wxrc-3.2
 .PHONY : utils/CMakeFiles/wxrc.dir/build
 
 utils/CMakeFiles/wxrc.dir/clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils && $(CMAKE_COMMAND) -P CMakeFiles/wxrc.dir/cmake_clean.cmake
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils && $(CMAKE_COMMAND) -P CMakeFiles/wxrc.dir/cmake_clean.cmake
 .PHONY : utils/CMakeFiles/wxrc.dir/clean
 
 utils/CMakeFiles/wxrc.dir/depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/utils /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils/CMakeFiles/wxrc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/utils /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils/CMakeFiles/wxrc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : utils/CMakeFiles/wxrc.dir/depend
 

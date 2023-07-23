@@ -1,6 +1,6 @@
 libs/CMakeFiles/wxpng.dir/__/__/__/src/png/pngrio.c.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngrio.c \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngpriv.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngrio.c \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngpriv.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityVersions.h \
@@ -50,10 +50,10 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/pngrio.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_common.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pnglibconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngprefix.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/png.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pnglibconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngprefix.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/png.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngconf.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/limits.h \
@@ -76,7 +76,7 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/pngrio.c.o: \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/math.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngstruct.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngstruct.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/zlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/zconf.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/types.h \
@@ -113,5 +113,5 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/pngrio.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_posix_vdisable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_seek_set.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pnginfo.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/pngdebug.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pnginfo.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/pngdebug.h

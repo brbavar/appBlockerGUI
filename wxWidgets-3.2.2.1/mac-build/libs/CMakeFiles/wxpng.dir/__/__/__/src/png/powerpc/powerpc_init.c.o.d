@@ -1,5 +1,5 @@
 libs/CMakeFiles/wxpng.dir/__/__/__/src/png/powerpc/powerpc_init.c.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/powerpc_init.c \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/powerpc_init.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/cdefs.h \
@@ -32,7 +32,7 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/powerpc/powerpc_init.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctermid.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_common.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pngpriv.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pngpriv.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/wait.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_pid_t.h \
@@ -56,10 +56,10 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/powerpc/powerpc_init.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/malloc/_malloc.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_string.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pnglibconf.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pngprefix.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../png.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pngconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pnglibconf.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pngprefix.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../png.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pngconf.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/limits.h \
@@ -76,7 +76,7 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/powerpc/powerpc_init.c.o: \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/math.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pngstruct.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pngstruct.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/zlib.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/zconf.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/types.h \
@@ -113,5 +113,5 @@ libs/CMakeFiles/wxpng.dir/__/__/__/src/png/powerpc/powerpc_init.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_posix_vdisable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_seek_set.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pnginfo.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/png/powerpc/../pngdebug.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pnginfo.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/png/powerpc/../pngdebug.h

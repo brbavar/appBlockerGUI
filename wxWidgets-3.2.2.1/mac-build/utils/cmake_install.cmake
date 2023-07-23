@@ -1,4 +1,4 @@
-# Install script for directory: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/utils
+# Install script for directory: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/utils
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,11 +38,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wxrc-3.2")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wxrc-3.2")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wxrc-3.2" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wxrc-3.2")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib"
+      -delete_rpath "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wxrc-3.2")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip" -u -r "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/wxrc-3.2")

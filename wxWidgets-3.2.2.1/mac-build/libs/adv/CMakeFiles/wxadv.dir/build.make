@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 # Include any dependencies generated for this target.
 include libs/adv/CMakeFiles/wxadv.dir/depend.make
@@ -70,18 +70,18 @@ include libs/adv/CMakeFiles/wxadv.dir/progress.make
 include libs/adv/CMakeFiles/wxadv.dir/flags.make
 
 libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o: libs/adv/CMakeFiles/wxadv.dir/flags.make
-libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/dummy.cpp
+libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/dummy.cpp
 libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o: libs/adv/CMakeFiles/wxadv.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o -MF CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o.d -o CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o -c /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/dummy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o -MF CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o.d -o CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o -c /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/dummy.cpp
 
 libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/dummy.cpp > CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/dummy.cpp > CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i
 
 libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/common/dummy.cpp -o CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/common/dummy.cpp -o CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s
 
 # Object files for target wxadv
 wxadv_OBJECTS = \
@@ -95,9 +95,9 @@ lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib: libs/adv/CMakeFiles/wxadv.dir/build.ma
 lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib: lib/libwx_osx_cocoau_core-3.2.0.2.1.dylib
 lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib: lib/libwx_baseu-3.2.0.2.1.dylib
 lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib: libs/adv/CMakeFiles/wxadv.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../../lib/libwx_osx_cocoau_adv-3.2.dylib"
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxadv.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib ../../lib/libwx_osx_cocoau_adv-3.2.0.dylib ../../lib/libwx_osx_cocoau_adv-3.2.dylib
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../../lib/libwx_osx_cocoau_adv-3.2.dylib"
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wxadv.dir/link.txt --verbose=$(VERBOSE)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -E cmake_symlink_library ../../lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib ../../lib/libwx_osx_cocoau_adv-3.2.0.dylib ../../lib/libwx_osx_cocoau_adv-3.2.dylib
 
 lib/libwx_osx_cocoau_adv-3.2.0.dylib: lib/libwx_osx_cocoau_adv-3.2.0.2.1.dylib
 	@$(CMAKE_COMMAND) -E touch_nocreate lib/libwx_osx_cocoau_adv-3.2.0.dylib
@@ -110,10 +110,10 @@ libs/adv/CMakeFiles/wxadv.dir/build: lib/libwx_osx_cocoau_adv-3.2.dylib
 .PHONY : libs/adv/CMakeFiles/wxadv.dir/build
 
 libs/adv/CMakeFiles/wxadv.dir/clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -P CMakeFiles/wxadv.dir/cmake_clean.cmake
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv && $(CMAKE_COMMAND) -P CMakeFiles/wxadv.dir/cmake_clean.cmake
 .PHONY : libs/adv/CMakeFiles/wxadv.dir/clean
 
 libs/adv/CMakeFiles/wxadv.dir/depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/lib/adv /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv/CMakeFiles/wxadv.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1 /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/lib/adv /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv/CMakeFiles/wxadv.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : libs/adv/CMakeFiles/wxadv.dir/depend
 

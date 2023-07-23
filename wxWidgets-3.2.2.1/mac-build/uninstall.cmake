@@ -7,11 +7,11 @@
 # Licence:     wxWindows licence
 #############################################################################
 
-if(NOT EXISTS "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/install_manifest.txt")
+if(NOT EXISTS "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/install_manifest.txt")
 endif()
 
-file(READ "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/install_manifest.txt" files)
+file(READ "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 list(APPEND files /usr/local/bin/wx-config;/usr/local/bin/wxrc)
 foreach(file ${files})

@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+CMAKE_SOURCE_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build
+CMAKE_BINARY_DIR = /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/adv//CMakeFiles/progress.marks
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles 0
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/adv//CMakeFiles/progress.marks
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/clean
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/preinstall
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/preinstall
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 libs/adv/CMakeFiles/wxadv.dir/rule:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/CMakeFiles/wxadv.dir/rule
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/adv/CMakeFiles/wxadv.dir/rule
 .PHONY : libs/adv/CMakeFiles/wxadv.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ wxadv: libs/adv/CMakeFiles/wxadv.dir/rule
 
 # fast build rule for target.
 wxadv/fast:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/build
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/build
 .PHONY : wxadv/fast
 
 __/__/__/__/src/common/dummy.o: __/__/__/__/src/common/dummy.cpp.o
@@ -180,7 +180,7 @@ __/__/__/__/src/common/dummy.o: __/__/__/__/src/common/dummy.cpp.o
 
 # target to build an object file
 __/__/__/__/src/common/dummy.cpp.o:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.o
 .PHONY : __/__/__/__/src/common/dummy.cpp.o
 
 __/__/__/__/src/common/dummy.i: __/__/__/__/src/common/dummy.cpp.i
@@ -188,7 +188,7 @@ __/__/__/__/src/common/dummy.i: __/__/__/__/src/common/dummy.cpp.i
 
 # target to preprocess a source file
 __/__/__/__/src/common/dummy.cpp.i:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.i
 .PHONY : __/__/__/__/src/common/dummy.cpp.i
 
 __/__/__/__/src/common/dummy.s: __/__/__/__/src/common/dummy.cpp.s
@@ -196,7 +196,7 @@ __/__/__/__/src/common/dummy.s: __/__/__/__/src/common/dummy.cpp.s
 
 # target to generate assembly for a file
 __/__/__/__/src/common/dummy.cpp.s:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(MAKE) $(MAKESILENT) -f libs/adv/CMakeFiles/wxadv.dir/build.make libs/adv/CMakeFiles/wxadv.dir/__/__/__/__/src/common/dummy.cpp.s
 .PHONY : __/__/__/__/src/common/dummy.cpp.s
 
 # Help Target
@@ -226,6 +226,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

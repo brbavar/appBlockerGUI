@@ -1,4 +1,4 @@
-# Install script for directory: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/build/cmake/lib/base
+# Install script for directory: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/build/cmake/lib/base
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.0.2.1.dylib"
-    "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.0.dylib"
+    "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.0.2.1.dylib"
+    "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.0.dylib"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwx_baseu-3.2.0.2.1.dylib"
@@ -56,7 +56,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.dylib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/libwx_baseu-3.2.dylib")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwx_baseu-3.2.dylib" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwx_baseu-3.2.dylib")
     if(CMAKE_INSTALL_DO_STRIP)

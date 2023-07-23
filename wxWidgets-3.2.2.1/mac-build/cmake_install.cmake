@@ -1,4 +1,4 @@
-# Install script for directory: /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1
+# Install script for directory: /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -42,15 +42,15 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/wx-3.2" TYPE DIRECTORY FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/include/wx")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/wx-3.2" TYPE DIRECTORY FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/include/wx")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/wx/include" TYPE DIRECTORY FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/wx/include" TYPE DIRECTORY FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/wx/config" TYPE FILE PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wx/config/osx_cocoa-unicode-3.2")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/wx/config" TYPE FILE PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wx/config/osx_cocoa-unicode-3.2")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -65,7 +65,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets/wxWidgetsTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets/wxWidgetsTargets.cmake"
-         "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets.cmake")
+         "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets/wxWidgetsTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -78,23 +78,23 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets" TYPE FILE FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets" TYPE FILE FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets" TYPE FILE FILES "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets" TYPE FILE FILES "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/CMakeFiles/Export/82dea25457d57761b815f3a88ce12492/wxWidgetsTargets-debug.cmake")
   endif()
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/wxWidgets" TYPE FILE FILES
-    "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wxWidgetsConfig.cmake"
-    "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wxWidgetsConfigVersion.cmake"
+    "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wxWidgetsConfig.cmake"
+    "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wxWidgetsConfigVersion.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/libs/cmake_install.cmake")
-  include("/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/utils/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/libs/cmake_install.cmake")
+  include("/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/utils/cmake_install.cmake")
 
 endif()
 
@@ -106,5 +106,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

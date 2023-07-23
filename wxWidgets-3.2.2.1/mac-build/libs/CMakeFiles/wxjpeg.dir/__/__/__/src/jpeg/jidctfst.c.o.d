@@ -1,8 +1,8 @@
 libs/CMakeFiles/wxjpeg.dir/__/__/__/src/jpeg/jidctfst.c.o: \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jidctfst.c \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jinclude.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jconfig.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2/wx/setup.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jidctfst.c \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jinclude.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jconfig.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/mac-build/lib/wx/include/osx_cocoa-unicode-3.2/wx/setup.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
@@ -85,8 +85,8 @@ libs/CMakeFiles/wxjpeg.dir/__/__/__/src/jpeg/jidctfst.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/secure/_string.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jpeglib.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jmorecfg.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jpegint.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jerror.h \
-  /Users/benbavar/appBlockerFrontend/wxWidgets-3.2.2.1/src/jpeg/jdct.h
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jpeglib.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jmorecfg.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jpegint.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jerror.h \
+  /Users/benbavar/appBlockerGUI/wxWidgets-3.2.2.1/src/jpeg/jdct.h
