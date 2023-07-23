@@ -2,8 +2,9 @@
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
+#include <wx/wrapsizer.h>
 // #include <wx/imagpng.h>
-#include <wx/listctrl.h>
+// #include <wx/listctrl.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -32,7 +33,7 @@ private:
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
     void OnAbout(wxCommandEvent &event);
-    void OnPaint(wxPaintEvent &event);
+    // void OnPaint(wxPaintEvent &event);
 
     // wxDECLARE_EVENT_TABLE();
 };
@@ -79,11 +80,8 @@ enum
 
 wxIMPLEMENT_APP(MyApp);
 
-// MyFrame *frame = new MyFrame();
-
 bool MyApp::OnInit()
 {
-    // wxInitAllImageHandlers();
     wxImage::AddHandler(new wxPNGHandler);
     MyFrame *frame = new MyFrame();
     frame->Show(true);
@@ -108,148 +106,89 @@ MyFrame::MyFrame()
 
     SetMenuBar(menuBar);
 
-    // CreateStatusBar();
-    // SetStatusText("Welcome to wxWidgets!");
-
     Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
     Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
 
-    // wxIcon icoIcon = wxIcon("/Applications/Spotify.app/Contents/Resources/Icon.icns");
-    // wxBitmap icoBMP = wxBitmap("/Applications/Spotify.app/Contents/Resources/Icon.icns", wxBITMAP_TYPE_ICO);
-    // wxMemoryDC icoDC = wxMemoryDC();
-    // icoDC.DrawBitmap(icoBMP, 0, 0);
-    // wxGridSizer *grid = new wxGridSizer(1, 1, 1);
-    // grid->Add(icoDC);
-
     std::vector<std::string> appDirs = {"/Applications", "/System/Applications",
                                         "/System/Library/CoreServices", "~/Downloads"};
     std::vector<std::string> appNames;
-    // std::unordered_map<std::string, std::string> appToDir;
 
-    wxVector<wxBitmapBundle> icnBundles;
+    wxVector<std::pair<wxBitmapBundle, std::string>> bmpsWithAppNames;
 
-    // for (std::string dir : appDirs)
-    // {
-    //     std::string find = "find " + dir;
-    //     find += " -maxdepth 3 -regex \"" + dir;
-    //     find += "/.*\\.app/Contents/Info.plist$\" | awk -F/ '{print $" + std::to_string((int)(std::count(dir.begin(), dir.end(), '/') + 2));
-    //     find += "}' | awk -F\".app\" '{print $1}'";
-
-    //     appNames = getListItems(run(find));
-
-    //     for (std::string appName : appNames)
-    //     {
-    //         std::string contentsPath = dir + '/';
-    //         contentsPath += appName + ".app/Contents";
-
-    //         std::string getIcnFile = "defaults read \"" + contentsPath;
-    //         getIcnFile += "/Info.plist\" CFBundleIconFile | awk -F. '{print $1}'";
-    //         std::string icnFilename = run(getIcnFile);
-
-    //         std::string makeIconset = "iconutil -c iconset \"" + contentsPath;
-    //         makeIconset += "/Resources/" + icnFilename;
-    //         makeIconset += ".icns\" >nul 2>&1";
-    //         system(makeIconset.c_str());
-
-    //         // wxBitmapBundle icnBundle = wxBitmapBundle::FromResources(wxString(appName));
-
-    //         std::string iconsetPath = contentsPath + "/Resources/";
-    //         iconsetPath += icnFilename + ".iconset";
-
-    std::string iconsetPath = "/Applications/Steam.app/Contents/Resources/Steam.iconset";
-
-    // std::string getPNGs = "ls -1 \"" + iconsetPath;
-    // getPNGs += "\"";
-    // std::vector<std::string> pngs = getListItems(run(getPNGs));
-    std::string getPNG = "ls \"" + iconsetPath;
-    getPNG += "\" | grep 32x32.png";
-    std::string png = run(getPNG);
-
-    // wxVector<wxBitmap> bitmaps;
-    wxImageList *pngList = new wxImageList(32, 32, true);
-    // for (std::string png : pngs)
-    // {
-    std::string bmpPath = iconsetPath + '/';
-    bmpPath += png;
-
-    // wxImage image(bmpPath, wxBITMAP_TYPE_PNG);
-    // wxBitmap bmp(image);
-    wxBitmap bmp = wxBitmap(bmpPath, wxBITMAP_TYPE_PNG);
-    // bmp.ResetAlpha();
-
-    // std::cout << "path: " << bmpPath << "\n\n";
-    // std::cout << "size: (" << bmp.GetHeight() << ',' << bmp.GetWidth() << ")\n\n";
-    // std::cout << "color depth: " << bmp.GetDepth() << "\n\n";
-    // std::cout << "hasAlpha: " << bmp.HasAlpha() << "\n\n";
-
-    // wxImage img = bmp.ConvertToImage();
-
-    // std::cout << "alpha: ";
-    // int i = 0;
-    // std::cout << (img.GetAlpha() != nullptr ? "NOT " : "") << "nullptr\n\n\n";
-    // while (img.GetAlpha()[i] != '\0')
-    // {
-    //     std::cout << img.GetAlpha()[i] << "\n\n";
-    //     i++;
-    //     std::cout << "is " << (img.GetAlpha()[i] == '\0' ? "" : "NOT ")
-    //               << "null terminated\n\n\n";
-    // }
-
-    // for (int x = 0; x < bmp.GetWidth(); x++)
-    //     for (int y = 0; y < bmp.GetHeight(); y++)
-    //     {
-    //         int r = img.GetRed(x, y) - '\0';
-    //         int g = img.GetGreen(x, y) - '\0';
-    //         int b = img.GetBlue(x, y) - '\0';
-    //         int a = img.GetAlpha(x, y) - '\0';
-    //         std::cout << '(' << x << ',' << y << "): "
-    //                   << "RGB(" << r << ',' << g << ',' << b << ") Alpha: " << a << '\n';
-    //     }
-
-    // std::cout << "\n\n";
-
-    // if (bmp.IsOk())
-    // {
-    //     // bitmaps.push_back(bmp);
-    //     pngList->Add(bmp);
-    // }
-    // }
-
-    // wxBitmapBundle icnBundle = wxBitmapBundle::FromBitmaps(bitmaps);
-    // icnBundles.push_back(icnBundle);
-
-    // appToDir[appName] = dir;
-    //     }
-    // }
-
-    wxIcon icn = wxIcon();
-    icn.CopyFromBitmap(bmp);
-    int imgIndex = pngList->Add(icn);
-    std::cout << "imgIndex: " << imgIndex << '\n';
-
-    // pngList->Add(wxIcon(bmpPath, wxBITMAP_TYPE_PNG));
-
-    wxListView *icnList = new wxListView(this, wxID_ANY, wxDefaultPosition, wxSize(400, 400), wxLC_REPORT);
-    icnList->AssignImageList(pngList, wxIMAGE_LIST_NORMAL);
-    // icnList.SetNormalImages(icnBundles);
-
-    wxListItem col;
-    for (int i = 0; i < 3; i++)
+    for (std::string dir : appDirs)
     {
-        col.SetText(std::string("Column ") + std::to_string(i + 1));
-        col.SetImage(imgIndex);
-        icnList->InsertColumn(i, col);
-        icnList->SetColumnWidth(i, 400);
+        std::string find = "find " + dir;
+        find += " -maxdepth 3 -regex \"" + dir;
+        find += "/.*\\.app/Contents/Info.plist$\" | awk -F/ '{print $" + std::to_string((int)(std::count(dir.begin(), dir.end(), '/') + 2));
+        find += "}' | awk -F\".app\" '{print $1}'";
+
+        appNames = getListItems(run(find));
+
+        for (std::string appName : appNames)
+        {
+            std::string contentsPath = dir + '/';
+            contentsPath += appName + ".app/Contents";
+
+            std::string getIcnFile = "defaults read \"" + contentsPath;
+            getIcnFile += "/Info.plist\" CFBundleIconFile | awk -F. '{print $1}'";
+            std::string icnFilename = run(getIcnFile);
+
+            std::string makeIconset = "iconutil -c iconset \"" + contentsPath;
+            makeIconset += "/Resources/" + icnFilename;
+            makeIconset += ".icns\" >nul 2>&1";
+            system(makeIconset.c_str());
+
+            // wxBitmapBundle icnBundle = wxBitmapBundle::FromResources(wxString(appName));
+
+            std::string iconsetPath = contentsPath + "/Resources/";
+            iconsetPath += icnFilename + ".iconset";
+
+            std::string getPNGs = "ls -1 \"" + iconsetPath;
+            getPNGs += "\"";
+            std::vector<std::string> pngs = getListItems(run(getPNGs));
+
+            wxVector<wxBitmap> bitmaps;
+            for (std::string png : pngs)
+            {
+                std::string bmpPath = iconsetPath + '/';
+                bmpPath += png;
+                wxBitmap bmp = wxBitmap(bmpPath, wxBITMAP_TYPE_PNG);
+                if (bmp.IsOk())
+                    bitmaps.push_back(bmp);
+            }
+            bmpsWithAppNames.push_back(std::make_pair(wxBitmapBundle::FromBitmaps(bitmaps), appName));
+        }
     }
 
-    int imageIndex = 0;
-    wxString buf;
+    int cols = 6;
+    int rows = ceil((double)bmpsWithAppNames.size() / cols);
 
-    buf.Printf(wxT("This is item %d"), 0);
-    icnList->InsertItem(0, buf, imageIndex);
+    wxScrolled<wxPanel> *scrollArea = new wxScrolled<wxPanel>(this);
 
-    icnList->SetItemData(0, 0);
+    // wxWrapSizer *wrap = new wxWrapSizer();
+    wxGridSizer *grid = new wxGridSizer(rows, cols, 20, 20);
+    grid->Layout();
+
+    scrollArea->SetSizer(grid);
+    scrollArea->SetScrollRate(0, 12);
+    scrollArea->Bind(wxEVT_SIZE, [this](wxSizeEvent &event)
+                     { SetVirtualSize(wxSize(GetClientSize().x, -1)); });
+
+    for (auto pair : bmpsWithAppNames)
+    {
+        wxButton *btn = new wxButton(scrollArea, wxID_ANY, pair.second, wxDefaultPosition, wxSize(100, 10), wxBORDER_NONE);
+        btn->SetBitmap(pair.first);
+        // wxMemoryDC icnMem = wxMemoryDC();
+        // icnMem.SelectObject(pair.first);
+        // wxCoord w, h;
+        // icnMem.GetSize(&w, &h);
+
+        // wxPaintDC *icnPaint = new wxPaintDC(this);
+        // icnPaint->Blit(0, 0, w, h, &icnMem, 0, 0);
+
+        grid->Add(icnPaint, 1, wxEXPAND | wxALL);
+    }
 }
 
 void MyFrame::OnExit(wxCommandEvent &event)
