@@ -158,12 +158,17 @@ void MyFrame::OnPaint(wxPaintEvent &event)
 
     for (std::string dir : appDirs)
     {
+        int dirLevel = std::count(dir.begin(), dir.end(), '/');
+
         std::string findApps = "find " + dir;
         findApps += " -maxdepth 1 -regex \"" + dir;
-        findApps += "/.*\\.app$\" | awk -F/ '{print $" + std::to_string((int)(std::count(dir.begin(), dir.end(), '/') + 2));
-        findApps += "}' | awk -F\".app\" '{print $1}'";
+        findApps += "/.*\\.app$\" | awk -F/ '{print $" + std::to_string(dirLevel + 2);
+        findApps += "}'";
 
         appNames = getListItems(run(findApps));
+
+        for (int i = 0; i < appNames.size(); i++)
+            appNames[i].erase(appNames[i].size() - 4);
 
         for (std::string appName : appNames)
         {
