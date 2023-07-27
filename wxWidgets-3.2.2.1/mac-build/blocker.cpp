@@ -1,10 +1,5 @@
-// wxWidgets "Hello World" Program
-
-// For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 #include <wx/wrapsizer.h>
-// #include <wx/imagpng.h>
-// #include <wx/listctrl.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -188,24 +183,6 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 }
                 if (containsResources(contentsPath))
                 {
-                    // std::string makeIconset = "iconutil -c iconset \"" + contentsPath;
-                    // makeIconset += "/Resources/" + icnName;
-                    // makeIconset += ".icns\" >nul 2>&1";
-                    // system(makeIconset.c_str());
-
-                    // std::string iconsetPath = contentsPath + "/Resources/";
-                    // iconsetPath += icnName + ".iconset";
-
-                    // std::string getPNGs = "ls -1 \"" + iconsetPath;
-                    // getPNGs += "\"";
-                    // std::vector<std::string> pngs = getListItems(run(getPNGs));
-
-                    // wxVector<wxBitmap> bitmaps;
-                    // for (std::string png : pngs)
-                    // {
-                    // std::string bmpPath = iconsetPath + '/';
-                    // bmpPath += png;
-
                     std::string findIcnFile = "ls \"" + contentsPath;
                     findIcnFile += "/Resources\" | grep \"" + icnName;
                     findIcnFile += ".icns\"";
@@ -236,23 +213,12 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 {
                     std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
                 }
-
-                // wxImage::AddHandler(new wxPNGHandler);
-
-                // std::string test = std::string("appIcons/") + appName;
-                // std::cout << test << "\n\n";
-
                 std::string pngPath = "app-icons/" + appName + ".png";
                 wxImage image(pngPath, wxBITMAP_TYPE_PNG);
                 // wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH)); // FIX THIS; IT IS CAUSING ERROR
 
                 // if (bmp.IsOk())
                 //     bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
-
-                // if (bmp.IsOk())
-                // bitmaps.push_back(bmp);
-                // }
-                // bmpsWithAppNames.push_back(std::make_pair(wxBitmapBundle::FromBitmaps(bitmaps), appName));
             }
             else
             {
@@ -260,24 +226,6 @@ void MyFrame::OnPaint(wxPaintEvent &event)
             }
         }
     }
-
-    // int cols = 6;
-    // int rows = ceil((double)bmpsWithAppNames.size() / cols);
-
-    // wxScrolled<wxPanel> *scrollArea = new wxScrolled<wxPanel>(this);
-
-    // wxWrapSizer *wrap = new wxWrapSizer();
-
-    // wxGridSizer *grid = new wxGridSizer(rows, cols, 20, 20);
-    // grid->Layout();
-
-    // scrollArea->SetSizer(grid);
-    // scrollArea->SetScrollRate(0, 12);
-    // scrollArea->Bind(wxEVT_SIZE, [this](wxSizeEvent &event)
-    //                  { SetVirtualSize(wxSize(GetClientSize().x, -1)); });
-
-    // for (auto pair : bmpsWithAppNames)
-    // {
 
     wxPaintDC *icnPaint = new wxPaintDC(this);
     int hgap = 20;
@@ -296,9 +244,6 @@ void MyFrame::OnPaint(wxPaintEvent &event)
 
             icnPaint->Blit(x * hgap + (x * 90), vgap * y + (y * 90), w, h, &icnMem, 0, 0);
         }
-
-    // grid->Add(icnPaint, 1, wxEXPAND | wxALL);
-    // }
 }
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
