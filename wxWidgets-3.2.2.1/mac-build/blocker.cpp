@@ -75,7 +75,7 @@ std::string getAppPath(const std::string &appName, const std::string &dir)
 
 std::string lsGrep(const std::string &path, const std::string &searchStr)
 {
-    return run("ls \"" + path + std::string("\" | grep ") + searchStr);
+    return run("ls \"" + path + std::string("\" | grep \"") + searchStr + '"');
 }
 
 bool hasContents(const std::string &appPath)
@@ -86,7 +86,6 @@ bool hasContents(const std::string &appPath)
 bool containsResources(const std::string &contentsPath)
 {
     std::string appPath = contentsPath.substr(0, contentsPath.size() - 9);
-    std::cout << "appPath: " << appPath << '\n';
     return hasContents(appPath) && lsGrep(contentsPath, "Resources").size();
 }
 
@@ -218,12 +217,16 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 {
                     std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
                 }
-                std::string pngPath = "app-icons/" + appName + ".png";
-                wxImage image(pngPath, wxBITMAP_TYPE_PNG);
-                // wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH)); // FIX THIS; IT IS CAUSING ERROR
 
-                // if (bmp.IsOk())
-                //     bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
+                std::string pngPath = "app-icons/" + appName + ".png";
+                if (lsGrep("app-icons", appName + std::string(".png")).size())
+                {
+                    wxImage image(pngPath, wxBITMAP_TYPE_PNG);
+                    // wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH)); // FIX THIS; IT IS CAUSING ERROR
+
+                    // if (bmp.IsOk())
+                    //     bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
+                }
             }
             else
             {
