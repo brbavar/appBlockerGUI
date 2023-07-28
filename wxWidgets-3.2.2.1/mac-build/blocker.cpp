@@ -21,12 +21,15 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame();
-    void setBMPsWithAppNames();
-    wxVector<std::pair<wxBitmap, std::string>> getBMPsWithAppNames();
+    void setBMPs(wxVector<wxBitmap>);
+    wxVector<wxBitmap> getBMPs();
+    void setAppPaths(std::vector<std::string>);
+    std::vector<std::string> getAppPaths();
 
 private:
     wxImage img; // LIKELY SUPERFLUOUS
-    wxVector<std::pair<wxBitmap, std::string>> bmpsWithAppNames;
+    wxVector<wxBitmap> bmps;
+    std::vector<std::string> appPaths;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
@@ -42,7 +45,7 @@ std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-wxVector<std::pair<wxBitmap, std::string>> collectIcons();
+void collectIcons();
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -93,7 +96,10 @@ bool containsResources(const std::string &contentsPath)
     return hasContents(appPath) && lsGrep(contentsPath, "Resources").size();
 }
 
-wxVector<std::pair<wxBitmap, std::string>> collectIcons()
+// Story for interview: At first I had put the code below inside definition of OnPaint method, but
+// that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
+// Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
+void collectIcons(MyFrame *frame)
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -103,7 +109,8 @@ wxVector<std::pair<wxBitmap, std::string>> collectIcons()
                                         "/System/Library/CoreServices/Finder.app/Contents/Applications",
                                         "~/Downloads"};
     std::vector<std::string> appNames;
-    wxVector<std::pair<wxBitmap, std::string>> bmpsWithAppNames;
+    std::vector<std::string> appPaths;
+    wxVector<wxBitmap> bmps;
 
     for (std::string dir : appDirs)
     {
@@ -175,7 +182,10 @@ wxVector<std::pair<wxBitmap, std::string>> collectIcons()
                     wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH));
 
                     if (bmp.IsOk())
-                        bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
+                    {
+                        bmps.push_back(bmp);
+                        appPaths.push_back(appPath);
+                    }
                 }
             }
             else
@@ -185,7 +195,8 @@ wxVector<std::pair<wxBitmap, std::string>> collectIcons()
         }
     }
 
-    return bmpsWithAppNames;
+    frame->setBMPs(bmps);
+    frame->setAppPaths(appPaths);
 }
 
 enum
@@ -193,14 +204,26 @@ enum
     ID_Hello = 1
 };
 
-void MyFrame::setBMPsWithAppNames()
+void MyFrame::setBMPs(wxVector<wxBitmap> bmps)
 {
-    this->bmpsWithAppNames = collectIcons();
+    for (wxBitmap bmp : bmps)
+        this->bmps.push_back(bmp);
 }
 
-wxVector<std::pair<wxBitmap, std::string>> MyFrame::getBMPsWithAppNames()
+wxVector<wxBitmap> MyFrame::getBMPs()
 {
-    return this->bmpsWithAppNames;
+    return this->bmps;
+}
+
+void MyFrame::setAppPaths(std::vector<std::string> appPaths)
+{
+    for (std::string appPath : appPaths)
+        this->appPaths.push_back(appPath);
+}
+
+std::vector<std::string> MyFrame::getAppPaths()
+{
+    return this->appPaths;
 }
 
 wxIMPLEMENT_APP(MyApp);
@@ -209,7 +232,7 @@ bool MyApp::OnInit()
 {
     wxImage::AddHandler(new wxPNGHandler);
     MyFrame *frame = new MyFrame();
-    frame->setBMPsWithAppNames();
+    collectIcons(frame);
     frame->Show(true);
     return true;
 }
@@ -255,14 +278,14 @@ void MyFrame::OnHello(wxCommandEvent &event)
 
 void MyFrame::OnPaint(wxPaintEvent &event)
 {
-    auto bmpsWithAppNames = this->getBMPsWithAppNames();
+    wxVector<wxBitmap> bmps = this->getBMPs();
 
     wxPaintDC *icnPaint = new wxPaintDC(this);
 
     int hgap = 20;
     int vgap = 20;
     int cols = 8;
-    int numApps = bmpsWithAppNames.size();
+    int numApps = bmps.size();
     int rows = ceil((double)numApps / cols);
     int i = 0;
 
@@ -274,10 +297,8 @@ void MyFrame::OnPaint(wxPaintEvent &event)
             if (i >= numApps)
                 break;
 
-            auto pair = bmpsWithAppNames[i];
-
             wxMemoryDC icnMem = wxMemoryDC();
-            icnMem.SelectObject(pair.first);
+            icnMem.SelectObject(bmps[i]);
             wxCoord w, h;
             icnMem.GetSize(&w, &h);
 
