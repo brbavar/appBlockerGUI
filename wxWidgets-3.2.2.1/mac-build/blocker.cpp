@@ -21,9 +21,12 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame();
+    void setBMPsWithAppNames();
+    wxVector<std::pair<wxBitmap, std::string>> getBMPsWithAppNames();
 
 private:
     wxImage img; // LIKELY SUPERFLUOUS
+    wxVector<std::pair<wxBitmap, std::string>> bmpsWithAppNames;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
@@ -39,6 +42,7 @@ std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
+wxVector<std::pair<wxBitmap, std::string>> collectIcons();
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -89,61 +93,7 @@ bool containsResources(const std::string &contentsPath)
     return hasContents(appPath) && lsGrep(contentsPath, "Resources").size();
 }
 
-enum
-{
-    ID_Hello = 1
-};
-
-wxIMPLEMENT_APP(MyApp);
-
-bool MyApp::OnInit()
-{
-    wxImage::AddHandler(new wxPNGHandler);
-    MyFrame *frame = new MyFrame();
-    frame->Show(true);
-    return true;
-}
-
-MyFrame::MyFrame()
-    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1200, 800))
-{
-    wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
-                     "Help string shown in status bar for this menu item");
-    menuFile->AppendSeparator();
-    menuFile->Append(wxID_EXIT);
-
-    wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(wxID_ABOUT);
-
-    wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuHelp, "&Help");
-
-    SetMenuBar(menuBar);
-
-    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
-    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
-    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
-}
-
-void MyFrame::OnExit(wxCommandEvent &event)
-{
-    Close(true);
-}
-
-void MyFrame::OnAbout(wxCommandEvent &event)
-{
-    wxMessageBox("This is a wxWidgets Hello World example",
-                 "About Hello World", wxOK | wxICON_INFORMATION);
-}
-
-void MyFrame::OnHello(wxCommandEvent &event)
-{
-    wxLogMessage("Hello world from wxWidgets!");
-}
-
-void MyFrame::OnPaint(wxPaintEvent &event)
+wxVector<std::pair<wxBitmap, std::string>> collectIcons()
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -222,10 +172,10 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 if (lsGrep("app-icons", appName + std::string(".png")).size())
                 {
                     wxImage image(pngPath, wxBITMAP_TYPE_PNG);
-                    // wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH)); // FIX THIS; IT IS CAUSING ERROR
+                    wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH));
 
-                    // if (bmp.IsOk())
-                    //     bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
+                    if (bmp.IsOk())
+                        bmpsWithAppNames.push_back(std::make_pair(bmp, appName));
                 }
             }
             else
@@ -235,15 +185,96 @@ void MyFrame::OnPaint(wxPaintEvent &event)
         }
     }
 
+    return bmpsWithAppNames;
+}
+
+enum
+{
+    ID_Hello = 1
+};
+
+void MyFrame::setBMPsWithAppNames()
+{
+    this->bmpsWithAppNames = collectIcons();
+}
+
+wxVector<std::pair<wxBitmap, std::string>> MyFrame::getBMPsWithAppNames()
+{
+    return this->bmpsWithAppNames;
+}
+
+wxIMPLEMENT_APP(MyApp);
+
+bool MyApp::OnInit()
+{
+    wxImage::AddHandler(new wxPNGHandler);
+    MyFrame *frame = new MyFrame();
+    frame->setBMPsWithAppNames();
+    frame->Show(true);
+    return true;
+}
+
+MyFrame::MyFrame()
+    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1200, 800))
+{
+    wxMenu *menuFile = new wxMenu;
+    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
+                     "Help string shown in status bar for this menu item");
+    menuFile->AppendSeparator();
+    menuFile->Append(wxID_EXIT);
+
+    wxMenu *menuHelp = new wxMenu;
+    menuHelp->Append(wxID_ABOUT);
+
+    wxMenuBar *menuBar = new wxMenuBar;
+    menuBar->Append(menuFile, "&File");
+    menuBar->Append(menuHelp, "&Help");
+
+    SetMenuBar(menuBar);
+
+    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
+    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
+}
+
+void MyFrame::OnExit(wxCommandEvent &event)
+{
+    Close(true);
+}
+
+void MyFrame::OnAbout(wxCommandEvent &event)
+{
+    wxMessageBox("This is a wxWidgets Hello World example",
+                 "About Hello World", wxOK | wxICON_INFORMATION);
+}
+
+void MyFrame::OnHello(wxCommandEvent &event)
+{
+    wxLogMessage("Hello world from wxWidgets!");
+}
+
+void MyFrame::OnPaint(wxPaintEvent &event)
+{
+    auto bmpsWithAppNames = this->getBMPsWithAppNames();
+
     wxPaintDC *icnPaint = new wxPaintDC(this);
+
     int hgap = 20;
     int vgap = 20;
     int cols = 8;
-    int rows = ceil((double)bmpsWithAppNames.size() / cols);
+    int numApps = bmpsWithAppNames.size();
+    int rows = ceil((double)numApps / cols);
+    int i = 0;
+
     for (int x = 0; x < cols; x++)
+    {
         for (int y = 0; y < rows; y++)
         {
-            auto pair = bmpsWithAppNames[cols * y + x];
+            i = cols * y + x;
+            if (i >= numApps)
+                break;
+
+            auto pair = bmpsWithAppNames[i];
 
             wxMemoryDC icnMem = wxMemoryDC();
             icnMem.SelectObject(pair.first);
@@ -252,6 +283,7 @@ void MyFrame::OnPaint(wxPaintEvent &event)
 
             icnPaint->Blit(x * hgap + (x * 90), vgap * y + (y * 90), w, h, &icnMem, 0, 0);
         }
+    }
 }
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
