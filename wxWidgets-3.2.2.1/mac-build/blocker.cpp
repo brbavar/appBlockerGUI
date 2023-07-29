@@ -1,5 +1,5 @@
 #include <wx/wxprec.h>
-#include <wx/wrapsizer.h>
+#include <wx/image.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -11,6 +11,27 @@
 #include <wx/wx.h>
 #endif
 
+class IcnBMP : public wxBitmap
+{
+public:
+    IcnBMP() : wxBitmap() {}
+    IcnBMP(const wxImage &img, int depth = wxBITMAP_SCREEN_DEPTH)
+        : wxBitmap(img, depth) {}
+    int getW();
+    int getH();
+    void setX(const int &x);
+    int getX();
+    void setY(const int &y);
+    int getY();
+    void setVectIndex(const int &i);
+    int getVectIndex();
+
+private:
+    int w = 70, h = 70;
+    int x, y;
+    // std::pair<int, int> xBounds, yBounds;
+    int vectIndex;
+};
 class MyApp : public wxApp
 {
 public:
@@ -21,14 +42,16 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame();
-    void setBMPs(wxVector<wxBitmap>);
-    wxVector<wxBitmap> getBMPs();
+    void setBMPs(wxVector<IcnBMP>);
+    wxVector<IcnBMP> getBMPs();
     void setAppPaths(std::vector<std::string>);
+    std::unordered_map<std::pair<int, int>, IcnBMP> getMap();
     std::vector<std::string> getAppPaths();
+    IcnBMP findClickedIcn(wxPoint clickPos);
 
 private:
-    wxImage img; // LIKELY SUPERFLUOUS
-    wxVector<wxBitmap> bmps;
+    wxVector<IcnBMP> bmps;
+    std::unordered_map<std::pair<int, int>, IcnBMP> bmpAt;
     std::vector<std::string> appPaths;
 
     void OnHello(wxCommandEvent &event);
@@ -40,12 +63,12 @@ private:
 };
 
 std::string run(std::string cmd, int size);
-std::vector<std::string> getListItems(std::string list);
+std::vector<std::string> getListItems(const std::string &list);
 std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-void collectIcons();
+void collectIcns(MyFrame *frame);
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -65,7 +88,7 @@ std::string run(std::string cmd, int size = 100)
 
 /* Extract from a string all lines separated by newline characters, and return vector
    of those lines. */
-std::vector<std::string> getListItems(std::string list)
+std::vector<std::string> getListItems(const std::string &list)
 {
     std::vector<std::string> items;
     std::stringstream listream(list);
@@ -99,7 +122,7 @@ bool containsResources(const std::string &contentsPath)
 // Story for interview: At first I had put the code below inside definition of OnPaint method, but
 // that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
 // Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
-void collectIcons(MyFrame *frame)
+void collectIcns(MyFrame *frame)
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -110,7 +133,7 @@ void collectIcons(MyFrame *frame)
                                         "~/Downloads"};
     std::vector<std::string> appNames;
     std::vector<std::string> appPaths;
-    wxVector<wxBitmap> bmps;
+    wxVector<IcnBMP> bmps;
 
     for (std::string dir : appDirs)
     {
@@ -178,8 +201,8 @@ void collectIcons(MyFrame *frame)
                 std::string pngPath = "app-icons/" + appName + ".png";
                 if (lsGrep("app-icons", appName + std::string(".png")).size())
                 {
-                    wxImage image(pngPath, wxBITMAP_TYPE_PNG);
-                    wxBitmap bmp(image.Scale(90, 90, wxIMAGE_QUALITY_HIGH));
+                    wxImage img(pngPath, wxBITMAP_TYPE_PNG);
+                    IcnBMP bmp(img.Scale(70, 70, wxIMAGE_QUALITY_HIGH));
 
                     if (bmp.IsOk())
                     {
@@ -204,15 +227,67 @@ enum
     ID_Hello = 1
 };
 
-void MyFrame::setBMPs(wxVector<wxBitmap> bmps)
+int IcnBMP::getW()
 {
-    for (wxBitmap bmp : bmps)
-        this->bmps.push_back(bmp);
+    return this->w;
 }
 
-wxVector<wxBitmap> MyFrame::getBMPs()
+int IcnBMP::getH()
+{
+    return this->h;
+}
+
+void IcnBMP::setX(const int &x)
+{
+    this->x = x;
+    // this->xBounds.first = x;
+    // this->xBounds.second = x + this->getW();
+}
+
+int IcnBMP::getX()
+{
+    return this->x;
+}
+
+void IcnBMP::setY(const int &y)
+{
+    this->y = y;
+    // this->yBounds.first = y;
+    // this->yBounds.second = y + this->getH();
+}
+
+int IcnBMP::getY()
+{
+    return this->y;
+}
+
+void IcnBMP::setVectIndex(const int &i)
+{
+    this->vectIndex = i;
+}
+
+int IcnBMP::getVectIndex()
+{
+    return this->vectIndex;
+}
+
+void MyFrame::setBMPs(wxVector<IcnBMP> bmps)
+{
+    for (IcnBMP bmp : bmps)
+    {
+        this->bmps.push_back(bmp);
+        this->bmpAt[std::make_pair(bmp.getX(), bmp.getY())] = bmp
+    }
+}
+
+wxVector<IcnBMP> MyFrame::getBMPs()
 {
     return this->bmps;
+}
+
+std::unordered_map<std::pair<int, int>, IcnBMP> MyFrame::getMap()
+{
+    return this->bmpAt;
 }
 
 void MyFrame::setAppPaths(std::vector<std::string> appPaths)
@@ -226,19 +301,79 @@ std::vector<std::string> MyFrame::getAppPaths()
     return this->appPaths;
 }
 
+IcnBMP MyFrame::findClickedIcn(wxPoint clickPos)
+{
+    wxVector<IcnBMP> bmps = this->getBMPs();
+    auto bmpAt = this->getMap();
+
+    std::vector<std::pair<int, int>> orderedPairs;
+    for (IcnBMP bmp : bmps)
+        orderedPairs.push_back(std::make_pair(bmp.getX(), bmp.getY()));
+
+    // Arrange ordered pairs such that x-coordinates are in ascending order.
+    sort(orderedPairs.begin(), orderedPairs.end());
+
+    int i = bmps.size() / 2;
+    IcnBMP bmp = bmpAt[orderedPairs[i]];
+    int w = bmp.getW(), h = bmp.getH();
+
+    // Search in ascending order of x-coordinates until we find an icon with a
+    // right edge that does not lie to the left of the point clicked within this frame.
+    while (clickPos.x > bmp.getX() + w)
+    {
+        orderedPairs.erase(orderedPairs.begin() + i);
+        bmp = bmpAt[orderedPairs[i]];
+    }
+
+    // Decrement index until we find an icon with a left edge that does
+    // not lie to the right of the point clicked within this frame.
+    while (clickPos.x < bmp.getX())
+    {
+        orderedPairs.erase(orderedPairs.begin() + i);
+        bmp = bmpAt[orderedPairs[--i]];
+    }
+
+    sort(orderedPairs.begin(), orderedPairs.end(),
+         [](const pair<int, int> &p1, const pair<int, int> &p2)
+         { return p1.second < p2.second });
+
+    i = orderedPairs.size() / 2;
+    bmp = bmpAt[orderedPairs[i]];
+
+    // Search in ascending order of y-coordinates until we find an icon with a
+    // bottom edge that does not lie above the point clicked within this frame.
+    while (clickPos.y > bmp.getY() + h)
+    {
+        orderedPairs.erase(orderedPairs.begin() + i);
+        bmp = bmpAt[orderedPairs[i]];
+    }
+
+    // Decrement index until we find an icon with a top edge that does
+    // not lie below the point clicked within this frame.
+    while (clickPos.y < bmp.getY())
+    {
+        orderedPairs.erase(orderedPairs.begin() + i);
+        bmp = bmpAt[orderedPairs[--i]];
+    }
+
+    int x = orderedPairs[i].first, y = orderedPairs[i].second;
+
+    return clickPos == wxPoint(x, y) ? bmp : IcnBMP();
+}
+
 wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
     wxImage::AddHandler(new wxPNGHandler);
     MyFrame *frame = new MyFrame();
-    collectIcons(frame);
+    collectIcns(frame);
     frame->Show(true);
     return true;
 }
 
 MyFrame::MyFrame()
-    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1200, 800))
+    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
 {
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
@@ -278,13 +413,13 @@ void MyFrame::OnHello(wxCommandEvent &event)
 
 void MyFrame::OnPaint(wxPaintEvent &event)
 {
-    wxVector<wxBitmap> bmps = this->getBMPs();
+    wxVector<IcnBMP> bmps = this->getBMPs();
 
     wxPaintDC *icnPaint = new wxPaintDC(this);
 
-    int hgap = 20;
-    int vgap = 20;
+    int hgap = 45, vgap = 45;
     int cols = 8;
+    int gridMarginTop = 30, gridMarginLeft = 30;
     int numApps = bmps.size();
     int rows = ceil((double)numApps / cols);
     int i = 0;
@@ -298,11 +433,14 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 break;
 
             wxMemoryDC icnMem = wxMemoryDC();
-            icnMem.SelectObject(bmps[i]);
-            wxCoord w, h;
-            icnMem.GetSize(&w, &h);
+            IcnBMP bmp = bmps[i];
+            icnMem.SelectObject(bmp);
 
-            icnPaint->Blit(x * hgap + (x * 90), vgap * y + (y * 90), w, h, &icnMem, 0, 0);
+            bmp.setX(x);
+            bmp.setY(y);
+            icnPaint->Blit(x * hgap + (x * 90) + gridMarginLeft,
+                           vgap * y + (y * 90) + gridMarginTop,
+                           bmp.getW(), bmp.getH(), &icnMem, 0, 0);
         }
     }
 }
