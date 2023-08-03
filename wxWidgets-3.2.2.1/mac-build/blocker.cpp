@@ -1,7 +1,10 @@
 #include <wx/wxprec.h>
 #include <wx/image.h>
+#include <wx/valtext.h>
+// #include <boost/container_hash/hash.hpp>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -19,17 +22,14 @@ public:
         : wxBitmap(img, depth) {}
     int getW();
     int getH();
-    void setX(const int &x);
-    int getX();
-    void setY(const int &y);
-    int getY();
+    void setRegion(wxCoord x, wxCoord y, wxCoord w, wxCoord h);
+    wxRegion getRegion();
     void setVectIndex(const int &i);
     int getVectIndex();
 
 private:
     int w = 70, h = 70;
-    int x, y;
-    // std::pair<int, int> xBounds, yBounds;
+    wxRegion region;
     int vectIndex;
 };
 class MyApp : public wxApp
@@ -38,37 +38,83 @@ public:
     virtual bool OnInit();
 };
 
-class MyFrame : public wxFrame
+// class HashablePair
+// {
+// public:
+//     template <class T1, class T2>
+//     std::size_t operator()(const std::pair<T1, T2> &p) const
+//     {
+//         std::size_t seed = 0;
+//         boost::hash_combine(seed, p.first);
+//         boost::hash_combine(seed, p.second);
+//         return seed;
+//     }
+// };
+
+class MainFrame : public wxFrame
 {
 public:
-    MyFrame();
-    void setBMPs(wxVector<IcnBMP>);
+    MainFrame();
+    void setBMPs(wxVector<IcnBMP> bmps);
     wxVector<IcnBMP> getBMPs();
-    void setAppPaths(std::vector<std::string>);
-    std::unordered_map<std::pair<int, int>, IcnBMP> getMap();
+    void addToList(const std::string &item, const std::string &filename);
+    std::vector<std::string> readList(const std::string &filename);
+    void setAppPaths(std::vector<std::string> appPaths);
     std::vector<std::string> getAppPaths();
+    // void setPNGPaths(std::vector<std::string> pngPaths);
+    // std::vector<std::string> getPNGPaths();
+    wxCoord getIcnW();
+    wxCoord getIcnH();
+    void setIcnGridPaint(wxPaintDC *icnGridPaint);
+    wxPaintDC *getIcnGridPaint();
+    // void setDlg(wxPasswordEntryDialog *dlg);
+    // wxPasswordEntryDialog *getDlg();
     IcnBMP findClickedIcn(wxPoint clickPos);
+    // void addToBlocklist(const std::string &appToBlock);
+    std::vector<std::string> getBlocklist();
+    void setNeedBlockPermissions(const bool &blockErrorShown);
+    bool getNeedBlockPermissions();
+    void setBlockCmd(const std::string &blockCmd);
+    std::string getBlockCmd();
+    void blockApp(IcnBMP clickedIcn);
 
 private:
     wxVector<IcnBMP> bmps;
-    std::unordered_map<std::pair<int, int>, IcnBMP> bmpAt;
     std::vector<std::string> appPaths;
+    // std::vector<std::string> pngPaths;
+    wxCoord icnW = 70;
+    wxCoord icnH = 70;
+    wxPaintDC *icnGridPaint;
+    // wxPasswordEntryDialog *dlg;
+    std::vector<std::string> blocklist;
+    bool needBlockPermissions = false;
+    std::string blockCmd;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
     void OnAbout(wxCommandEvent &event);
     void OnPaint(wxPaintEvent &event);
+    void OnClick(wxMouseEvent &event);
 
     wxDECLARE_EVENT_TABLE();
 };
 
+// class PasswordEntryDialogFrame : public wxFrame
+// {
+// public:
+//     PasswordEntryDialogFrame(wxFrame *parent, wxPasswordEntryDialog *dlg, std::string cmd);
+// };
+
 std::string run(std::string cmd, int size);
+template <typename T>
+bool contains(std::vector<T> v, T item);
 std::vector<std::string> getListItems(const std::string &list);
 std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-void collectIcns(MyFrame *frame);
+void collectPaths(MainFrame *mainFrame);
+void collectIcns(MainFrame *mainFrame);
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -86,8 +132,15 @@ std::string run(std::string cmd, int size = 100)
     return output;
 }
 
-/* Extract from a string all lines separated by newline characters, and return vector
-   of those lines. */
+// Check if vector v of Ts contains item.
+template <typename T>
+bool contains(std::vector<T> v, T item)
+{
+    return find(v.begin(), v.end(), item) != v.end();
+}
+
+// Extract from a string all lines separated by newline characters, and return vector
+// of those lines.
 std::vector<std::string> getListItems(const std::string &list)
 {
     std::vector<std::string> items;
@@ -122,7 +175,7 @@ bool containsResources(const std::string &contentsPath)
 // Story for interview: At first I had put the code below inside definition of OnPaint method, but
 // that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
 // Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
-void collectIcns(MyFrame *frame)
+void collectPaths(MainFrame *mainFrame)
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -133,6 +186,7 @@ void collectIcns(MyFrame *frame)
                                         "~/Downloads"};
     std::vector<std::string> appNames;
     std::vector<std::string> appPaths;
+    // std::vector<std::string> pngPaths;
     wxVector<IcnBMP> bmps;
 
     for (std::string dir : appDirs)
@@ -198,28 +252,53 @@ void collectIcns(MyFrame *frame)
                     std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
                 }
 
-                std::string pngPath = "app-icons/" + appName + ".png";
+                // std::string pngPath = "app-icons/" + appName + ".png";
                 if (lsGrep("app-icons", appName + std::string(".png")).size())
                 {
-                    wxImage img(pngPath, wxBITMAP_TYPE_PNG);
-                    IcnBMP bmp(img.Scale(70, 70, wxIMAGE_QUALITY_HIGH));
-
-                    if (bmp.IsOk())
-                    {
-                        bmps.push_back(bmp);
-                        appPaths.push_back(appPath);
-                    }
+                    // pngPaths.push_back(pngPath);
+                    appPaths.push_back(appPath);
                 }
             }
             else
             {
                 std::cout << "APP WITH NO CONTENTS: " << appName << '\n';
+                // If can't find app icon at all, use NoAppIconPlaceholder.png, which is in some folder somewhere named "Resources"
             }
         }
     }
 
-    frame->setBMPs(bmps);
-    frame->setAppPaths(appPaths);
+    // mainFrame->setPNGPaths(pngPaths);
+    mainFrame->setAppPaths(appPaths);
+}
+
+void collectIcns(MainFrame *mainFrame)
+{
+    std::vector<std::string> appPaths = mainFrame->getAppPaths();
+    std::vector<std::string> pngPaths;
+    for (int i = 0; i < appPaths.size(); i++)
+    {
+        int j = 0;
+        for (j = appPaths[i].size() - 1; appPaths[i][j - 1] != '/'; j--)
+            ;
+        std::string appName = appPaths[i].substr(j);
+        appName.erase(appName.size() - 4);
+        pngPaths.push_back(run("find app-icons -name \"" + appName + std::string(".png\"")));
+    }
+    wxVector<IcnBMP> bmps;
+    int i = 0;
+    for (std::string pngPath : pngPaths)
+    {
+        std::cout << pngPath << '\n';
+        wxImage img(pngPath, wxBITMAP_TYPE_PNG);
+        if (img.IsOk())
+        {
+            IcnBMP bmp(img.Scale(mainFrame->getIcnW(), mainFrame->getIcnH(), wxIMAGE_QUALITY_HIGH));
+            bmp.setVectIndex(i++);
+            // if (bmp.GetLogicalWidth() || bmp.GetLogicalHeight() /* bmp.IsOk() */)
+            bmps.push_back(bmp);
+        }
+    }
+    mainFrame->setBMPs(bmps);
 }
 
 enum
@@ -237,28 +316,14 @@ int IcnBMP::getH()
     return this->h;
 }
 
-void IcnBMP::setX(const int &x)
+void IcnBMP::setRegion(wxCoord x, wxCoord y, wxCoord w, wxCoord h)
 {
-    this->x = x;
-    // this->xBounds.first = x;
-    // this->xBounds.second = x + this->getW();
+    this->region = wxRegion(x, y, w, h);
 }
 
-int IcnBMP::getX()
+wxRegion IcnBMP::getRegion()
 {
-    return this->x;
-}
-
-void IcnBMP::setY(const int &y)
-{
-    this->y = y;
-    // this->yBounds.first = y;
-    // this->yBounds.second = y + this->getH();
-}
-
-int IcnBMP::getY()
-{
-    return this->y;
+    return this->region;
 }
 
 void IcnBMP::setVectIndex(const int &i)
@@ -271,94 +336,237 @@ int IcnBMP::getVectIndex()
     return this->vectIndex;
 }
 
-void MyFrame::setBMPs(wxVector<IcnBMP> bmps)
+void MainFrame::setBMPs(wxVector<IcnBMP> bmps)
 {
+    if (!this->bmps.empty())
+        this->bmps.clear();
+
     for (IcnBMP bmp : bmps)
-    {
         this->bmps.push_back(bmp);
-        this->bmpAt[std::make_pair(bmp.getX(), bmp.getY())] = bmp
-    }
 }
 
-wxVector<IcnBMP> MyFrame::getBMPs()
+wxVector<IcnBMP> MainFrame::getBMPs()
 {
     return this->bmps;
 }
 
-std::unordered_map<std::pair<int, int>, IcnBMP> MyFrame::getMap()
+void MainFrame::addToList(const std::string &item, const std::string &filename)
 {
-    return this->bmpAt;
+    std::string addPermissions = "chmod 200 " + filename + std::string(" >nul 2>&1");
+    system(addPermissions.c_str());
+    std::ofstream log(filename.c_str(), std::ios_base::app);
+    if (log.is_open())
+    {
+        std::vector<std::string> list = this->readList(filename);
+        if (filename == ".appList.txt")
+            if (!contains(list, item))
+                log << item << '\n';
+        // if (filename == ".pngList.txt")
+        //     if (!contains(list, item))
+        //         log << item << '\n';
+        if (filename == ".blocklist.txt")
+            if (!contains(list, item))
+                log << item << '\n';
+    }
+    log.close();
+    std::string removePermissions = addPermissions.substr(0, 6) + '0' + addPermissions.substr(7);
+    system(removePermissions.c_str());
 }
 
-void MyFrame::setAppPaths(std::vector<std::string> appPaths)
+// Read all items listed in text file and return a vector of them.
+std::vector<std::string> MainFrame::readList(const std::string &filename)
 {
+    std::vector<std::string> savedItems;
+    std::string addPermissions = "chmod 400 " + filename + std::string(" >nul 2>&1");
+    system(addPermissions.c_str());
+    std::ifstream log(filename.c_str());
+    if (log.is_open())
+        while (!log.eof())
+        {
+            std::string savedItem;
+            std::getline(log, savedItem);
+            for (char c : savedItem)
+                if (!isspace(c))
+                {
+                    savedItems.push_back(savedItem);
+                    break;
+                }
+        }
+    log.close();
+    std::string removePermissions = addPermissions.substr(0, 6) + '0' + addPermissions.substr(7);
+    system(removePermissions.c_str());
+    return savedItems;
+}
+
+void MainFrame::setAppPaths(std::vector<std::string> appPaths)
+{
+    if (!this->appPaths.empty())
+        this->appPaths.clear();
+
     for (std::string appPath : appPaths)
+    {
         this->appPaths.push_back(appPath);
+        this->addToList(appPath, ".appList.txt");
+    }
 }
 
-std::vector<std::string> MyFrame::getAppPaths()
+std::vector<std::string> MainFrame::getAppPaths()
 {
     return this->appPaths;
 }
 
-IcnBMP MyFrame::findClickedIcn(wxPoint clickPos)
+// void MainFrame::setPNGPaths(std::vector<std::string> pngPaths)
+// {
+//     if (!this->pngPaths.empty())
+//         this->pngPaths.clear();
+
+//     for (std::string pngPath : pngPaths)
+//     {
+//         this->pngPaths.push_back(pngPath);
+//         this->addToList(pngPath, ".pngList.txt");
+//     }
+// }
+
+// std::vector<std::string> MainFrame::getPNGPaths()
+// {
+//     return this->pngPaths;
+// }
+
+wxCoord MainFrame::getIcnW()
+{
+    return this->icnW;
+}
+
+wxCoord MainFrame::getIcnH()
+{
+    return this->icnH;
+}
+
+void MainFrame::setIcnGridPaint(wxPaintDC *icnGridPaint)
+{
+    this->icnGridPaint = icnGridPaint;
+}
+
+wxPaintDC *MainFrame::getIcnGridPaint()
+{
+    return this->icnGridPaint;
+}
+
+// void MainFrame::setDlg(wxPasswordEntryDialog *dlg)
+// {
+//     this->dlg = dlg;
+// }
+
+// wxPasswordEntryDialog *MainFrame::getDlg()
+// {
+//     return this->dlg;
+// }
+
+IcnBMP MainFrame::findClickedIcn(wxPoint clickPos)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
-    auto bmpAt = this->getMap();
+    wxVector<wxRegion> regions;
 
-    std::vector<std::pair<int, int>> orderedPairs;
     for (IcnBMP bmp : bmps)
-        orderedPairs.push_back(std::make_pair(bmp.getX(), bmp.getY()));
+        if (bmp.getRegion().Contains(clickPos))
+        {
+            int i = bmp.getVectIndex();
+            auto appPaths = this->getAppPaths();
+            std::cout << '(' << clickPos.x << ", " << clickPos.y
+                      << "): clicked icon associated with app at appPaths["
+                      << i << "] = " << appPaths[i] << '\n';
+            return bmp;
+        }
 
-    // Arrange ordered pairs such that x-coordinates are in ascending order.
-    sort(orderedPairs.begin(), orderedPairs.end());
+    std::cout << "No icon clicked\n";
+    return IcnBMP();
+}
 
-    int i = bmps.size() / 2;
-    IcnBMP bmp = bmpAt[orderedPairs[i]];
-    int w = bmp.getW(), h = bmp.getH();
+// PasswordEntryDialogFrame::PasswordEntryDialogFrame(wxFrame *parent, wxPasswordEntryDialog *dlg, std::string cmd)
+//     : wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(915, 828))
+// {
+//     dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
+//     dlg->SetTextValidator(wxFILTER_NONE);
+//     if (dlg->ShowModal() == wxID_OK)
+//     {
+//         std::string pass = std::string(dlg->GetValue());
+//         std::string sudoCmd = "echo \"" + pass + std::string("\" | sudo -S ") + cmd;
+//         std::cout << "sudoCmd: " << sudoCmd << '\n';
+//         system(sudoCmd.c_str());
+//     }
+// }
 
-    // Search in ascending order of x-coordinates until we find an icon with a
-    // right edge that does not lie to the left of the point clicked within this frame.
-    while (clickPos.x > bmp.getX() + w)
+// // Add path to app user wants to block to blocklist text file, if haven't already.
+// void MainFrame::addToBlocklist(const std::string &appToBlock)
+// {
+//     system("chmod 200 .blocklist.txt >nul 2>&1");
+//     std::ofstream log(".blocklist.txt", std::ios_base::app);
+//     if (log.is_open())
+//         if (find(blocklist.begin(), blocklist.end(), appToBlock) == blocklist.end())
+//         {
+//             log << appToBlock << '\n';
+//             this->blocklist.push_back(appToBlock);
+//         }
+//     log.close();
+//     system("chmod 000 .blocklist.txt >nul 2>&1");
+// }
+
+std::vector<std::string> MainFrame::getBlocklist()
+{
+    return this->blocklist;
+}
+
+void MainFrame::setNeedBlockPermissions(const bool &blockErrorShown)
+{
+    this->needBlockPermissions = blockErrorShown;
+}
+
+bool MainFrame::getNeedBlockPermissions()
+{
+    return this->needBlockPermissions;
+}
+
+void MainFrame::setBlockCmd(const std::string &blockCmd)
+{
+    this->blockCmd = blockCmd;
+}
+
+std::string MainFrame::getBlockCmd()
+{
+    return this->blockCmd;
+}
+
+void MainFrame::blockApp(IcnBMP clickedIcn)
+{
+    int i = clickedIcn.getVectIndex();
+    std::string appPath = this->getAppPaths()[i];
+    std::string exe = run("defaults read \"" + appPath + std::string("/Contents/Info.plist\" CFBundleExecutable"));
+    if (hasContents(appPath))
     {
-        orderedPairs.erase(orderedPairs.begin() + i);
-        bmp = bmpAt[orderedPairs[i]];
+        std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
+        system(kill.c_str());
+        std::string block = "chmod -x \"" + appPath + std::string("/Contents/MacOS/") + exe + '"';
+
+        this->setNeedBlockPermissions(run(block).size());
+        // if (run(block).size())
+        // {
+        //     // wxPasswordEntryDialog *dlg = nullptr;
+        //     // PasswordEntryDialogFrame *dlgFrame = new PasswordEntryDialogFrame(this, dlg, block);
+        //     // dlgFrame->Raise();
+
+        //     // wxPasswordEntryDialog dlg(this, "Enter the password you use to log in to your computer as " + run("whoami"));
+        //     wxPasswordEntryDialog *dlg = this->getDlg();
+        //     dlg->SetTextValidator(wxFILTER_NONE);
+        //     if (dlg->ShowModal() == wxID_OK)
+        //     {
+        //         std::string pass = std::string(dlg->GetValue());
+        //         std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
+        //         std::cout << "sudoBlock: " << sudoBlock << '\n';
+        //         system(sudoBlock.c_str());
+        //     }
+        // }
     }
-
-    // Decrement index until we find an icon with a left edge that does
-    // not lie to the right of the point clicked within this frame.
-    while (clickPos.x < bmp.getX())
-    {
-        orderedPairs.erase(orderedPairs.begin() + i);
-        bmp = bmpAt[orderedPairs[--i]];
-    }
-
-    sort(orderedPairs.begin(), orderedPairs.end(),
-         [](const pair<int, int> &p1, const pair<int, int> &p2)
-         { return p1.second < p2.second });
-
-    i = orderedPairs.size() / 2;
-    bmp = bmpAt[orderedPairs[i]];
-
-    // Search in ascending order of y-coordinates until we find an icon with a
-    // bottom edge that does not lie above the point clicked within this frame.
-    while (clickPos.y > bmp.getY() + h)
-    {
-        orderedPairs.erase(orderedPairs.begin() + i);
-        bmp = bmpAt[orderedPairs[i]];
-    }
-
-    // Decrement index until we find an icon with a top edge that does
-    // not lie below the point clicked within this frame.
-    while (clickPos.y < bmp.getY())
-    {
-        orderedPairs.erase(orderedPairs.begin() + i);
-        bmp = bmpAt[orderedPairs[--i]];
-    }
-
-    int x = orderedPairs[i].first, y = orderedPairs[i].second;
-
-    return clickPos == wxPoint(x, y) ? bmp : IcnBMP();
+    addToList(appPath, ".blocklist.txt");
 }
 
 wxIMPLEMENT_APP(MyApp);
@@ -366,13 +574,23 @@ wxIMPLEMENT_APP(MyApp);
 bool MyApp::OnInit()
 {
     wxImage::AddHandler(new wxPNGHandler);
-    MyFrame *frame = new MyFrame();
-    collectIcns(frame);
-    frame->Show(true);
+    MainFrame *mainFrame = new MainFrame();
+    std::vector<std::string> appList = mainFrame->readList(".appList.txt");
+    // std::vector<std::string> pngList = mainFrame->readList(".pngList.txt");
+    if (appList.size())
+    {
+        mainFrame->setAppPaths(appList);
+        // if (pngList.size())
+        //     mainFrame->setPNGPaths(pngList);
+    }
+    else
+        collectPaths(mainFrame);
+    collectIcns(mainFrame);
+    mainFrame->Show(true);
     return true;
 }
 
-MyFrame::MyFrame()
+MainFrame::MainFrame()
     : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
 {
     wxMenu *menuFile = new wxMenu;
@@ -390,33 +608,68 @@ MyFrame::MyFrame()
 
     SetMenuBar(menuBar);
 
-    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
-    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
-    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
+    // wxPasswordEntryDialog *dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
+    // this->setDlg(dlg);
+
+    // wxPasswordEntryDialog *dlg2 = this->getDlg();
+    // dlg2->SetTextValidator(wxFILTER_NONE);
+    // if (dlg2->ShowModal() == wxID_OK)
+    // {
+    //     std::string pass = std::string(dlg2->GetValue());
+    //     std::string block = "chmod -x /Applications/GarageBand.app/Contents/MacOS/GarageBand";
+    //     std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
+    //     std::cout << "sudoBlock: " << sudoBlock << '\n';
+    //     system(sudoBlock.c_str());
+    // }
+
+    Bind(wxEVT_MENU, &MainFrame::OnHello, this, ID_Hello);
+    Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
+
+    Bind(wxEVT_LEFT_DOWN, &MainFrame::OnClick, this, wxID_ANY);
+    wxPasswordEntryDialog *dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
+    dlg->Bind(wxEVT_LEFT_DOWN, [dlg, this](wxMouseEvent &evt)
+              {
+                bool needBlockPermissions = this->getNeedBlockPermissions();
+                std::cout << "needBlockPermissions = " << needBlockPermissions << '\n';
+                if (needBlockPermissions)
+                {
+                    std::string block = this->getBlockCmd();
+                    if (dlg->ShowModal() == wxID_OK) {
+                        std::string pass = std::string(dlg->GetValue());
+                        std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
+                        std::cout << "sudoBlock: " << sudoBlock << '\n';
+                        system(sudoBlock.c_str());
+                    }
+                }
+
+                this->setNeedBlockPermissions(false); });
 }
 
-void MyFrame::OnExit(wxCommandEvent &event)
+void MainFrame::OnExit(wxCommandEvent &event)
 {
     Close(true);
 }
 
-void MyFrame::OnAbout(wxCommandEvent &event)
+void MainFrame::OnAbout(wxCommandEvent &event)
 {
     wxMessageBox("This is a wxWidgets Hello World example",
                  "About Hello World", wxOK | wxICON_INFORMATION);
 }
 
-void MyFrame::OnHello(wxCommandEvent &event)
+void MainFrame::OnHello(wxCommandEvent &event)
 {
     wxLogMessage("Hello world from wxWidgets!");
 }
 
-void MyFrame::OnPaint(wxPaintEvent &event)
+void MainFrame::OnPaint(wxPaintEvent &event)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
 
-    wxPaintDC *icnPaint = new wxPaintDC(this);
+    this->setIcnGridPaint(new wxPaintDC(this));
+    wxPaintDC *icnGridPaint = this->getIcnGridPaint();
 
+    int icnW = this->getIcnW(), icnH = this->getIcnH();
     int hgap = 45, vgap = 45;
     int cols = 8;
     int gridMarginTop = 30, gridMarginLeft = 30;
@@ -433,18 +686,31 @@ void MyFrame::OnPaint(wxPaintEvent &event)
                 break;
 
             wxMemoryDC icnMem = wxMemoryDC();
-            IcnBMP bmp = bmps[i];
-            icnMem.SelectObject(bmp);
+            icnMem.SelectObject(bmps[i]);
 
-            bmp.setX(x);
-            bmp.setY(y);
-            icnPaint->Blit(x * hgap + (x * 90) + gridMarginLeft,
-                           vgap * y + (y * 90) + gridMarginTop,
-                           bmp.getW(), bmp.getH(), &icnMem, 0, 0);
+            wxCoord bmpX = x * hgap + (x * 90) + gridMarginLeft;
+            wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
+            bmps[i].setRegion(bmpX, bmpY, icnW, icnH);
+
+            icnGridPaint->Blit(bmpX, bmpY, icnW, icnH, &icnMem, 0, 0);
         }
     }
+
+    this->setBMPs(bmps);
 }
 
-wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-    EVT_PAINT(MyFrame::OnPaint)
+void MainFrame::OnClick(wxMouseEvent &event)
+{
+    wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
+    IcnBMP clickedIcn = this->findClickedIcn(clickPos);
+    // wxSize icnSize = clickedIcn.GetSize();
+    // int w = icnSize.GetWidth(), h = icnSize.GetHeight();
+    // if ((w > 0 || h > 0) && clickedIcn.IsOk())
+    // {
+    this->blockApp(clickedIcn);
+    // }
+}
+
+wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
+    EVT_PAINT(MainFrame::OnPaint)
         wxEND_EVENT_TABLE()
