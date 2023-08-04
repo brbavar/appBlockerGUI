@@ -38,10 +38,10 @@ public:
     virtual bool OnInit();
 };
 
-class MainFrame : public wxFrame
+class MyFrame : public wxFrame
 {
 public:
-    MainFrame();
+    MyFrame();
     void setBMPs(wxVector<IcnBMP> bmps);
     wxVector<IcnBMP> getBMPs();
     void addToList(const std::string &item, const std::string &filename);
@@ -83,8 +83,8 @@ std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-void collectPaths(MainFrame *mainFrame);
-void collectIcns(MainFrame *mainFrame);
+void collectPaths(MyFrame *frame);
+void collectIcns(MyFrame *frame);
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -145,7 +145,7 @@ bool containsResources(const std::string &contentsPath)
 // Story for interview: At first I had put the code below inside definition of OnPaint method, but
 // that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
 // Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
-void collectPaths(MainFrame *mainFrame)
+void collectPaths(MyFrame *frame)
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -237,13 +237,13 @@ void collectPaths(MainFrame *mainFrame)
         }
     }
 
-    // mainFrame->setPNGPaths(pngPaths);
-    mainFrame->setAppPaths(appPaths);
+    // frame->setPNGPaths(pngPaths);
+    frame->setAppPaths(appPaths);
 }
 
-void collectIcns(MainFrame *mainFrame)
+void collectIcns(MyFrame *frame)
 {
-    std::vector<std::string> appPaths = mainFrame->getAppPaths();
+    std::vector<std::string> appPaths = frame->getAppPaths();
     std::vector<std::string> pngPaths;
     for (int i = 0; i < appPaths.size(); i++)
     {
@@ -261,13 +261,13 @@ void collectIcns(MainFrame *mainFrame)
         wxImage img(pngPath, wxBITMAP_TYPE_PNG);
         if (img.IsOk())
         {
-            IcnBMP bmp(img.Scale(mainFrame->getIcnW(), mainFrame->getIcnH(), wxIMAGE_QUALITY_HIGH));
+            IcnBMP bmp(img.Scale(frame->getIcnW(), frame->getIcnH(), wxIMAGE_QUALITY_HIGH));
             bmp.setVectIndex(i++);
             // if (bmp.GetLogicalWidth() || bmp.GetLogicalHeight() /* bmp.IsOk() */)
             bmps.push_back(bmp);
         }
     }
-    mainFrame->setBMPs(bmps);
+    frame->setBMPs(bmps);
 }
 
 enum
@@ -305,7 +305,7 @@ int IcnBMP::getVectIndex()
     return this->vectIndex;
 }
 
-void MainFrame::setBMPs(wxVector<IcnBMP> bmps)
+void MyFrame::setBMPs(wxVector<IcnBMP> bmps)
 {
     if (!this->bmps.empty())
         this->bmps.clear();
@@ -314,12 +314,12 @@ void MainFrame::setBMPs(wxVector<IcnBMP> bmps)
         this->bmps.push_back(bmp);
 }
 
-wxVector<IcnBMP> MainFrame::getBMPs()
+wxVector<IcnBMP> MyFrame::getBMPs()
 {
     return this->bmps;
 }
 
-void MainFrame::addToList(const std::string &item, const std::string &filename)
+void MyFrame::addToList(const std::string &item, const std::string &filename)
 {
     std::string addPermissions = "chmod 200 " + filename + std::string(" >nul 2>&1");
     system(addPermissions.c_str());
@@ -343,7 +343,7 @@ void MainFrame::addToList(const std::string &item, const std::string &filename)
 }
 
 // Read all items listed in text file and return a vector of them.
-std::vector<std::string> MainFrame::readList(const std::string &filename)
+std::vector<std::string> MyFrame::readList(const std::string &filename)
 {
     std::vector<std::string> savedItems;
     std::string addPermissions = "chmod 400 " + filename + std::string(" >nul 2>&1");
@@ -367,7 +367,7 @@ std::vector<std::string> MainFrame::readList(const std::string &filename)
     return savedItems;
 }
 
-void MainFrame::setAppPaths(std::vector<std::string> appPaths)
+void MyFrame::setAppPaths(std::vector<std::string> appPaths)
 {
     if (!this->appPaths.empty())
         this->appPaths.clear();
@@ -379,12 +379,12 @@ void MainFrame::setAppPaths(std::vector<std::string> appPaths)
     }
 }
 
-std::vector<std::string> MainFrame::getAppPaths()
+std::vector<std::string> MyFrame::getAppPaths()
 {
     return this->appPaths;
 }
 
-// void MainFrame::setPNGPaths(std::vector<std::string> pngPaths)
+// void MyFrame::setPNGPaths(std::vector<std::string> pngPaths)
 // {
 //     if (!this->pngPaths.empty())
 //         this->pngPaths.clear();
@@ -396,32 +396,32 @@ std::vector<std::string> MainFrame::getAppPaths()
 //     }
 // }
 
-// std::vector<std::string> MainFrame::getPNGPaths()
+// std::vector<std::string> MyFrame::getPNGPaths()
 // {
 //     return this->pngPaths;
 // }
 
-wxCoord MainFrame::getIcnW()
+wxCoord MyFrame::getIcnW()
 {
     return this->icnW;
 }
 
-wxCoord MainFrame::getIcnH()
+wxCoord MyFrame::getIcnH()
 {
     return this->icnH;
 }
 
-void MainFrame::setIcnGridPaint(wxPaintDC *icnGridPaint)
+void MyFrame::setIcnGridPaint(wxPaintDC *icnGridPaint)
 {
     this->icnGridPaint = icnGridPaint;
 }
 
-wxPaintDC *MainFrame::getIcnGridPaint()
+wxPaintDC *MyFrame::getIcnGridPaint()
 {
     return this->icnGridPaint;
 }
 
-IcnBMP MainFrame::findClickedIcn(wxPoint clickPos)
+IcnBMP MyFrame::findClickedIcn(wxPoint clickPos)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
     wxVector<wxRegion> regions;
@@ -441,7 +441,7 @@ IcnBMP MainFrame::findClickedIcn(wxPoint clickPos)
     return IcnBMP();
 }
 
-void MainFrame::blockApp(IcnBMP clickedIcn)
+void MyFrame::blockApp(IcnBMP clickedIcn)
 {
     int i = clickedIcn.getVectIndex();
     std::string appPath = this->getAppPaths()[i];
@@ -478,23 +478,23 @@ wxIMPLEMENT_APP(MyApp);
 bool MyApp::OnInit()
 {
     wxImage::AddHandler(new wxPNGHandler);
-    MainFrame *mainFrame = new MainFrame();
-    std::vector<std::string> appList = mainFrame->readList(".appList.txt");
-    // std::vector<std::string> pngList = mainFrame->readList(".pngList.txt");
+    MyFrame *frame = new MyFrame();
+    std::vector<std::string> appList = frame->readList(".appList.txt");
+    // std::vector<std::string> pngList = frame->readList(".pngList.txt");
     if (appList.size())
     {
-        mainFrame->setAppPaths(appList);
+        frame->setAppPaths(appList);
         // if (pngList.size())
-        //     mainFrame->setPNGPaths(pngList);
+        //     frame->setPNGPaths(pngList);
     }
     else
-        collectPaths(mainFrame);
-    collectIcns(mainFrame);
-    mainFrame->Show(true);
+        collectPaths(frame);
+    collectIcns(frame);
+    frame->Show(true);
     return true;
 }
 
-MainFrame::MainFrame()
+MyFrame::MyFrame()
     : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
 {
     wxMenu *menuFile = new wxMenu;
@@ -512,30 +512,30 @@ MainFrame::MainFrame()
 
     SetMenuBar(menuBar);
 
-    Bind(wxEVT_MENU, &MainFrame::OnHello, this, ID_Hello);
-    Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
-    Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
+    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
+    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
 
-    Bind(wxEVT_LEFT_DOWN, &MainFrame::OnClick, this, wxID_ANY);
+    Bind(wxEVT_LEFT_DOWN, &MyFrame::OnClick, this, wxID_ANY);
 }
 
-void MainFrame::OnExit(wxCommandEvent &event)
+void MyFrame::OnExit(wxCommandEvent &event)
 {
     Close(true);
 }
 
-void MainFrame::OnAbout(wxCommandEvent &event)
+void MyFrame::OnAbout(wxCommandEvent &event)
 {
     wxMessageBox("This is a wxWidgets Hello World example",
                  "About Hello World", wxOK | wxICON_INFORMATION);
 }
 
-void MainFrame::OnHello(wxCommandEvent &event)
+void MyFrame::OnHello(wxCommandEvent &event)
 {
     wxLogMessage("Hello world from wxWidgets!");
 }
 
-void MainFrame::OnPaint(wxPaintEvent &event)
+void MyFrame::OnPaint(wxPaintEvent &event)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
 
@@ -572,13 +572,13 @@ void MainFrame::OnPaint(wxPaintEvent &event)
     this->setBMPs(bmps);
 }
 
-void MainFrame::OnClick(wxMouseEvent &event)
+void MyFrame::OnClick(wxMouseEvent &event)
 {
     wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
     IcnBMP clickedIcn = this->findClickedIcn(clickPos);
     this->blockApp(clickedIcn);
 }
 
-wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
-    EVT_PAINT(MainFrame::OnPaint)
+wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
+    EVT_PAINT(MyFrame::OnPaint)
         wxEND_EVENT_TABLE()
