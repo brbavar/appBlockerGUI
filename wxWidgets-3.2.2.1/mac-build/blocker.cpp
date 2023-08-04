@@ -38,19 +38,6 @@ public:
     virtual bool OnInit();
 };
 
-// class HashablePair
-// {
-// public:
-//     template <class T1, class T2>
-//     std::size_t operator()(const std::pair<T1, T2> &p) const
-//     {
-//         std::size_t seed = 0;
-//         boost::hash_combine(seed, p.first);
-//         boost::hash_combine(seed, p.second);
-//         return seed;
-//     }
-// };
-
 class MainFrame : public wxFrame
 {
 public:
@@ -67,15 +54,7 @@ public:
     wxCoord getIcnH();
     void setIcnGridPaint(wxPaintDC *icnGridPaint);
     wxPaintDC *getIcnGridPaint();
-    // void setDlg(wxPasswordEntryDialog *dlg);
-    // wxPasswordEntryDialog *getDlg();
     IcnBMP findClickedIcn(wxPoint clickPos);
-    // void addToBlocklist(const std::string &appToBlock);
-    std::vector<std::string> getBlocklist();
-    void setNeedBlockPermissions(const bool &blockErrorShown);
-    bool getNeedBlockPermissions();
-    void setBlockCmd(const std::string &blockCmd);
-    std::string getBlockCmd();
     void blockApp(IcnBMP clickedIcn);
 
 private:
@@ -85,10 +64,7 @@ private:
     wxCoord icnW = 70;
     wxCoord icnH = 70;
     wxPaintDC *icnGridPaint;
-    // wxPasswordEntryDialog *dlg;
     std::vector<std::string> blocklist;
-    bool needBlockPermissions = false;
-    std::string blockCmd;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
@@ -98,12 +74,6 @@ private:
 
     wxDECLARE_EVENT_TABLE();
 };
-
-// class PasswordEntryDialogFrame : public wxFrame
-// {
-// public:
-//     PasswordEntryDialogFrame(wxFrame *parent, wxPasswordEntryDialog *dlg, std::string cmd);
-// };
 
 std::string run(std::string cmd, int size);
 template <typename T>
@@ -288,7 +258,6 @@ void collectIcns(MainFrame *mainFrame)
     int i = 0;
     for (std::string pngPath : pngPaths)
     {
-        std::cout << pngPath << '\n';
         wxImage img(pngPath, wxBITMAP_TYPE_PNG);
         if (img.IsOk())
         {
@@ -452,16 +421,6 @@ wxPaintDC *MainFrame::getIcnGridPaint()
     return this->icnGridPaint;
 }
 
-// void MainFrame::setDlg(wxPasswordEntryDialog *dlg)
-// {
-//     this->dlg = dlg;
-// }
-
-// wxPasswordEntryDialog *MainFrame::getDlg()
-// {
-//     return this->dlg;
-// }
-
 IcnBMP MainFrame::findClickedIcn(wxPoint clickPos)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
@@ -482,60 +441,6 @@ IcnBMP MainFrame::findClickedIcn(wxPoint clickPos)
     return IcnBMP();
 }
 
-// PasswordEntryDialogFrame::PasswordEntryDialogFrame(wxFrame *parent, wxPasswordEntryDialog *dlg, std::string cmd)
-//     : wxFrame(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(915, 828))
-// {
-//     dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
-//     dlg->SetTextValidator(wxFILTER_NONE);
-//     if (dlg->ShowModal() == wxID_OK)
-//     {
-//         std::string pass = std::string(dlg->GetValue());
-//         std::string sudoCmd = "echo \"" + pass + std::string("\" | sudo -S ") + cmd;
-//         std::cout << "sudoCmd: " << sudoCmd << '\n';
-//         system(sudoCmd.c_str());
-//     }
-// }
-
-// // Add path to app user wants to block to blocklist text file, if haven't already.
-// void MainFrame::addToBlocklist(const std::string &appToBlock)
-// {
-//     system("chmod 200 .blocklist.txt >nul 2>&1");
-//     std::ofstream log(".blocklist.txt", std::ios_base::app);
-//     if (log.is_open())
-//         if (find(blocklist.begin(), blocklist.end(), appToBlock) == blocklist.end())
-//         {
-//             log << appToBlock << '\n';
-//             this->blocklist.push_back(appToBlock);
-//         }
-//     log.close();
-//     system("chmod 000 .blocklist.txt >nul 2>&1");
-// }
-
-std::vector<std::string> MainFrame::getBlocklist()
-{
-    return this->blocklist;
-}
-
-void MainFrame::setNeedBlockPermissions(const bool &blockErrorShown)
-{
-    this->needBlockPermissions = blockErrorShown;
-}
-
-bool MainFrame::getNeedBlockPermissions()
-{
-    return this->needBlockPermissions;
-}
-
-void MainFrame::setBlockCmd(const std::string &blockCmd)
-{
-    this->blockCmd = blockCmd;
-}
-
-std::string MainFrame::getBlockCmd()
-{
-    return this->blockCmd;
-}
-
 void MainFrame::blockApp(IcnBMP clickedIcn)
 {
     int i = clickedIcn.getVectIndex();
@@ -545,28 +450,27 @@ void MainFrame::blockApp(IcnBMP clickedIcn)
     {
         std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
         system(kill.c_str());
-        std::string block = "chmod -x \"" + appPath + std::string("/Contents/MacOS/") + exe + '"';
-
-        this->setNeedBlockPermissions(run(block).size());
-        // if (run(block).size())
-        // {
-        //     // wxPasswordEntryDialog *dlg = nullptr;
-        //     // PasswordEntryDialogFrame *dlgFrame = new PasswordEntryDialogFrame(this, dlg, block);
-        //     // dlgFrame->Raise();
-
-        //     // wxPasswordEntryDialog dlg(this, "Enter the password you use to log in to your computer as " + run("whoami"));
-        //     wxPasswordEntryDialog *dlg = this->getDlg();
-        //     dlg->SetTextValidator(wxFILTER_NONE);
-        //     if (dlg->ShowModal() == wxID_OK)
-        //     {
-        //         std::string pass = std::string(dlg->GetValue());
-        //         std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
-        //         std::cout << "sudoBlock: " << sudoBlock << '\n';
-        //         system(sudoBlock.c_str());
-        //     }
-        // }
+        std::string block = "chmod -x \"" + appPath + std::string("/Contents/MacOS/") + exe + "\" 2>&1";
+        if (run(block).size())
+        {
+            wxPasswordEntryDialog dlg(this, "Enter the password you use to log in to your computer as " + run("whoami"));
+            dlg.SetTextValidator(wxFILTER_NONE);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                std::string pass = std::string(dlg.GetValue());
+                size_t it = pass.find("'");
+                while (it != std::string::npos)
+                {
+                    pass.replace(it, 1, "\'");
+                    it = pass.find("'");
+                }
+                std::string sudoBlock = "echo '" + pass + std::string("' | sudo -S ") + block;
+                std::cout << "sudoBlock: " << sudoBlock << '\n';
+                system(sudoBlock.c_str());
+            }
+        }
+        addToList(appPath, ".blocklist.txt");
     }
-    addToList(appPath, ".blocklist.txt");
 }
 
 wxIMPLEMENT_APP(MyApp);
@@ -608,42 +512,11 @@ MainFrame::MainFrame()
 
     SetMenuBar(menuBar);
 
-    // wxPasswordEntryDialog *dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
-    // this->setDlg(dlg);
-
-    // wxPasswordEntryDialog *dlg2 = this->getDlg();
-    // dlg2->SetTextValidator(wxFILTER_NONE);
-    // if (dlg2->ShowModal() == wxID_OK)
-    // {
-    //     std::string pass = std::string(dlg2->GetValue());
-    //     std::string block = "chmod -x /Applications/GarageBand.app/Contents/MacOS/GarageBand";
-    //     std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
-    //     std::cout << "sudoBlock: " << sudoBlock << '\n';
-    //     system(sudoBlock.c_str());
-    // }
-
     Bind(wxEVT_MENU, &MainFrame::OnHello, this, ID_Hello);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
     Bind(wxEVT_LEFT_DOWN, &MainFrame::OnClick, this, wxID_ANY);
-    wxPasswordEntryDialog *dlg = new wxPasswordEntryDialog(this, "Enter the password you use to log in to your computer as " + run("whoami"));
-    dlg->Bind(wxEVT_LEFT_DOWN, [dlg, this](wxMouseEvent &evt)
-              {
-                bool needBlockPermissions = this->getNeedBlockPermissions();
-                std::cout << "needBlockPermissions = " << needBlockPermissions << '\n';
-                if (needBlockPermissions)
-                {
-                    std::string block = this->getBlockCmd();
-                    if (dlg->ShowModal() == wxID_OK) {
-                        std::string pass = std::string(dlg->GetValue());
-                        std::string sudoBlock = "echo \"" + pass + std::string("\" | sudo -S ") + block;
-                        std::cout << "sudoBlock: " << sudoBlock << '\n';
-                        system(sudoBlock.c_str());
-                    }
-                }
-
-                this->setNeedBlockPermissions(false); });
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
@@ -703,12 +576,7 @@ void MainFrame::OnClick(wxMouseEvent &event)
 {
     wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
     IcnBMP clickedIcn = this->findClickedIcn(clickPos);
-    // wxSize icnSize = clickedIcn.GetSize();
-    // int w = icnSize.GetWidth(), h = icnSize.GetHeight();
-    // if ((w > 0 || h > 0) && clickedIcn.IsOk())
-    // {
     this->blockApp(clickedIcn);
-    // }
 }
 
 wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
