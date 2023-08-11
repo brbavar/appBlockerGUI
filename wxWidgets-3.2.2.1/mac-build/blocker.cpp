@@ -2,6 +2,7 @@
 #include <wx/image.h>
 #include <wx/valtext.h>
 // #include <boost/container_hash/hash.hpp>
+#include <sys/stat.h>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -450,7 +451,8 @@ void MyFrame::blockApp(IcnBMP clickedIcn)
     {
         std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
         system(kill.c_str());
-        std::string block = "chmod -x \"" + appPath + std::string("/Contents/MacOS/") + exe + "\" 2>&1";
+        std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
+        std::string block = "chmod -x \"" + exePath + "\" 2>&1";
         if (run(block).size())
         {
             wxPasswordEntryDialog dlg(this, "Enter the password you use to log in to your computer as " + run("whoami"));
@@ -467,6 +469,12 @@ void MyFrame::blockApp(IcnBMP clickedIcn)
                 std::string sudoBlock = "echo '" + pass + std::string("' | sudo -S ") + block;
                 std::cout << "sudoBlock: " << sudoBlock << '\n';
                 system(sudoBlock.c_str());
+                // std::string sudoOutput = run(sudoBlock);
+                // if (sudoOutput.find("Operation not permitted") != std::string::npos)
+                // {
+                //     std::cout << "sudoBlock failed, running chmod() now\n";
+                //     chmod(exePath.c_str(), 0666);
+                // }
             }
         }
         addToList(appPath, ".blocklist.txt");
