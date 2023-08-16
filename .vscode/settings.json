@@ -73,6 +73,18 @@
     "compare": "cpp",
     "concepts": "cpp",
     "numeric": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "any": "cpp",
+    "cfenv": "cpp",
+    "codecvt": "cpp",
+    "condition_variable": "cpp",
+    "csignal": "cpp",
+    "coroutine": "cpp",
+    "future": "cpp",
+    "shared_mutex": "cpp",
+    "strstream": "cpp",
+    "thread": "cpp",
+    "typeindex": "cpp",
+    "random": "cpp"
   }
 }

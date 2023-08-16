@@ -39,18 +39,17 @@ public:
     virtual bool OnInit();
 };
 
-class MyFrame : public wxFrame
+class MyScrolled : public wxScrolledWindow
 {
 public:
-    MyFrame();
+    MyScrolled() : wxScrolledWindow() {}
+    MyScrolled(wxWindow *parent);
     void setBMPs(wxVector<IcnBMP> bmps);
     wxVector<IcnBMP> getBMPs();
     void addToList(const std::string &item, const std::string &filename);
     std::vector<std::string> readList(const std::string &filename);
     void setAppPaths(std::vector<std::string> appPaths);
     std::vector<std::string> getAppPaths();
-    // void setPNGPaths(std::vector<std::string> pngPaths);
-    // std::vector<std::string> getPNGPaths();
     wxCoord getIcnW();
     wxCoord getIcnH();
     void setIcnGridPaint(wxPaintDC *icnGridPaint);
@@ -61,22 +60,60 @@ public:
 private:
     wxVector<IcnBMP> bmps;
     std::vector<std::string> appPaths;
-    // std::vector<std::string> pngPaths;
     wxCoord icnW = 70;
     wxCoord icnH = 70;
     wxPaintDC *icnGridPaint;
     std::vector<std::string> blocklist;
 
-    void OnHello(wxCommandEvent &event);
-    void OnExit(wxCommandEvent &event);
-    void OnAbout(wxCommandEvent &event);
     void OnPaint(wxPaintEvent &event);
     void OnClick(wxMouseEvent &event);
 
     wxDECLARE_EVENT_TABLE();
 };
 
-std::string run(std::string cmd, int size);
+class MyFrame : public wxFrame
+{
+public:
+    MyFrame();
+    // void setBMPs(wxVector<IcnBMP> bmps);
+    // wxVector<IcnBMP> getBMPs();
+    // void addToList(const std::string &item, const std::string &filename);
+    // std::vector<std::string> readList(const std::string &filename);
+    // void setAppPaths(std::vector<std::string> appPaths);
+    // std::vector<std::string> getAppPaths();
+
+    // void setPNGPaths(std::vector<std::string> pngPaths);
+    // std::vector<std::string> getPNGPaths();
+
+    // wxCoord getIcnW();
+    // wxCoord getIcnH();
+    // void setIcnGridPaint(wxPaintDC *icnGridPaint);
+    // wxPaintDC *getIcnGridPaint();
+    // IcnBMP findClickedIcn(wxPoint clickPos);
+    // void blockApp(IcnBMP clickedIcn);
+
+private:
+    // wxVector<IcnBMP> bmps;
+    // std::vector<std::string> appPaths;
+
+    // std::vector<std::string> pngPaths;
+
+    // wxCoord icnW = 70;
+    // wxCoord icnH = 70;
+    // wxPaintDC *icnGridPaint;
+    // std::vector<std::string> blocklist;
+
+    void OnHello(wxCommandEvent &event);
+    void OnExit(wxCommandEvent &event);
+    void OnAbout(wxCommandEvent &event);
+    // void OnPaint(wxPaintEvent &event);
+    // void OnClick(wxMouseEvent &event);
+
+    // wxDECLARE_EVENT_TABLE();
+};
+
+std::string
+run(std::string cmd, int size);
 template <typename T>
 bool contains(std::vector<T> v, T item);
 std::vector<std::string> getListItems(const std::string &list);
@@ -84,8 +121,8 @@ std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-void collectPaths(MyFrame *frame);
-void collectIcns(MyFrame *frame);
+void collectPaths(MyFrame *frame, MyScrolled *scrolled);
+void collectIcns(MyFrame *frame, MyScrolled *scrolled);
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -146,7 +183,7 @@ bool containsResources(const std::string &contentsPath)
 // Story for interview: At first I had put the code below inside definition of OnPaint method, but
 // that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
 // Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
-void collectPaths(MyFrame *frame)
+void collectPaths(MyFrame *frame, MyScrolled *scrolled)
 {
     std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
                                         "/Applications/Xcode.app/Contents/Applications",
@@ -239,12 +276,12 @@ void collectPaths(MyFrame *frame)
     }
 
     // frame->setPNGPaths(pngPaths);
-    frame->setAppPaths(appPaths);
+    scrolled->setAppPaths(appPaths);
 }
 
-void collectIcns(MyFrame *frame)
+void collectIcns(MyFrame *frame, MyScrolled *scrolled)
 {
-    std::vector<std::string> appPaths = frame->getAppPaths();
+    std::vector<std::string> appPaths = scrolled->getAppPaths();
     std::vector<std::string> pngPaths;
     for (int i = 0; i < appPaths.size(); i++)
     {
@@ -262,13 +299,13 @@ void collectIcns(MyFrame *frame)
         wxImage img(pngPath, wxBITMAP_TYPE_PNG);
         if (img.IsOk())
         {
-            IcnBMP bmp(img.Scale(frame->getIcnW(), frame->getIcnH(), wxIMAGE_QUALITY_HIGH));
+            IcnBMP bmp(img.Scale(scrolled->getIcnW(), scrolled->getIcnH(), wxIMAGE_QUALITY_HIGH));
             bmp.setVectIndex(i++);
             // if (bmp.GetLogicalWidth() || bmp.GetLogicalHeight() /* bmp.IsOk() */)
             bmps.push_back(bmp);
         }
     }
-    frame->setBMPs(bmps);
+    scrolled->setBMPs(bmps);
 }
 
 enum
@@ -306,7 +343,99 @@ int IcnBMP::getVectIndex()
     return this->vectIndex;
 }
 
-void MyFrame::setBMPs(wxVector<IcnBMP> bmps)
+// void MyFrame::setPNGPaths(std::vector<std::string> pngPaths)
+// {
+//     if (!this->pngPaths.empty())
+//         this->pngPaths.clear();
+
+//     for (std::string pngPath : pngPaths)
+//     {
+//         this->pngPaths.push_back(pngPath);
+//         this->addToList(pngPath, ".pngList.txt");
+//     }
+// }
+
+// std::vector<std::string> MyFrame::getPNGPaths()
+// {
+//     return this->pngPaths;
+// }
+
+wxIMPLEMENT_APP(MyApp);
+
+bool MyApp::OnInit()
+{
+    wxImage::AddHandler(new wxPNGHandler);
+    MyFrame *frame = new MyFrame();
+    frame->Show(true);
+    return true;
+}
+
+MyFrame::MyFrame()
+    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
+{
+    MyScrolled *scrolled = new MyScrolled(this);
+    // scrolled->SetSizer(new wxBoxSizer(wxVERTICAL));
+    // scrolled->SetMinClientSize(wxSize(915, 8000));
+    // scrolled->ShowScrollbars(wxSHOW_SB_ALWAYS, wxSHOW_SB_ALWAYS);
+
+    std::vector<std::string> appList = scrolled->readList(".appList.txt");
+    // std::vector<std::string> pngList = frame->readList(".pngList.txt");
+    if (appList.size())
+    {
+        scrolled->setAppPaths(appList);
+        // if (pngList.size())
+        //     frame->setPNGPaths(pngList);
+    }
+    else
+        collectPaths(this, scrolled);
+    collectIcns(this, scrolled);
+
+    wxMenu *menuFile = new wxMenu;
+    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
+                     "Help string shown in status bar for this menu item");
+    menuFile->AppendSeparator();
+    menuFile->Append(wxID_EXIT);
+
+    wxMenu *menuHelp = new wxMenu;
+    menuHelp->Append(wxID_ABOUT);
+
+    wxMenuBar *menuBar = new wxMenuBar;
+    menuBar->Append(menuFile, "&File");
+    menuBar->Append(menuHelp, "&Help");
+
+    SetMenuBar(menuBar);
+
+    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
+    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
+}
+
+void MyFrame::OnExit(wxCommandEvent &event)
+{
+    Close(true);
+}
+
+void MyFrame::OnAbout(wxCommandEvent &event)
+{
+    wxMessageBox("This is a wxWidgets Hello World example",
+                 "About Hello World", wxOK | wxICON_INFORMATION);
+}
+
+void MyFrame::OnHello(wxCommandEvent &event)
+{
+    wxLogMessage("Hello world from wxWidgets!");
+}
+
+MyScrolled::MyScrolled(wxWindow *parent)
+    : wxScrolledWindow(parent, wxID_ANY)
+{
+    SetScrollRate(10, 10);
+    SetVirtualSize(915, 8000);
+
+    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this, wxID_ANY);
+}
+
+void MyScrolled::setBMPs(wxVector<IcnBMP> bmps)
 {
     if (!this->bmps.empty())
         this->bmps.clear();
@@ -315,12 +444,12 @@ void MyFrame::setBMPs(wxVector<IcnBMP> bmps)
         this->bmps.push_back(bmp);
 }
 
-wxVector<IcnBMP> MyFrame::getBMPs()
+wxVector<IcnBMP> MyScrolled::getBMPs()
 {
     return this->bmps;
 }
 
-void MyFrame::addToList(const std::string &item, const std::string &filename)
+void MyScrolled::addToList(const std::string &item, const std::string &filename)
 {
     std::string addPermissions = "chmod 200 " + filename + std::string(" >nul 2>&1");
     system(addPermissions.c_str());
@@ -344,7 +473,7 @@ void MyFrame::addToList(const std::string &item, const std::string &filename)
 }
 
 // Read all items listed in text file and return a vector of them.
-std::vector<std::string> MyFrame::readList(const std::string &filename)
+std::vector<std::string> MyScrolled::readList(const std::string &filename)
 {
     std::vector<std::string> savedItems;
     std::string addPermissions = "chmod 400 " + filename + std::string(" >nul 2>&1");
@@ -368,7 +497,7 @@ std::vector<std::string> MyFrame::readList(const std::string &filename)
     return savedItems;
 }
 
-void MyFrame::setAppPaths(std::vector<std::string> appPaths)
+void MyScrolled::setAppPaths(std::vector<std::string> appPaths)
 {
     if (!this->appPaths.empty())
         this->appPaths.clear();
@@ -380,49 +509,32 @@ void MyFrame::setAppPaths(std::vector<std::string> appPaths)
     }
 }
 
-std::vector<std::string> MyFrame::getAppPaths()
+std::vector<std::string> MyScrolled::getAppPaths()
 {
     return this->appPaths;
 }
 
-// void MyFrame::setPNGPaths(std::vector<std::string> pngPaths)
-// {
-//     if (!this->pngPaths.empty())
-//         this->pngPaths.clear();
-
-//     for (std::string pngPath : pngPaths)
-//     {
-//         this->pngPaths.push_back(pngPath);
-//         this->addToList(pngPath, ".pngList.txt");
-//     }
-// }
-
-// std::vector<std::string> MyFrame::getPNGPaths()
-// {
-//     return this->pngPaths;
-// }
-
-wxCoord MyFrame::getIcnW()
+wxCoord MyScrolled::getIcnW()
 {
     return this->icnW;
 }
 
-wxCoord MyFrame::getIcnH()
+wxCoord MyScrolled::getIcnH()
 {
     return this->icnH;
 }
 
-void MyFrame::setIcnGridPaint(wxPaintDC *icnGridPaint)
+void MyScrolled::setIcnGridPaint(wxPaintDC *icnGridPaint)
 {
     this->icnGridPaint = icnGridPaint;
 }
 
-wxPaintDC *MyFrame::getIcnGridPaint()
+wxPaintDC *MyScrolled::getIcnGridPaint()
 {
     return this->icnGridPaint;
 }
 
-IcnBMP MyFrame::findClickedIcn(wxPoint clickPos)
+IcnBMP MyScrolled::findClickedIcn(wxPoint clickPos)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
     wxVector<wxRegion> regions;
@@ -442,7 +554,7 @@ IcnBMP MyFrame::findClickedIcn(wxPoint clickPos)
     return IcnBMP();
 }
 
-void MyFrame::blockApp(IcnBMP clickedIcn)
+void MyScrolled::blockApp(IcnBMP clickedIcn)
 {
     int i = clickedIcn.getVectIndex();
     std::string appPath = this->getAppPaths()[i];
@@ -477,78 +589,17 @@ void MyFrame::blockApp(IcnBMP clickedIcn)
                 // }
             }
         }
-        addToList(appPath, ".blocklist.txt");
+        this->addToList(appPath, ".blocklist.txt");
     }
 }
 
-wxIMPLEMENT_APP(MyApp);
-
-bool MyApp::OnInit()
-{
-    wxImage::AddHandler(new wxPNGHandler);
-    MyFrame *frame = new MyFrame();
-    std::vector<std::string> appList = frame->readList(".appList.txt");
-    // std::vector<std::string> pngList = frame->readList(".pngList.txt");
-    if (appList.size())
-    {
-        frame->setAppPaths(appList);
-        // if (pngList.size())
-        //     frame->setPNGPaths(pngList);
-    }
-    else
-        collectPaths(frame);
-    collectIcns(frame);
-    frame->Show(true);
-    return true;
-}
-
-MyFrame::MyFrame()
-    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
-{
-    wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
-                     "Help string shown in status bar for this menu item");
-    menuFile->AppendSeparator();
-    menuFile->Append(wxID_EXIT);
-
-    wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(wxID_ABOUT);
-
-    wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuHelp, "&Help");
-
-    SetMenuBar(menuBar);
-
-    Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
-    Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
-    Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
-
-    Bind(wxEVT_LEFT_DOWN, &MyFrame::OnClick, this, wxID_ANY);
-}
-
-void MyFrame::OnExit(wxCommandEvent &event)
-{
-    Close(true);
-}
-
-void MyFrame::OnAbout(wxCommandEvent &event)
-{
-    wxMessageBox("This is a wxWidgets Hello World example",
-                 "About Hello World", wxOK | wxICON_INFORMATION);
-}
-
-void MyFrame::OnHello(wxCommandEvent &event)
-{
-    wxLogMessage("Hello world from wxWidgets!");
-}
-
-void MyFrame::OnPaint(wxPaintEvent &event)
+void MyScrolled::OnPaint(wxPaintEvent &event)
 {
     wxVector<IcnBMP> bmps = this->getBMPs();
 
     this->setIcnGridPaint(new wxPaintDC(this));
     wxPaintDC *icnGridPaint = this->getIcnGridPaint();
+    DoPrepareDC(*icnGridPaint);
 
     int icnW = this->getIcnW(), icnH = this->getIcnH();
     int hgap = 45, vgap = 45;
@@ -580,13 +631,13 @@ void MyFrame::OnPaint(wxPaintEvent &event)
     this->setBMPs(bmps);
 }
 
-void MyFrame::OnClick(wxMouseEvent &event)
+void MyScrolled::OnClick(wxMouseEvent &event)
 {
     wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
     IcnBMP clickedIcn = this->findClickedIcn(clickPos);
     this->blockApp(clickedIcn);
 }
 
-wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-    EVT_PAINT(MyFrame::OnPaint)
+wxBEGIN_EVENT_TABLE(MyScrolled, wxScrolledWindow)
+    EVT_PAINT(MyScrolled::OnPaint)
         wxEND_EVENT_TABLE()
