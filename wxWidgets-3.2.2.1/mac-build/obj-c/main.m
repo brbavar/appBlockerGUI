@@ -5,7 +5,6 @@ int main(int argc, const char * argv[]) {
         BNRLogger *logger = [[BNRLogger alloc] init];
         
         NSTask *task = [[NSTask alloc] init];
-//        [task setExecutableURL:[NSURL fileURLWithPath:@"/bin/chmod"]];
         [task setLaunchPath:@"/bin/chmod"];
         [task setArguments:@[@"+r", @"../.blocklist.txt"]];
         [task launch];

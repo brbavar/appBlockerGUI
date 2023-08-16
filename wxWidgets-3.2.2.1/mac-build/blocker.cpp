@@ -1,7 +1,6 @@
 #include <wx/wxprec.h>
 #include <wx/image.h>
 #include <wx/valtext.h>
-// #include <boost/container_hash/hash.hpp>
 #include <sys/stat.h>
 #include <iostream>
 #include <sstream>
@@ -75,41 +74,11 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame();
-    // void setBMPs(wxVector<IcnBMP> bmps);
-    // wxVector<IcnBMP> getBMPs();
-    // void addToList(const std::string &item, const std::string &filename);
-    // std::vector<std::string> readList(const std::string &filename);
-    // void setAppPaths(std::vector<std::string> appPaths);
-    // std::vector<std::string> getAppPaths();
-
-    // void setPNGPaths(std::vector<std::string> pngPaths);
-    // std::vector<std::string> getPNGPaths();
-
-    // wxCoord getIcnW();
-    // wxCoord getIcnH();
-    // void setIcnGridPaint(wxPaintDC *icnGridPaint);
-    // wxPaintDC *getIcnGridPaint();
-    // IcnBMP findClickedIcn(wxPoint clickPos);
-    // void blockApp(IcnBMP clickedIcn);
 
 private:
-    // wxVector<IcnBMP> bmps;
-    // std::vector<std::string> appPaths;
-
-    // std::vector<std::string> pngPaths;
-
-    // wxCoord icnW = 70;
-    // wxCoord icnH = 70;
-    // wxPaintDC *icnGridPaint;
-    // std::vector<std::string> blocklist;
-
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
     void OnAbout(wxCommandEvent &event);
-    // void OnPaint(wxPaintEvent &event);
-    // void OnClick(wxMouseEvent &event);
-
-    // wxDECLARE_EVENT_TABLE();
 };
 
 std::string
@@ -194,7 +163,6 @@ void collectPaths(MyFrame *frame, MyScrolled *scrolled)
                                         "~/Downloads"};
     std::vector<std::string> appNames;
     std::vector<std::string> appPaths;
-    // std::vector<std::string> pngPaths;
     wxVector<IcnBMP> bmps;
 
     for (std::string dir : appDirs)
@@ -260,10 +228,8 @@ void collectPaths(MyFrame *frame, MyScrolled *scrolled)
                     std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
                 }
 
-                // std::string pngPath = "app-icons/" + appName + ".png";
                 if (lsGrep("app-icons", appName + std::string(".png")).size())
                 {
-                    // pngPaths.push_back(pngPath);
                     appPaths.push_back(appPath);
                 }
             }
@@ -274,8 +240,6 @@ void collectPaths(MyFrame *frame, MyScrolled *scrolled)
             }
         }
     }
-
-    // frame->setPNGPaths(pngPaths);
     scrolled->setAppPaths(appPaths);
 }
 
@@ -301,7 +265,6 @@ void collectIcns(MyFrame *frame, MyScrolled *scrolled)
         {
             IcnBMP bmp(img.Scale(scrolled->getIcnW(), scrolled->getIcnH(), wxIMAGE_QUALITY_HIGH));
             bmp.setVectIndex(i++);
-            // if (bmp.GetLogicalWidth() || bmp.GetLogicalHeight() /* bmp.IsOk() */)
             bmps.push_back(bmp);
         }
     }
@@ -343,23 +306,6 @@ int IcnBMP::getVectIndex()
     return this->vectIndex;
 }
 
-// void MyFrame::setPNGPaths(std::vector<std::string> pngPaths)
-// {
-//     if (!this->pngPaths.empty())
-//         this->pngPaths.clear();
-
-//     for (std::string pngPath : pngPaths)
-//     {
-//         this->pngPaths.push_back(pngPath);
-//         this->addToList(pngPath, ".pngList.txt");
-//     }
-// }
-
-// std::vector<std::string> MyFrame::getPNGPaths()
-// {
-//     return this->pngPaths;
-// }
-
 wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
@@ -374,18 +320,10 @@ MyFrame::MyFrame()
     : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
 {
     MyScrolled *scrolled = new MyScrolled(this);
-    // scrolled->SetSizer(new wxBoxSizer(wxVERTICAL));
-    // scrolled->SetMinClientSize(wxSize(915, 8000));
-    // scrolled->ShowScrollbars(wxSHOW_SB_ALWAYS, wxSHOW_SB_ALWAYS);
 
     std::vector<std::string> appList = scrolled->readList(".appList.txt");
-    // std::vector<std::string> pngList = frame->readList(".pngList.txt");
     if (appList.size())
-    {
         scrolled->setAppPaths(appList);
-        // if (pngList.size())
-        //     frame->setPNGPaths(pngList);
-    }
     else
         collectPaths(this, scrolled);
     collectIcns(this, scrolled);
@@ -460,9 +398,6 @@ void MyScrolled::addToList(const std::string &item, const std::string &filename)
         if (filename == ".appList.txt")
             if (!contains(list, item))
                 log << item << '\n';
-        // if (filename == ".pngList.txt")
-        //     if (!contains(list, item))
-        //         log << item << '\n';
         if (filename == ".blocklist.txt")
             if (!contains(list, item))
                 log << item << '\n';
@@ -581,12 +516,6 @@ void MyScrolled::blockApp(IcnBMP clickedIcn)
                 std::string sudoBlock = "echo '" + pass + std::string("' | sudo -S ") + block;
                 std::cout << "sudoBlock: " << sudoBlock << '\n';
                 system(sudoBlock.c_str());
-                // std::string sudoOutput = run(sudoBlock);
-                // if (sudoOutput.find("Operation not permitted") != std::string::npos)
-                // {
-                //     std::cout << "sudoBlock failed, running chmod() now\n";
-                //     chmod(exePath.c_str(), 0666);
-                // }
             }
         }
         this->addToList(appPath, ".blocklist.txt");
