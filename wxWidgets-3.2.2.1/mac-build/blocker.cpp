@@ -43,12 +43,14 @@ class MyScrolled : public wxScrolledWindow
 public:
     MyScrolled() : wxScrolledWindow() {}
     MyScrolled(wxWindow *parent);
+    void collectPaths();
+    void collectIcns();
     void setBMPs(wxVector<IcnBMP> bmps);
     wxVector<IcnBMP> getBMPs();
     void addToList(const std::string &item, const std::string &filename);
     std::vector<std::string> readList(const std::string &filename);
     void setAppPaths(std::vector<std::string> appPaths);
-    std::vector<std::string> getAppPaths();
+    int getRows();
     wxCoord getIcnW();
     wxCoord getIcnH();
     void setIcnGridPaint(wxPaintDC *icnGridPaint);
@@ -58,7 +60,11 @@ public:
 
 private:
     wxVector<IcnBMP> bmps;
+    std::vector<std::string> appNames;
     std::vector<std::string> appPaths;
+    int numApps;
+    int rows;
+    int cols = 8;
     wxCoord icnW = 70;
     wxCoord icnH = 70;
     wxPaintDC *icnGridPaint;
@@ -90,8 +96,6 @@ std::string getAppPath(const std::string &appName, const std::string &dir);
 std::string lsGrep(const std::string &path, const std::string &searchStr);
 bool hasContents(const std::string &appPath);
 bool containsResources(const std::string &appPath);
-void collectPaths(MyFrame *frame, MyScrolled *scrolled);
-void collectIcns(MyFrame *frame, MyScrolled *scrolled);
 
 // Return the output of a shell command, namely cmd.
 std::string run(std::string cmd, int size = 100)
@@ -149,128 +153,6 @@ bool containsResources(const std::string &contentsPath)
     return hasContents(appPath) && lsGrep(contentsPath, "Resources").size();
 }
 
-// Story for interview: At first I had put the code below inside definition of OnPaint method, but
-// that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
-// Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
-void collectPaths(MyFrame *frame, MyScrolled *scrolled)
-{
-    std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
-                                        "/Applications/Xcode.app/Contents/Applications",
-                                        "/Applications/Xcode.app/Contents/Developer/Applications",
-                                        "/System/Applications", "/System/Applications/Utilities",
-                                        "/System/Library/CoreServices", "/System/Library/CoreServices/Applications",
-                                        "/System/Library/CoreServices/Finder.app/Contents/Applications",
-                                        "~/Downloads"};
-    std::vector<std::string> appNames;
-    std::vector<std::string> appPaths;
-    wxVector<IcnBMP> bmps;
-
-    for (std::string dir : appDirs)
-    {
-        int dirLevel = std::count(dir.begin(), dir.end(), '/');
-
-        std::string findApps = "find " + dir;
-        findApps += " -maxdepth 1 -regex \"" + dir;
-        findApps += "/.*\\.app$\" | awk -F/ '{print $" + std::to_string(dirLevel + 2);
-        findApps += "}'";
-
-        appNames = getListItems(run(findApps));
-
-        for (int i = 0; i < appNames.size(); i++)
-            appNames[i].erase(appNames[i].size() - 4);
-
-        for (std::string appName : appNames)
-        {
-            std::string appPath = getAppPath(appName, dir);
-            std::string contentsPath = appPath + std::string("/Contents");
-            if (hasContents(appPath))
-            {
-                std::string getIcnName = "defaults read \"" + contentsPath;
-                getIcnName += "/Info.plist\" CFBundleIconFile | awk -F. '{print $1}'";
-                std::string icnName = run(getIcnName);
-                if (icnName.empty())
-                {
-                    std::size_t pos = getIcnName.find("CFBundleIconFile");
-                    getIcnName.replace(pos, 16, "CFBundleIconName");
-                    icnName = run(getIcnName);
-                    std::cout << "icnName: " << icnName << '\n';
-                }
-                if (containsResources(contentsPath))
-                {
-                    std::string findIcnFile = "ls \"" + contentsPath;
-                    findIcnFile += "/Resources\" | grep \"" + icnName;
-                    findIcnFile += ".icns\"";
-                    std::string makePNG;
-                    if (run(findIcnFile).empty())
-                    {
-                        std::string makeICNS = "iconutil -c icns \"" + contentsPath;
-                        makeICNS += "/Resources/Assets.car\" " + icnName;
-                        makeICNS += " -o \"app-icons/" + icnName;
-                        makeICNS += ".icns\" >nul 2>&1";
-                        system(makeICNS.c_str());
-
-                        makePNG = "sips -s format png \"app-icons/" + icnName;
-                        makePNG += ".icns\" --out \"app-icons/" + appName;
-                        makePNG += ".png\" >nul 2>&1 && rm \"app-icons/" + icnName;
-                        makePNG += ".icns\" >nul 2>&1";
-                    }
-                    else
-                    {
-                        makePNG = "sips -s format png \"" + contentsPath;
-                        makePNG += "/Resources/" + icnName;
-                        makePNG += ".icns\" --out \"app-icons/" + appName;
-                        makePNG += ".png\" >nul 2>&1";
-                    }
-                    system(makePNG.c_str());
-                }
-                else
-                {
-                    std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
-                }
-
-                if (lsGrep("app-icons", appName + std::string(".png")).size())
-                {
-                    appPaths.push_back(appPath);
-                }
-            }
-            else
-            {
-                std::cout << "APP WITH NO CONTENTS: " << appName << '\n';
-                // If can't find app icon at all, use NoAppIconPlaceholder.png, which is in some folder somewhere named "Resources"
-            }
-        }
-    }
-    scrolled->setAppPaths(appPaths);
-}
-
-void collectIcns(MyFrame *frame, MyScrolled *scrolled)
-{
-    std::vector<std::string> appPaths = scrolled->getAppPaths();
-    std::vector<std::string> pngPaths;
-    for (int i = 0; i < appPaths.size(); i++)
-    {
-        int j = 0;
-        for (j = appPaths[i].size() - 1; appPaths[i][j - 1] != '/'; j--)
-            ;
-        std::string appName = appPaths[i].substr(j);
-        appName.erase(appName.size() - 4);
-        pngPaths.push_back(run("find app-icons -name \"" + appName + std::string(".png\"")));
-    }
-    wxVector<IcnBMP> bmps;
-    int i = 0;
-    for (std::string pngPath : pngPaths)
-    {
-        wxImage img(pngPath, wxBITMAP_TYPE_PNG);
-        if (img.IsOk())
-        {
-            IcnBMP bmp(img.Scale(scrolled->getIcnW(), scrolled->getIcnH(), wxIMAGE_QUALITY_HIGH));
-            bmp.setVectIndex(i++);
-            bmps.push_back(bmp);
-        }
-    }
-    scrolled->setBMPs(bmps);
-}
-
 enum
 {
     ID_Hello = 1
@@ -317,7 +199,7 @@ bool MyApp::OnInit()
 }
 
 MyFrame::MyFrame()
-    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(915, 828))
+    : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1090, 828))
 {
     MyScrolled *scrolled = new MyScrolled(this);
 
@@ -325,8 +207,10 @@ MyFrame::MyFrame()
     if (appList.size())
         scrolled->setAppPaths(appList);
     else
-        collectPaths(this, scrolled);
-    collectIcns(this, scrolled);
+        scrolled->collectPaths();
+    scrolled->collectIcns();
+
+    scrolled->SetVirtualSize(915, 135 * scrolled->getRows() + 30);
 
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
@@ -368,9 +252,138 @@ MyScrolled::MyScrolled(wxWindow *parent)
     : wxScrolledWindow(parent, wxID_ANY)
 {
     SetScrollRate(10, 10);
-    SetVirtualSize(915, 8000);
 
     Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this, wxID_ANY);
+}
+
+// Story for interview: At first I had put the code below inside definition of OnPaint method, but
+// that meant it was executed with every wxPaintEvent, such as when the window was resized (hence repainted).
+// Made the app extremely laggy, so I moved this code into its own separate function to call once in OnInit.
+void MyScrolled::collectPaths()
+{
+    std::vector<std::string> appDirs = {"/Applications", "/Applications/Utilities",
+                                        "/Applications/Xcode.app/Contents/Applications",
+                                        "/Applications/Xcode.app/Contents/Developer/Applications",
+                                        "/System/Applications", "/System/Applications/Utilities",
+                                        "/System/Library/CoreServices", "/System/Library/CoreServices/Applications",
+                                        "/System/Library/CoreServices/Finder.app/Contents/Applications",
+                                        "~/Downloads"};
+    wxVector<IcnBMP> bmps;
+
+    for (std::string dir : appDirs)
+    {
+        int dirLevel = std::count(dir.begin(), dir.end(), '/');
+
+        std::string findApps = "find " + dir;
+        findApps += " -maxdepth 1 -regex \"" + dir;
+        findApps += "/.*\\.app$\" | awk -F/ '{print $" + std::to_string(dirLevel + 2);
+        findApps += "}'";
+
+        std::vector<std::string> appNames = getListItems(run(findApps));
+
+        for (int i = 0; i < appNames.size(); i++)
+            appNames[i].erase(appNames[i].size() - 4);
+
+        for (std::string appName : appNames)
+        {
+            std::string appPath = getAppPath(appName, dir);
+            std::string contentsPath = appPath + std::string("/Contents");
+
+            std::string makePNG;
+
+            if (hasContents(appPath))
+            {
+                std::string getIcnName = "defaults read \"" + contentsPath;
+                getIcnName += "/Info.plist\" CFBundleIconFile | awk -F. '{print $1}'";
+                std::string icnName = run(getIcnName);
+                if (icnName.empty())
+                {
+                    std::size_t pos = getIcnName.find("CFBundleIconFile");
+                    getIcnName.replace(pos, 16, "CFBundleIconName");
+                    icnName = run(getIcnName);
+                    std::cout << "icnName: " << icnName << '\n';
+                }
+                if (containsResources(contentsPath))
+                {
+                    std::string findIcnFile = "ls \"" + contentsPath;
+                    findIcnFile += "/Resources\" | grep \"" + icnName;
+                    findIcnFile += ".icns\"";
+                    if (run(findIcnFile).empty())
+                    {
+                        std::string makeICNS = "iconutil -c icns \"" + contentsPath;
+                        makeICNS += "/Resources/Assets.car\" " + icnName;
+                        makeICNS += " -o \"app-icons/" + icnName;
+                        makeICNS += ".icns\" >nul 2>&1";
+                        system(makeICNS.c_str());
+
+                        makePNG = "sips -s format png \"app-icons/" + icnName;
+                        makePNG += ".icns\" --out \"app-icons/" + appName;
+                        makePNG += ".png\" >nul 2>&1 && rm \"app-icons/" + icnName;
+                        makePNG += ".icns\" >nul 2>&1";
+                    }
+                    else
+                    {
+                        makePNG = "sips -s format png \"" + contentsPath;
+                        makePNG += "/Resources/" + icnName;
+                        makePNG += ".icns\" --out \"app-icons/" + appName;
+                        makePNG += ".png\" >nul 2>&1";
+                    }
+                    system(makePNG.c_str());
+                }
+                else
+                {
+                    std::cout << "APP WITH CONTENTS BUT NO RESOURCES: " << appName << '\n';
+                    makePNG = "cp app-icons/NoAppIconPlaceholder.png \"app-icons/" + appName;
+                    makePNG += ".png\" >nul 2>&1";
+                    system(makePNG.c_str());
+                }
+
+                if (lsGrep("app-icons", appName + std::string(".png")).size())
+                {
+                    this->appNames.push_back(appName);
+                    this->appPaths.push_back(appPath);
+                    this->addToList(appPath, ".appList.txt");
+                }
+            }
+            else
+            {
+                std::cout << "APP WITH NO CONTENTS: " << appName << '\n';
+                // If can't find app icon at all, use NoAppIconPlaceholder.png, which is in some folder somewhere named "Resources"
+                makePNG = "cp app-icons/NoAppIconPlaceholder.png \"app-icons/" + appName;
+                makePNG += ".png\" >nul 2>&1";
+                system(makePNG.c_str());
+            }
+            // std::cout << "makePNG = " << makePNG << '\n';
+        }
+    }
+}
+
+void MyScrolled::collectIcns()
+{
+    std::vector<std::string> appPaths = this->appPaths;
+    std::vector<std::string> pngPaths;
+    for (int i = 0; i < appPaths.size(); i++)
+    {
+        int j = 0;
+        for (j = appPaths[i].size() - 1; appPaths[i][j - 1] != '/'; j--)
+            ;
+        std::string appName = appPaths[i].substr(j);
+        appName.erase(appName.size() - 4);
+        pngPaths.push_back(run("find app-icons -name \"" + appName + std::string(".png\"")));
+    }
+    wxVector<IcnBMP> bmps;
+    int i = 0;
+    for (std::string pngPath : pngPaths)
+    {
+        wxImage img(pngPath, wxBITMAP_TYPE_PNG);
+        if (img.IsOk())
+        {
+            IcnBMP bmp(img.Scale(this->getIcnW(), this->getIcnH(), wxIMAGE_QUALITY_HIGH));
+            bmp.setVectIndex(i++);
+            bmps.push_back(bmp);
+        }
+    }
+    this->setBMPs(bmps);
 }
 
 void MyScrolled::setBMPs(wxVector<IcnBMP> bmps)
@@ -380,6 +393,9 @@ void MyScrolled::setBMPs(wxVector<IcnBMP> bmps)
 
     for (IcnBMP bmp : bmps)
         this->bmps.push_back(bmp);
+
+    this->numApps = this->bmps.size();
+    this->rows = ceil((double)this->numApps / this->cols);
 }
 
 wxVector<IcnBMP> MyScrolled::getBMPs()
@@ -444,9 +460,9 @@ void MyScrolled::setAppPaths(std::vector<std::string> appPaths)
     }
 }
 
-std::vector<std::string> MyScrolled::getAppPaths()
+int MyScrolled::getRows()
 {
-    return this->appPaths;
+    return this->rows;
 }
 
 wxCoord MyScrolled::getIcnW()
@@ -478,7 +494,7 @@ IcnBMP MyScrolled::findClickedIcn(wxPoint clickPos)
         if (bmp.getRegion().Contains(clickPos))
         {
             int i = bmp.getVectIndex();
-            auto appPaths = this->getAppPaths();
+            auto appPaths = this->appPaths;
             std::cout << '(' << clickPos.x << ", " << clickPos.y
                       << "): clicked icon associated with app at appPaths["
                       << i << "] = " << appPaths[i] << '\n';
@@ -492,7 +508,7 @@ IcnBMP MyScrolled::findClickedIcn(wxPoint clickPos)
 void MyScrolled::blockApp(IcnBMP clickedIcn)
 {
     int i = clickedIcn.getVectIndex();
-    std::string appPath = this->getAppPaths()[i];
+    std::string appPath = this->appPaths[i];
     std::string exe = run("defaults read \"" + appPath + std::string("/Contents/Info.plist\" CFBundleExecutable"));
     if (hasContents(appPath))
     {
@@ -532,10 +548,9 @@ void MyScrolled::OnPaint(wxPaintEvent &event)
 
     int icnW = this->getIcnW(), icnH = this->getIcnH();
     int hgap = 45, vgap = 45;
-    int cols = 8;
+    int rows = this->rows, cols = this->cols;
+    int numApps = this->numApps;
     int gridMarginTop = 30, gridMarginLeft = 30;
-    int numApps = bmps.size();
-    int rows = ceil((double)numApps / cols);
     int i = 0;
 
     for (int x = 0; x < cols; x++)
@@ -554,6 +569,7 @@ void MyScrolled::OnPaint(wxPaintEvent &event)
             bmps[i].setRegion(bmpX, bmpY, icnW, icnH);
 
             icnGridPaint->Blit(bmpX, bmpY, icnW, icnH, &icnMem, 0, 0);
+            icnGridPaint->DrawText(wxString(this->appNames[i]), bmpX, bmpY + 80);
         }
     }
 

@@ -1,3 +1,0 @@
-/System/Applications/Siri.app
-/Applications/Safari.app
-/System/Library/CoreServices/Finder.app/Contents/Applications/Recents.app
