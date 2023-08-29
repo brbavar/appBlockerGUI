@@ -1,6 +1,7 @@
 #include <wx/wxprec.h>
 #include <wx/image.h>
 #include <wx/valtext.h>
+#include <wx/tooltip.h>
 #include <sys/stat.h>
 #include <iostream>
 #include <sstream>
@@ -50,7 +51,13 @@ public:
     void addToList(const std::string &item, const std::string &filename);
     std::vector<std::string> readList(const std::string &filename);
     void setAppPaths(std::vector<std::string> appPaths);
+    std::vector<std::string> getAppNames();
+    void establishLayout();
+    wxPoint getLocationOf(const std::string &txt);
+    wxSize getExtentOf(const std::string &txt);
+    int getNumApps();
     int getRows();
+    int getCols();
     wxCoord getIcnW();
     wxCoord getIcnH();
     void setIcnGridPaint(wxPaintDC *icnGridPaint);
@@ -61,6 +68,8 @@ public:
 private:
     wxVector<IcnBMP> bmps;
     std::vector<std::string> appNames;
+    std::unordered_map<std::string, wxPoint> locationOf;
+    std::unordered_map<std::string, wxSize> extentOf;
     std::vector<std::string> appPaths;
     int numApps;
     int rows;
@@ -212,6 +221,55 @@ MyFrame::MyFrame()
 
     scrolled->SetVirtualSize(915, 135 * scrolled->getRows() + 30);
 
+    for (std::string appName : scrolled->getAppNames())
+    {
+        wxWindow *txtWndw = new wxWindow(scrolled, wxID_ANY,
+                                         scrolled->getLocationOf(appName),
+                                         scrolled->getExtentOf(appName));
+        txtWndw->SetToolTip(appName);
+    }
+
+    // wxCoord fullTxtW, fullTxtH;
+    // icnGridPaint->GetTextExtent(wxAppName, &fullTxtW, &fullTxtW);
+    // wxWindow *txtWndw = new wxWindow(this, wxID_ANY, wxPoint(txtX0, txtY0), wxSize(fullTxtW, fullTxtH));
+    // txtWndw->Bind(wxEVT_ENTER_WINDOW, [this, icnGridPaint, txtX0, txtY0, fullTxtW, fullTxtH](wxMouseEvent &evt)
+    //               { icnGridPaint->DrawRectangle(txtX0, txtY0, fullTxtW, fullTxtH); });
+
+    // wxToolTip *appNameToolTip = new wxToolTip(wxString("testing 1 2 3"));
+    // appNameToolTip->Enable(true);
+    // appNameToolTip->SetDelay(3000);
+    // txtWndw.SetToolTip(appNameToolTip);
+
+    // int hgap = 45, vgap = 45;
+    // int rows = scrolled->getRows(), cols = scrolled->getCols();
+    // int numApps = scrolled->getNumApps();
+    // int gridMarginTop = 30, gridMarginLeft = 30;
+    // int i = 0;
+
+    // for (int x = 0; x < cols; x++)
+    // {
+    //     for (int y = 0; y < rows; y++)
+    //     {
+    //         i = cols * y + x; // DEBUGGING NOTE: Check if every index is represented and none double-counted
+    //         if (i >= numApps)
+    //             break;
+
+    //         wxCoord bmpX = x * hgap + (x * 90) + gridMarginLeft;
+    //         wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
+
+    //         if (i < scrolled->getAppNames().size())
+    //         {
+    //             std::string appName = scrolled->getAppNames()[i];
+    //             wxCoord txtW, txtH;
+
+    //             // std::cout << appNames[i] << " HAS WIDTH OF " << txtW << " AND HEIGHT OF " << txtH << '\n';
+
+    //             wxStaticText txt(scrolled, wxID_ANY, appName, wxPoint(bmpX - 3, bmpY + 80), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
+    //             // txt.SetForegroundColour(wxColour(255, 255, 255));
+    //         }
+    //     }
+    // }
+
     wxMenu *menuFile = new wxMenu;
     menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
                      "Help string shown in status bar for this menu item");
@@ -252,8 +310,39 @@ MyScrolled::MyScrolled(wxWindow *parent)
     : wxScrolledWindow(parent, wxID_ANY)
 {
     SetScrollRate(10, 10);
+    SetBackgroundColour(wxColour(0, 0, 0));
 
     Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this, wxID_ANY);
+
+    // int hgap = 45, vgap = 45;
+    // int rows = this->getRows(), cols = this->getCols();
+    // int numApps = this->getNumApps();
+    // int gridMarginTop = 30, gridMarginLeft = 30;
+    // int i = 0;
+
+    // for (int x = 0; x < cols; x++)
+    // {
+    //     for (int y = 0; y < rows; y++)
+    //     {
+    //         i = cols * y + x; // DEBUGGING NOTE: Check if every index is represented and none double-counted
+    //         if (i >= numApps)
+    //             break;
+
+    //         wxCoord bmpX = x * hgap + (x * 90) + gridMarginLeft;
+    //         wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
+
+    //         if (i < this->getAppNames().size())
+    //         {
+    //             std::string appName = this->getAppNames()[i];
+    //             wxCoord txtW, txtH;
+
+    //             // std::cout << appNames[i] << " HAS WIDTH OF " << txtW << " AND HEIGHT OF " << txtH << '\n';
+
+    //             wxStaticText txt(this, wxID_ANY, appName, wxPoint(bmpX - 3, bmpY + 80), wxDefaultSize, wxALIGN_CENTRE_HORIZONTAL);
+    //             // txt.SetForegroundColour(wxColour(255, 255, 255));
+    //         }
+    //     }
+    // }
 }
 
 // Story for interview: At first I had put the code below inside definition of OnPaint method, but
@@ -268,6 +357,7 @@ void MyScrolled::collectPaths()
                                         "/System/Library/CoreServices", "/System/Library/CoreServices/Applications",
                                         "/System/Library/CoreServices/Finder.app/Contents/Applications",
                                         "~/Downloads"};
+    std::vector<std::string> appPaths;
     wxVector<IcnBMP> bmps;
 
     for (std::string dir : appDirs)
@@ -340,9 +430,7 @@ void MyScrolled::collectPaths()
 
                 if (lsGrep("app-icons", appName + std::string(".png")).size())
                 {
-                    this->appNames.push_back(appName);
-                    this->appPaths.push_back(appPath);
-                    this->addToList(appPath, ".appList.txt");
+                    appPaths.push_back(appPath);
                 }
             }
             else
@@ -356,6 +444,7 @@ void MyScrolled::collectPaths()
             // std::cout << "makePNG = " << makePNG << '\n';
         }
     }
+    this->setAppPaths(appPaths);
 }
 
 void MyScrolled::collectIcns()
@@ -384,6 +473,8 @@ void MyScrolled::collectIcns()
         }
     }
     this->setBMPs(bmps);
+
+    this->establishLayout();
 }
 
 void MyScrolled::setBMPs(wxVector<IcnBMP> bmps)
@@ -458,11 +549,160 @@ void MyScrolled::setAppPaths(std::vector<std::string> appPaths)
         this->appPaths.push_back(appPath);
         this->addToList(appPath, ".appList.txt");
     }
+
+    if (!this->appNames.empty())
+        this->appNames.clear();
+
+    for (int i = 0; i < appPaths.size(); i++)
+    {
+        std::string truncAppPath = this->appPaths[i].substr(0, this->appPaths[i].size() - 4);
+        int j;
+        for (j = truncAppPath.size() - 1; truncAppPath[j - 1] != '/'; j--)
+            ;
+        this->appNames.push_back(truncAppPath.substr(j));
+    }
+}
+
+std::vector<std::string> MyScrolled::getAppNames()
+{
+    return this->appNames;
+}
+
+void MyScrolled::establishLayout()
+{
+    wxPaintDC *icnGridPaint = new wxPaintDC(this);
+
+    wxVector<IcnBMP> bmps = this->getBMPs();
+    int icnW = this->getIcnW(), icnH = this->getIcnH();
+    int hgap = 45, vgap = 45;
+    int rows = this->rows, cols = this->cols;
+    int numApps = this->numApps;
+    int gridMarginTop = 30, gridMarginLeft = 30;
+    int i = 0;
+
+    for (int x = 0; x < cols; x++)
+    {
+        for (int y = 0; y < rows; y++)
+        {
+            i = cols * y + x; // DEBUGGING NOTE: Check if every index is represented (and none double-counted; none seems to be)
+            if (i >= numApps)
+                break;
+
+            wxCoord bmpX = x * hgap + (x * 90) + gridMarginLeft;
+            wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
+            bmps[i].setRegion(bmpX, bmpY, icnW, icnH);
+
+            if (i < this->appNames.size()) // Why not instead write i < numApps?
+            {
+                std::string appName = this->appNames[i];
+                wxVector<wxString> appNameLines;
+                wxString wxAppName = wxString(appName);
+                appNameLines.push_back(wxAppName);
+                int numLines = 1;
+                wxCoord txtW, txtH;
+
+                // std::cout << appNames[i] << " HAS WIDTH OF " << txtW << " AND HEIGHT OF " << txtH << '\n';
+
+                if (appName.find(' ') != std::string::npos)
+                    do
+                    {
+                        // Move last word in name to a new line, until all lines
+                        // are under 115 in width
+                        wxString line1 = appNameLines[0];
+                        icnGridPaint->GetTextExtent(line1, &txtW, &txtH);
+                        if (appNameLines[0] == appName && this->extentOf.find(appName) == this->extentOf.end())
+                            this->extentOf[appName] = wxSize(txtW, txtH);
+
+                        int j;
+                        for (j = line1.size() - 1; j >= 0 && line1[j - 1] != ' '; j--)
+                            ;
+                        wxString lastWord = line1.Mid(j);
+
+                        if (j > 0 && line1[j - 1] == ' ')
+                            appNameLines[0].erase(j - 1);
+                        if (numLines == 1)
+                            appNameLines.push_back(lastWord);
+                        else if (j > -1)
+                            appNameLines.insert(appNameLines.begin() + numLines - 1, lastWord);
+
+                        numLines = appNameLines.size();
+
+                        // if (appName == "MongoDB Compass")
+                        // {
+                        //     std::cout << "line1 = " << line1 << " and has a width of " << txtW << '\n';
+                        //     std::cout << "j = " << j << '\n';
+                        //     std::cout << "lastWord = " << lastWord << '\n';
+                        //     std::cout << "numLines = " << numLines << '\n';
+                        // }
+                    } while (txtW > 114);
+
+                // if (numLines > 1)
+                // {
+                //     icnGridPaint->GetTextExtent(appNameLines[1], &txtW, &txtH);
+                //     std::cout << "Second line of " << appName << " is " << appNameLines[1] << ", with a width of " << txtW << '\n';
+                // }
+
+                if (numLines > 2)
+                    appNameLines[1] += "...";
+
+                wxCoord txtX0, txtY0;
+                wxCoord wSum = 0, hSum = 0;
+                for (int j = 0; j < std::min(numLines, 2); j++)
+                {
+                    wxString line = appNameLines[j];
+                    icnGridPaint->GetTextExtent(line, &txtW, &txtH);
+                    wSum += txtW;
+                    txtH += hSum;
+
+                    wxCoord txtX = txtW < icnW ? (bmpX + (icnW - txtW) / 2) : (bmpX - (txtW - icnW) / 2);
+                    wxCoord txtY = bmpY + 80 + (20 * j);
+                    if (j == 0)
+                    {
+                        txtX0 = txtX;
+                        txtY0 = txtY;
+                    }
+                    icnGridPaint->DrawText(line, txtX, txtY);
+                }
+
+                wSum += numLines > 1 ? 20 : 0;
+                hSum += numLines > 1 ? 20 : 0;
+
+                if (this->extentOf.find(appName) == this->extentOf.end())
+                    this->extentOf[appName] = wxSize(wSum, hSum);
+
+                wxPoint nameLocation = wxPoint(bmpX, bmpY + 80);
+                if (this->locationOf.find(appName) == this->locationOf.end())
+                    this->locationOf[appName] = nameLocation;
+            }
+        }
+    }
+
+    this->setBMPs(bmps);
+}
+
+wxPoint MyScrolled::getLocationOf(const std::string &txt)
+{
+    return this->locationOf[txt];
+}
+
+wxSize MyScrolled::getExtentOf(const std::string &txt)
+{
+    return this->extentOf[txt];
+}
+
+int MyScrolled::getNumApps()
+{
+    return this->numApps;
 }
 
 int MyScrolled::getRows()
 {
     return this->rows;
+}
+
+int MyScrolled::getCols()
+{
+    return this->cols;
 }
 
 wxCoord MyScrolled::getIcnW()
@@ -540,40 +780,26 @@ void MyScrolled::blockApp(IcnBMP clickedIcn)
 
 void MyScrolled::OnPaint(wxPaintEvent &event)
 {
-    wxVector<IcnBMP> bmps = this->getBMPs();
-
-    this->setIcnGridPaint(new wxPaintDC(this));
-    wxPaintDC *icnGridPaint = this->getIcnGridPaint();
+    wxPaintDC *icnGridPaint = new wxPaintDC(this);
+    this->setIcnGridPaint(icnGridPaint);
     DoPrepareDC(*icnGridPaint);
 
-    int icnW = this->getIcnW(), icnH = this->getIcnH();
-    int hgap = 45, vgap = 45;
-    int rows = this->rows, cols = this->cols;
-    int numApps = this->numApps;
-    int gridMarginTop = 30, gridMarginLeft = 30;
-    int i = 0;
-
-    for (int x = 0; x < cols; x++)
+    wxVector<IcnBMP> bmps = this->getBMPs();
+    for (int i = 0; i < this->getNumApps(); i++)
     {
-        for (int y = 0; y < rows; y++)
-        {
-            i = cols * y + x;
-            if (i >= numApps)
-                break;
+        IcnBMP bmp = bmps[i];
 
-            wxMemoryDC icnMem = wxMemoryDC();
-            icnMem.SelectObject(bmps[i]);
+        wxRect outerBounds = bmp.getRegion().GetBox();
+        wxCoord x = outerBounds.x, y = outerBounds.y,
+                w = outerBounds.width, h = outerBounds.height;
 
-            wxCoord bmpX = x * hgap + (x * 90) + gridMarginLeft;
-            wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
-            bmps[i].setRegion(bmpX, bmpY, icnW, icnH);
+        std::cout << "The app " << this->getAppNames()[i] << " has an icon with x = " << x << ", y = " << y << ", w = " << w << ", h = " << h << '\n';
 
-            icnGridPaint->Blit(bmpX, bmpY, icnW, icnH, &icnMem, 0, 0);
-            icnGridPaint->DrawText(wxString(this->appNames[i]), bmpX, bmpY + 80);
-        }
+        wxMemoryDC icnMem = wxMemoryDC();
+        icnMem.SelectObject(bmp);
+
+        icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
     }
-
-    this->setBMPs(bmps);
 }
 
 void MyScrolled::OnClick(wxMouseEvent &event)
