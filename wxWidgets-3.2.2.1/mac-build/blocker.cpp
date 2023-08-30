@@ -524,7 +524,7 @@ void MyScrolled::establishLayout()
             wxCoord bmpY = vgap * y + (y * 90) + gridMarginTop;
             bmps[i].setRegion(bmpX, bmpY, icnW, icnH);
 
-            if (i < this->appNames.size()) // Why not instead write i < numApps?
+            if (i < numApps)
             {
                 std::string appName = this->appNames[i];
                 wxVector<wxString> appNameLines;
@@ -533,8 +533,6 @@ void MyScrolled::establishLayout()
                 int numLines = 1;
                 wxCoord txtW, txtH;
 
-                // std::cout << appNames[i] << " HAS WIDTH OF " << txtW << " AND HEIGHT OF " << txtH << '\n';
-
                 if (appName.find(' ') != std::string::npos)
                     do
                     {
@@ -542,8 +540,6 @@ void MyScrolled::establishLayout()
                         // are under 115 in width
                         wxString line1 = appNameLines[0];
                         icnGridPaint->GetTextExtent(line1, &txtW, &txtH);
-                        // if (appNameLines[0] == appName && this->extentOf.find(appName) == this->extentOf.end())
-                        //     this->extentOf[appName] = wxSize(txtW, txtH);
 
                         int j;
                         for (j = line1.size() - 1; j >= 0 && line1[j - 1] != ' '; j--)
@@ -563,7 +559,6 @@ void MyScrolled::establishLayout()
                 if (numLines > 2)
                     appNameLines[1] += "...";
 
-                // if (i < this->linesInAppName.size())
                 this->linesInAppName[i] = appNameLines;
 
                 int scrollableAreaW, scrollableAreaH;
@@ -724,28 +719,13 @@ void MyScrolled::OnPaint(wxPaintEvent &event)
 
         icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
 
-        wxVector<wxString> appNameLines;
-        // if (i < this->linesInAppName.size())
-        // {
-        for (wxString line : linesInAppName[i])
-            appNameLines.push_back(line);
-        // }
-
-        // std::cout << "app name: " << this->appNames[i] << '\n';
-        // std::cout << "this->linesInAppName.size() = " << this->linesInAppName.size() << '\n';
-        // std::cout << "i = " << i << '\n';
-
-        for (int j = 0; i < this->linesInAppName.size() && j < std::min(this->linesInAppName[i].size(), (size_t)2); j++)
+        wxVector<wxString> appNameLines = linesInAppName[i];
+        for (int j = 0; j < std::min(appNameLines.size(), (size_t)2); j++)
         {
-            // std::cout << "There are " << appNameLines.size() << " lines in " << this->appNames[i] << '\n';
-            // if (j < appNameLines.size())
-            // {
             wxString line = appNameLines[j];
-            // std::cout << "Line " << j << " of " << this->appNames[i] << " is " << line << '\n';
             wxPoint lineLocation = this->getLocationOf(line);
             wxCoord x = lineLocation.x, y = lineLocation.y;
             icnGridPaint->DrawText(line, x, y);
-            // }
         }
     }
 }
