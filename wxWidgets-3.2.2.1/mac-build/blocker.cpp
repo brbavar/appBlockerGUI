@@ -563,8 +563,8 @@ void MyScrolled::establishLayout()
                 if (numLines > 2)
                     appNameLines[1] += "...";
 
-                if (i < this->linesInAppName.size())
-                    this->linesInAppName[i] = appNameLines;
+                // if (i < this->linesInAppName.size())
+                this->linesInAppName[i] = appNameLines;
 
                 int scrollableAreaW, scrollableAreaH;
                 this->GetVirtualSize(&scrollableAreaW, &scrollableAreaH);
@@ -725,11 +725,11 @@ void MyScrolled::OnPaint(wxPaintEvent &event)
         icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
 
         wxVector<wxString> appNameLines;
-        if (i < this->linesInAppName.size())
-        {
-            for (wxString line : linesInAppName[i])
-                appNameLines.push_back(line);
-        }
+        // if (i < this->linesInAppName.size())
+        // {
+        for (wxString line : linesInAppName[i])
+            appNameLines.push_back(line);
+        // }
 
         // std::cout << "app name: " << this->appNames[i] << '\n';
         // std::cout << "this->linesInAppName.size() = " << this->linesInAppName.size() << '\n';
@@ -738,14 +738,14 @@ void MyScrolled::OnPaint(wxPaintEvent &event)
         for (int j = 0; i < this->linesInAppName.size() && j < std::min(this->linesInAppName[i].size(), (size_t)2); j++)
         {
             // std::cout << "There are " << appNameLines.size() << " lines in " << this->appNames[i] << '\n';
-            if (j < appNameLines.size())
-            {
-                wxString line = appNameLines[j];
-                // std::cout << "Line " << j << " of " << this->appNames[i] << " is " << line << '\n';
-                wxPoint lineLocation = this->getLocationOf(line);
-                wxCoord x = lineLocation.x, y = lineLocation.y;
-                icnGridPaint->DrawText(line, x, y);
-            }
+            // if (j < appNameLines.size())
+            // {
+            wxString line = appNameLines[j];
+            // std::cout << "Line " << j << " of " << this->appNames[i] << " is " << line << '\n';
+            wxPoint lineLocation = this->getLocationOf(line);
+            wxCoord x = lineLocation.x, y = lineLocation.y;
+            icnGridPaint->DrawText(line, x, y);
+            // }
         }
     }
 }
