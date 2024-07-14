@@ -1,0 +1,1 @@
+To run this app, navigate to the /mac-build directory.
