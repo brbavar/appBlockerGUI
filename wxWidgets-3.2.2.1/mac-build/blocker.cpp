@@ -118,28 +118,23 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-// class PromptWindow : public wxWindow 
-// {
-// public:
-//     PromptWindow() : wxWindow(NULL, wxID_ANY) {}
-//     PromptWindow(wxWindow* parent, wxPoint p, wxSize s) : wxWindow(parent, wxID_ANY, p, s) {}
-    
-// private:
-//     void OnPaint(wxPaintEvent &event);
+class StaticTextCtrl : public wxTextCtrl 
+{
+public:
+    StaticTextCtrl(wxWindow* parent, const wxString &value = "", wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize, long style = 0) : wxTextCtrl(parent, wxID_ANY, value, pos, size, style) {}
 
-//     wxDECLARE_EVENT_TABLE();
-// };
+private:
+    void OnScrollEvent(wxScrollWinEvent &event) {}
+    void OnMouseWheel(wxMouseEvent &event) {}
+
+    wxDECLARE_EVENT_TABLE();
+};
 
 class PromptFrame : public wxFrame
 {
 public:
-    PromptFrame() : wxFrame(NULL, wxID_ANY, "") {}
-    PromptFrame(wxWindow* parent, wxPoint p, wxSize s) : wxFrame(parent, wxID_ANY, "", p, s) {}
-    
-// private:
-    // void OnPaint(wxPaintEvent &event);
-
-    // wxDECLARE_EVENT_TABLE();
+    // PromptFrame() : wxFrame(NULL, wxID_ANY, "") {}
+    PromptFrame(wxWindow* parent, wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize, long style = 0) : wxFrame(parent, wxID_ANY, "", pos, size, style) {}
 };
 
 class AppFrame : public wxFrame
@@ -148,51 +143,27 @@ public:
     AppFrame();
     void setScrolled(MyScrolled* scrolled);
     MyScrolled* getScrolled();
-    // void setDatePromptWindow(PromptWindow* datePromptWindow);
-    // PromptWindow* getDatePromptWindow();
     void setDatePromptFrame(PromptFrame* datePromptWindow);
     PromptFrame* getDatePromptFrame();
-    void setDatePickingPrompt(wxTextCtrl* datePickingPrompt);
-    wxTextCtrl* getDatePickingPrompt();
+    // void setDatePromptPanel(wxPanel* datePromptPanel);
+    // wxPanel* getDatePromptPanel();
+    void setDatePrompt(StaticTextCtrl* datePrompt);
+    StaticTextCtrl* getDatePrompt();
     void setDatePicker(wxDatePickerCtrl* datePicker);
     wxDatePickerCtrl* getDatePicker();
     void makeBlockCtrls(std::string appName);
 
 private:
     MyScrolled* scrolled = nullptr;
-    wxPanel* panel = nullptr;
-    // PromptWindow* datePromptWindow = nullptr;
     PromptFrame* datePromptFrame = nullptr;
-    wxTextCtrl* datePickingPrompt = nullptr;
+    // wxPanel* datePromptPanel = nullptr;
+    StaticTextCtrl* datePrompt = nullptr;
     wxDatePickerCtrl* datePicker = nullptr;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
     void OnAbout(wxCommandEvent &event);
 };
-
-// class PromptWindow : public wxWindow
-// {
-// public:
-//     PromptWindow() : wxWindow(NULL, wxID_ANY, "") {}
-//     PromptWindow(wxPoint p, wxSize s) : wxWindow(NULL, wxID_ANY, "", p, s) {}
-//     // void setPanel(wxPanel* panel);
-//     // wxPanel* getPanel();
-//     void setDatePromptWindow(wxWindow* datePromptWindow);
-//     wxWindow* getDatePromptWindow();
-//     void setDatePicker(wxDatePickerCtrl* datePicker);
-//     wxDatePickerCtrl* getDatePicker();
-//     void makeBlockCtrls(std::string appName);
-
-// private:
-//     wxPanel* panel = nullptr;
-//     wxWindow* datePromptWindow = nullptr;
-//     wxDatePickerCtrl* datePicker = nullptr;
-
-//     void OnPaint(wxPaintEvent &event);
-
-//     wxDECLARE_EVENT_TABLE();
-// };
 
 std::string
 run(std::string cmd, int size);
@@ -307,22 +278,13 @@ bool MyApp::OnInit()
     return true;
 }
 
-// void PromptWindow::OnPaint(wxPaintEvent &event)
-// {
-//     wxPaintDC dc(this);
+// void OnScrollEvent(wxScrollWinEvent &event) {}
+//     void OnMouseWheel(wxMouseEvent &event) {}
 
-//     wxColour bgColour = wxColour(10, 60, 207);
-//     dc.SetBrush(wxBrush(bgColour));
-//     dc.SetPen(wxPen(bgColour));
-
-//     wxSize size = GetClientSize();
-
-//     dc.DrawRoundedRectangle(0, 0, size.GetWidth(), size.GetHeight(), 20);
-// }
-
-// wxBEGIN_EVENT_TABLE(PromptWindow, wxWindow)
-//     EVT_PAINT(PromptWindow::OnPaint)
-// wxEND_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(StaticTextCtrl, wxTextCtrl)
+    EVT_SCROLLWIN(StaticTextCtrl::OnScrollEvent)
+    EVT_MOUSEWHEEL(StaticTextCtrl::OnMouseWheel)
+wxEND_EVENT_TABLE()
 
 AppFrame::AppFrame()
     : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1090, 828))
@@ -392,26 +354,6 @@ void AppFrame::OnAbout(wxCommandEvent &event)
                  "About Hello World", wxOK | wxICON_INFORMATION);
 }
 
-// void PromptWindow::setPanel(wxPanel* panel)
-// {
-//     this->panel = panel;
-// }
-
-// wxPanel* PromptWindow::getPanel()
-// {
-//     return panel;
-// }
-
-// void AppFrame::setDatePromptWindow(PromptWindow* datePromptWindow) 
-// {
-//     this->datePromptWindow = datePromptWindow;
-// }
-
-// PromptWindow* AppFrame::getDatePromptWindow() 
-// {
-//     return datePromptWindow;
-// }
-
 void AppFrame::setDatePromptFrame(PromptFrame* datePromptFrame) 
 {
     this->datePromptFrame = datePromptFrame;
@@ -422,14 +364,23 @@ PromptFrame* AppFrame::getDatePromptFrame()
     return datePromptFrame;
 }
 
-void AppFrame::setDatePickingPrompt(wxTextCtrl* datePickingPrompt)
+// void AppFrame::setDatePromptPanel(wxPanel* datePromptPanel)
+// {
+//     this->datePromptPanel = datePromptPanel;
+// }
+
+// wxPanel* AppFrame::getDatePromptPanel() {
+//     return datePromptPanel;
+// }
+
+void AppFrame::setDatePrompt(StaticTextCtrl* datePrompt)
 {
-    this->datePickingPrompt = datePickingPrompt;
+    this->datePrompt = datePrompt;
 }
 
-wxTextCtrl* AppFrame::getDatePickingPrompt()
+StaticTextCtrl* AppFrame::getDatePrompt()
 {
-    return datePickingPrompt;
+    return datePrompt;
 }
 
 void AppFrame::setDatePicker(wxDatePickerCtrl* datePicker)
@@ -444,25 +395,35 @@ wxDatePickerCtrl* AppFrame::getDatePicker()
 
 void AppFrame::makeBlockCtrls(std::string appName)
 {
-    if (!( /* datePromptWindow || */ datePromptFrame || datePicker)) {
+    if (!(datePromptFrame /* || datePromptPanel */ || datePicker)) {
         // datePromptWindow = new PromptWindow(this, wxDefaultPosition, wxSize(300, 100));
         // datePromptWindow->Center(wxBOTH);
         // datePromptWindow->SetBackgroundColour(wxColour(255, 255, 255));
 
         // datePicker = new wxDatePickerCtrl(datePromptWindow, wxID_ANY, wxDefaultDateTime, wxPoint(0, 0), wxSize(100, 100));
 
-        datePromptFrame = new PromptFrame(this, wxDefaultPosition, wxSize(350, 200));
+        wxSize frameSize = wxSize(350, 200);
+        datePromptFrame = new PromptFrame(this, wxDefaultPosition, frameSize, wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX));
         datePromptFrame->Center(wxBOTH);
+        datePromptFrame->SetMinSize(frameSize);
+        datePromptFrame->SetMaxSize(frameSize);
         datePromptFrame->SetBackgroundColour(wxColour(230, 230, 230));
+        // datePromptPanel = new wxPanel(datePromptFrame, wxID_ANY, wxDefaultPosition, datePromptFrame->GetSize());
+        // datePromptPanel->SetBackgroundColour(wxColour(230, 230, 230));
 
-        datePickingPrompt = new wxTextCtrl(datePromptFrame, wxID_ANY, "When would you like to start blocking " + appName + '?', wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-        datePickingPrompt->SetForegroundColour(*wxBLACK);
+        // datePrompt = new wxTextCtrl(datePromptPanel, wxID_ANY, "When would you like to start blocking " + appName + '?', wxPoint(10, 10), wxSize(), wxTE_READONLY | wxTE_MULTILINE | wxTE_NO_VSCROLL | wxBORDER_NONE | wxTE_RICH2);
+        datePrompt = new StaticTextCtrl(datePromptFrame, "When would you like to start blocking " + appName + '?', wxPoint(10, 10), wxSize(330, 100), wxTE_READONLY | wxTE_MULTILINE | wxTE_NO_VSCROLL | wxBORDER_NONE);
+        datePrompt->SetForegroundColour(*wxBLACK);
+        datePrompt->SetBackgroundColour(wxColour(225, 225, 225));
+        datePrompt->SetFont(wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
+        // datePrompt->CenterOnParent(wxHORIZONTAL);
 
         datePicker = new wxDatePickerCtrl(datePromptFrame, wxID_ANY, wxDefaultDateTime, wxPoint(0, 0), wxSize(100, 100));
+        // datePicker = new wxDatePickerCtrl(datePromptPanel, wxID_ANY, wxDefaultDateTime, wxPoint(0, 0), wxSize(100, 100));
         // datePicker = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxPoint(0, 0), wxSize(100, 100));
         datePicker->CenterOnParent(wxHORIZONTAL);
 
-        // datePickingPrompt = new wxTextCtrl(datePromptFrame, wxID_ANY, "When would you like the app to become usable again?");
+        // datePrompt = new wxTextCtrl(datePromptFrame, wxID_ANY, "When would you like the app to become usable again?");
     }
 }
 
@@ -871,36 +832,12 @@ void MyScrolled::blockApp(IcnBMP clickedIcn)
 {
     int i = clickedIcn.getVectIndex();
     std::string appName = this->appNames[i];
-    
-    // CalendarDialog calendarBox(this, wxID_ANY, "Set Block Time Interval");
-
-
-    // wxPanel *calendarBox = new wxPanel(this);
-    // calendarBox->Center();
-    // calendarBox->CaptureMouse();
-
-    // wxCalendarCtrl *calendar = new wxCalendarCtrl(calendarBox, wxID_ANY);
-    // calendar->Center(wxHORIZONTAL);
-
-    // wxButton *btn = new wxButton(calendarBox, wxID_ANY, "Set as Start Date");
-
-    // calendarBox->ReleaseMouse();
-
-
-    // wxDatePickerCtrl *datePicker = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxSize(100, 100));
-    // datePicker->Center(wxHORIZONTAL);
 
     AppFrame *frame = static_cast<AppFrame*>(GetParent());
-    // frame->Center(wxBOTH);
     frame->makeBlockCtrls(appName);
     frame->getDatePromptFrame()->Show();
-    frame->getDatePicker()->Show();
-
-    // PromptWindow *window = new PromptWindow(wxPoint(0, 0), wxSize(200, 200));
-    // window->Center(wxBOTH);
-    // window->makeBlockCtrls();
-    // window->getDatePromptWindow()->Show();
-    // window->getDatePicker()->Show();
+    // frame->getDatePromptPanel()->Show();
+    // frame->getDatePicker()->Show();
 
     std::string appPath = this->appPaths[i];
     std::string exe = run("defaults read \"" + appPath + std::string("/Contents/Info.plist\" CFBundleExecutable"));
