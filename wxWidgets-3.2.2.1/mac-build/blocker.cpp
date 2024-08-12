@@ -433,7 +433,13 @@ void AppFrame::makeBlockPrompt(std::string appName)
         // nextBtn->SetBackgroundColour(*wxBLACK);
         nextBtn->CenterOnParent(wxHORIZONTAL);
 
-        // timePrompt = new wxTextCtrl(timePromptFrame, wxID_ANY, "When would you like the app to become usable again?");
+        nextBtn->Bind(wxEVT_BUTTON, [appName, timePrompt](wxCommandEvent &event) {
+            timePrompt->SetEditable(true);
+            timePrompt->SetValue("When would you like to regain access to " + appName + '?');
+            timePrompt->SetEditable(false);
+        });
+
+        // timePrompt = new wxTextCtrl(timePromptFrame, wxID_ANY, "When would you like to regain access to " + appName + '?');
     }
 }
 
