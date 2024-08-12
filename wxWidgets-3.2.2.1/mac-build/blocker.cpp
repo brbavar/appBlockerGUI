@@ -409,7 +409,7 @@ PromptFrame* AppFrame::getTimePromptFrame()
 
 void AppFrame::makeBlockPrompt(std::string appName)
 {
-    if (!(timePromptFrame /* || timePrompt || datePicker || timePicker */)) {
+    if (!timePromptFrame) {
         wxSize frameSize = wxSize(437, 250);
         timePromptFrame = new PromptFrame(this, wxDefaultPosition, frameSize, wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX));
         timePromptFrame->Center(wxBOTH);
@@ -418,25 +418,29 @@ void AppFrame::makeBlockPrompt(std::string appName)
         timePromptFrame->SetBackgroundColour(wxColour(100, 100, 100));
 
         StaticTextCtrl* timePrompt = new StaticTextCtrl(timePromptFrame, "When would you like to start blocking " + appName + '?', wxPoint(10, 10), wxSize(400, 100), wxTE_READONLY | wxTE_MULTILINE | wxTE_NO_VSCROLL | wxBORDER_NONE);
-        // timePrompt->SetForegroundColour(*wxBLACK);
         timePrompt->SetBackgroundColour(wxColour(81, 81, 81));
         timePrompt->SetFont(wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 
-        wxDatePickerCtrl* datePicker = new wxDatePickerCtrl(timePromptFrame, wxID_ANY, wxDefaultDateTime, wxPoint(0, 60));
+        wxDatePickerCtrl* datePicker = new wxDatePickerCtrl(timePromptFrame, wxID_ANY, wxDefaultDateTime, wxPoint(0, 60), wxDefaultSize, wxDP_ALLOWNONE);
         datePicker->CenterOnParent(wxHORIZONTAL);
         datePicker->SetRange(wxDateTime::Now(), wxDefaultDateTime); // Any date, except one that has passed, can be chosen
+        wxDateTime defaultDatePickerVal = datePicker->GetValue();
 
         wxTimePickerCtrl* timePicker = new wxTimePickerCtrl(timePromptFrame, wxID_ANY, wxDefaultDateTime, wxPoint(0, 120));
         timePicker->CenterOnParent(wxHORIZONTAL);
+        wxDateTime defaultTimePickerVal = timePicker->GetValue();
 
         wxButton* nextBtn = new wxButton(timePromptFrame, wxID_ANY, "Next", wxPoint(0, 190), wxDefaultSize);
-        // nextBtn->SetBackgroundColour(*wxBLACK);
         nextBtn->CenterOnParent(wxHORIZONTAL);
 
-        nextBtn->Bind(wxEVT_BUTTON, [appName, timePrompt](wxCommandEvent &event) {
+        nextBtn->Bind(wxEVT_BUTTON, [appName, timePrompt, datePicker, defaultDatePickerVal, timePicker, defaultTimePickerVal](wxCommandEvent &event) {
             timePrompt->SetEditable(true);
             timePrompt->SetValue("When would you like to regain access to " + appName + '?');
             timePrompt->SetEditable(false);
+
+            // std::cout << defaultDatePickerVal.GetMonth() << ' ' << defaultDatePickerVal.GetDay() << ' ' << defaultDatePickerVal.GetYear() << '\n';
+            datePicker->SetValue(defaultDatePickerVal);
+            timePicker->SetValue(defaultTimePickerVal);
         });
 
         // timePrompt = new wxTextCtrl(timePromptFrame, wxID_ANY, "When would you like to regain access to " + appName + '?');
