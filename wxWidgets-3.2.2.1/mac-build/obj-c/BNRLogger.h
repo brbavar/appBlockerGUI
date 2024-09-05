@@ -4,7 +4,7 @@
 #define BNRLogger_h
 
 @interface BNRLogger : NSObject
-@property (nonatomic) NSMutableArray * blocklist;
+@property(nonatomic, strong) NSMutableArray *blocklist;
 - (void)setBlocklist:(NSString *)string;
 - (void)appLaunch:(NSNotification *)note;
 @end
