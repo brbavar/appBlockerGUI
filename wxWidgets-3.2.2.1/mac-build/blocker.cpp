@@ -149,7 +149,7 @@ class AppFrame : public wxFrame {
     // wxDatePickerCtrl* getDatePicker();
     // void setTimePicker(wxTimePickerCtrl* timePicker);
     // wxTimePickerCtrl* getTimePicker();
-    void makeBlockPrompt(std::string appName);
+    void makeBlockPrompt(std::string appName, std::string appPath);
     void sudo(std::string cmd);
 
    private:
@@ -356,8 +356,8 @@ PromptFrame *AppFrame::getTimePromptFrame() { return timePromptFrame; }
 //     return timePicker;
 // }
 
-void AppFrame::makeBlockPrompt(std::string appName) {
-    if (!timePromptFrame) {
+void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
+    if (!timePromptFrame && hasContents(appPath)) {
         wxSize frameSize = wxSize(437, 250);
         timePromptFrame =
             new PromptFrame(this, wxDefaultPosition, frameSize,
@@ -393,12 +393,13 @@ void AppFrame::makeBlockPrompt(std::string appName) {
             new wxButton(timePromptFrame, wxID_ANY, "Next", wxPoint(0, 190), wxDefaultSize);
         nextBtn->CenterOnParent(wxHORIZONTAL);
 
-        wxDateTime blockStartDate = blockStartTime = wxDefaultDateTime;
+        // wxDateTime blockStartDate = blockStartTime = wxDefaultDateTime;
 
         nextBtn->Bind(wxEVT_BUTTON, [nextBtn, appName, timePrompt, datePicker, defaultDatePickerVal,
-                                     timePicker, defaultTimePickerVal](wxCommandEvent &event) {
-            blockStartDate = datePicker->GetValue();
-            blockStartTime = timePicker->GetValue();
+                                     timePicker, defaultTimePickerVal, timePromptFrame,
+                                     appPath](wxCommandEvent &event) {
+            wxDateTime blockStartDate = datePicker->GetValue();
+            wxDateTime blockStartTime = timePicker->GetValue();
 
             timePrompt->SetEditable(true);
             timePrompt->SetValue("When would you like to regain access to " + appName + '?');
@@ -413,11 +414,36 @@ void AppFrame::makeBlockPrompt(std::string appName) {
             nextBtn->CenterOnParent(wxHORIZONTAL);
             nextBtn->SetLabel("Save choices");
 
-            wxDateTime blockEndDate = blockEndTime = wxDefaultDateTime;
+            // wxDateTime blockEndDate = blockEndTime = wxDefaultDateTime;
 
-            nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker](wxCommandEvent &event) {
-                blockEndDate = datePicker->GetValue();
-                blockEndTime = timePicker->GetValue();
+            nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker, blockStartDate, blockStartTime,
+                                         timePromptFrame, appPath](wxCommandEvent &event) {
+                wxDateTime blockEndDate = datePicker->GetValue();
+                wxDateTime blockEndTime = timePicker->GetValue();
+
+                std::string exe = run("defaults read \"" + appPath +
+                                      std::string("/Contents/Info.plist\" CFBundleExecutable"));
+                std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
+                system(kill.c_str());
+
+                std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
+                std::string block = "chmod -x \"" + exePath + "\" 2>&1";
+                std::string unblock = "chmod +x \"" + exePath + "\" 2>&1";
+
+                std::string addCronJob = "(crontab -l; echo '" blockStartTime.GetMinute() + ' ' +
+                                         blockStartTime.GetHour() + ' ' + blockStartDate.GetDay() +
+                                         ' ' + blockStartDate.GetMonth() + " * " + kill + "; " +
+                                         block + "') | crontab -";
+                if (run(addCronJob).size()) this->sudo(addCronJob);
+
+                addCronJob = "(crontab -l; echo '" blockEndTime.GetMinute() + ' ' +
+                             blockEndTime.GetHour() + ' ' + blockEndDate.GetDay() + ' ' +
+                             blockEndDate.GetMonth() + " * " + unblock + "') | crontab -";
+                if (run(addCronJob).size()) this->sudo(addCronJob);
+
+                this->addToList(appPath, ".blocklist.txt");
+
+                timePromptFrame = nullptr;
             });
         });
     }
@@ -777,10 +803,9 @@ IcnBMP MyScrolled::findClickedIcn(wxPoint clickPos) {
 
 void MyScrolled::blockApp(IcnBMP clickedIcn) {
     int i = clickedIcn.getVectIndex();
-    std::string appName = this->appNames[i];
 
     AppFrame *frame = static_cast<AppFrame *>(GetParent());
-    frame->makeBlockPrompt(appName);
+    frame->makeBlockPrompt(this->appNames[i], this->appPaths[i]);
     frame->getTimePromptFrame()->Show();
 
     std::string appPath = this->appPaths[i];
