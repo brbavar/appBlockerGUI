@@ -74,6 +74,7 @@ class MyScrolled : public wxScrolledWindow {
     void addToList(const std::string &item, const std::string &filename);
     std::vector<std::string> readList(const std::string &filename);
     void setAppPaths(std::vector<std::string> appPaths);
+    std::vector<std::string> getAppPaths();
     std::vector<std::string> getAppNames();
     void establishLayout();
     wxPoint getLocationOf(const std::string &txt);
@@ -149,7 +150,7 @@ class AppFrame : public wxFrame {
     // wxDatePickerCtrl* getDatePicker();
     // void setTimePicker(wxTimePickerCtrl* timePicker);
     // wxTimePickerCtrl* getTimePicker();
-    void makeBlockPrompt(std::string appName, std::string appPath);
+    void makeBlockPrompt(int i);
     void sudo(std::string cmd);
 
    private:
@@ -356,7 +357,10 @@ PromptFrame *AppFrame::getTimePromptFrame() { return timePromptFrame; }
 //     return timePicker;
 // }
 
-void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
+void AppFrame::makeBlockPrompt(int i) {
+    MyScrolled *scrolled = getScrolled();
+    std::string appName = scrolled->getAppNames()[i];
+    std::string appPath = scrolled->getAppPaths()[i];
     if (!timePromptFrame && hasContents(appPath)) {
         wxSize frameSize = wxSize(437, 250);
         timePromptFrame =
@@ -396,8 +400,8 @@ void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
         // wxDateTime blockStartDate = blockStartTime = wxDefaultDateTime;
 
         nextBtn->Bind(wxEVT_BUTTON, [nextBtn, appName, timePrompt, datePicker, defaultDatePickerVal,
-                                     timePicker, defaultTimePickerVal, timePromptFrame,
-                                     appPath](wxCommandEvent &event) {
+                                     timePicker, defaultTimePickerVal, appPath, scrolled,
+                                     this](wxCommandEvent &event) {
             wxDateTime blockStartDate = datePicker->GetValue();
             wxDateTime blockStartTime = timePicker->GetValue();
 
@@ -405,7 +409,8 @@ void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
             timePrompt->SetValue("When would you like to regain access to " + appName + '?');
             timePrompt->SetEditable(false);
 
-            // std::cout << defaultDatePickerVal.GetMonth() << ' ' << defaultDatePickerVal.GetDay()
+            // std::cout << defaultDatePickerVal.GetMonth() << ' ' <<
+            // defaultDatePickerVal.GetDay()
             // << ' ' << defaultDatePickerVal.GetYear() << '\n';
             datePicker->SetValue(defaultDatePickerVal);
             timePicker->SetValue(defaultTimePickerVal);
@@ -417,7 +422,7 @@ void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
             // wxDateTime blockEndDate = blockEndTime = wxDefaultDateTime;
 
             nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker, blockStartDate, blockStartTime,
-                                         timePromptFrame, appPath](wxCommandEvent &event) {
+                                         appPath, scrolled, this](wxCommandEvent &event) {
                 wxDateTime blockEndDate = datePicker->GetValue();
                 wxDateTime blockEndTime = timePicker->GetValue();
 
@@ -430,18 +435,26 @@ void AppFrame::makeBlockPrompt(std::string appName, std::string appPath) {
                 std::string block = "chmod -x \"" + exePath + "\" 2>&1";
                 std::string unblock = "chmod +x \"" + exePath + "\" 2>&1";
 
-                std::string addCronJob = "(crontab -l; echo '" blockStartTime.GetMinute() + ' ' +
-                                         blockStartTime.GetHour() + ' ' + blockStartDate.GetDay() +
-                                         ' ' + blockStartDate.GetMonth() + " * " + kill + "; " +
-                                         block + "') | crontab -";
+                std::string blockStartMin = std::to_string(blockStartTime.GetMinute());
+                std::string blockStartHr = std::to_string(blockStartTime.GetHour());
+                std::string blockStartDay = std::to_string(blockStartDate.GetDay());
+                std::string blockStartMonth = std::to_string(blockStartDate.GetMonth());
+
+                std::string addCronJob = "(crontab -l; echo '" + blockStartMin + ' ' +
+                                         blockStartHr + ' ' + blockStartDay + ' ' +
+                                         blockStartMonth + " * " + kill + "; " + block +
+                                         "') | crontab -";
                 if (run(addCronJob).size()) this->sudo(addCronJob);
 
-                addCronJob = "(crontab -l; echo '" blockEndTime.GetMinute() + ' ' +
-                             blockEndTime.GetHour() + ' ' + blockEndDate.GetDay() + ' ' +
-                             blockEndDate.GetMonth() + " * " + unblock + "') | crontab -";
+                std::string blockEndMin = std::to_string(blockEndTime.GetMinute());
+                std::string blockEndHr = std::to_string(blockEndTime.GetHour());
+                std::string blockEndDay = std::to_string(blockEndDate.GetDay());
+                std::string blockEndMonth = std::to_string(blockEndDate.GetMonth());
+                addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr + ' ' +
+                             blockEndDay + ' ' + blockEndMonth + " * " + unblock + "') | crontab -";
                 if (run(addCronJob).size()) this->sudo(addCronJob);
 
-                this->addToList(appPath, ".blocklist.txt");
+                scrolled->addToList(appPath, ".blocklist.txt");
 
                 timePromptFrame = nullptr;
             });
@@ -673,6 +686,8 @@ void MyScrolled::setAppPaths(std::vector<std::string> appPaths) {
     }
 }
 
+std::vector<std::string> MyScrolled::getAppPaths() { return this->appPaths; }
+
 std::vector<std::string> MyScrolled::getAppNames() { return this->appNames; }
 
 void MyScrolled::establishLayout() {
@@ -805,7 +820,7 @@ void MyScrolled::blockApp(IcnBMP clickedIcn) {
     int i = clickedIcn.getVectIndex();
 
     AppFrame *frame = static_cast<AppFrame *>(GetParent());
-    frame->makeBlockPrompt(this->appNames[i], this->appPaths[i]);
+    frame->makeBlockPrompt(i);
     frame->getTimePromptFrame()->Show();
 }
 
