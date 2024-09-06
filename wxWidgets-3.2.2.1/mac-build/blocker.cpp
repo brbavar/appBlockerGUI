@@ -807,26 +807,6 @@ void MyScrolled::blockApp(IcnBMP clickedIcn) {
     AppFrame *frame = static_cast<AppFrame *>(GetParent());
     frame->makeBlockPrompt(this->appNames[i], this->appPaths[i]);
     frame->getTimePromptFrame()->Show();
-
-    std::string appPath = this->appPaths[i];
-    std::string exe = run("defaults read \"" + appPath +
-                          std::string("/Contents/Info.plist\" CFBundleExecutable"));
-    if (hasContents(appPath)) {
-        //
-
-        std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
-        system(kill.c_str());
-        std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
-        std::string block = "chmod -x \"" + exePath + "\" 2>&1";
-
-        //
-
-        if (run(block).size()) frame->sudo(block);
-
-        //
-
-        this->addToList(appPath, ".blocklist.txt");
-    }
 }
 
 void MyScrolled::OnPaint(wxPaintEvent &event) {
