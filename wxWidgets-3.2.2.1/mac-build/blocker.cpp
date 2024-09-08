@@ -151,7 +151,8 @@ class AppFrame : public wxFrame {
     // void setTimePicker(wxTimePickerCtrl* timePicker);
     // wxTimePickerCtrl* getTimePicker();
     void makeBlockPrompt(int i);
-    void sudo(std::string cmd);
+    void promptForPassword();
+    std::string sudo(std::string cmd);
 
    private:
     std::string password = "";
@@ -428,31 +429,68 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 std::string exe = run("defaults read \"" + appPath +
                                       std::string("/Contents/Info.plist\" CFBundleExecutable"));
-                std::string kill = "killall \"" + exe + std::string("\" >nul 2>&1");
+                std::string kill = "/usr/bin/killall \"" + exe + std::string("\" > /dev/null 2>&1");
                 system(kill.c_str());
 
                 std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
-                std::string block = "chmod -x \"" + exePath + "\" 2>&1";
-                std::string unblock = "chmod +x \"" + exePath + "\" 2>&1";
+                std::string block = "/bin/chmod -x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
+                std::string unblock = "/bin/chmod +x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
 
                 std::string blockStartMin = std::to_string(blockStartTime.GetMinute());
                 std::string blockStartHr = std::to_string(blockStartTime.GetHour());
                 std::string blockStartDay = std::to_string(blockStartDate.GetDay());
-                std::string blockStartMonth = std::to_string(blockStartDate.GetMonth());
+                std::string blockStartMonth = std::to_string(blockStartDate.GetMonth() + 1);
+
+                if (password.empty()) promptForPassword();
+
+                std::string createSudoersTmp = "echo '" + run("whoami") +
+                                               " ALL=(ALL) NOPASSWD: " + block +
+                                               "' > /tmp/sudoers_temp";
+                system(createSudoersTmp.c_str());
+
+                std::string checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
+                if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
+                    std::cout << "No errors produced by block tmp\n\n";
+                    std::string displayTmp = "cat /tmp/sudoers_temp";
+                    std::string appendTmpToSudoers =
+                        "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
+                    this->sudo(appendTmpToSudoers);
+                }
+
+                std::string deleteTmp = "rm /tmp/sudoers_temp";
+                system(deleteTmp.c_str());
 
                 std::string addCronJob = "(crontab -l; echo '" + blockStartMin + ' ' +
                                          blockStartHr + ' ' + blockStartDay + ' ' +
-                                         blockStartMonth + " * " + kill + "; " + block +
-                                         "') | crontab -";
-                if (run(addCronJob).size()) this->sudo(addCronJob);
+                                         blockStartMonth + " * " + kill + "&& /usr/bin/sudo " +
+                                         block + "') | crontab -";
+                system(addCronJob.c_str());
 
                 std::string blockEndMin = std::to_string(blockEndTime.GetMinute());
                 std::string blockEndHr = std::to_string(blockEndTime.GetHour());
                 std::string blockEndDay = std::to_string(blockEndDate.GetDay());
-                std::string blockEndMonth = std::to_string(blockEndDate.GetMonth());
+                std::string blockEndMonth = std::to_string(blockEndDate.GetMonth() + 1);
+
+                createSudoersTmp = "echo '" + run("whoami") + " ALL=(ALL) NOPASSWD: " + unblock +
+                                   "' > /tmp/sudoers_temp";
+                system(createSudoersTmp.c_str());
+
+                checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
+                if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
+                    std::cout << "No errors produced by unblock tmp\n\n";
+                    std::string displayTmp = "cat /tmp/sudoers_temp";
+                    std::string appendTmpToSudoers =
+                        "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
+                    this->sudo(appendTmpToSudoers);
+                }
+
+                deleteTmp = "rm /tmp/sudoers_temp";
+                system(deleteTmp.c_str());
+
                 addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr + ' ' +
-                             blockEndDay + ' ' + blockEndMonth + " * " + unblock + "') | crontab -";
-                if (run(addCronJob).size()) this->sudo(addCronJob);
+                             blockEndDay + ' ' + blockEndMonth + " * /usr/bin/sudo " + unblock +
+                             "') | crontab -";
+                system(addCronJob.c_str());
 
                 scrolled->addToList(appPath, ".blocklist.txt");
 
@@ -462,23 +500,25 @@ void AppFrame::makeBlockPrompt(int i) {
     }
 }
 
-void AppFrame::sudo(std::string cmd) {
-    if (password.empty()) {
-        wxPasswordEntryDialog passDlg(
-            this, "Enter the password you use to log in to your computer as " + run("whoami"));
-        passDlg.SetTextValidator(wxFILTER_NONE);
-        if (passDlg.ShowModal() == wxID_OK) {
-            password = std::string(passDlg.GetValue());
-            size_t it = password.find("'");
-            while (it != std::string::npos) {
-                password.replace(it, 1, "\'");
-                it = password.find("'");
-            }
+void AppFrame::promptForPassword() {
+    wxPasswordEntryDialog passDlg(
+        this, "Enter the password you use to log in to your computer as " + run("whoami"));
+    passDlg.SetTextValidator(wxFILTER_NONE);
+    if (passDlg.ShowModal() == wxID_OK) {
+        password = std::string(passDlg.GetValue());
+        size_t it = password.find("'");
+        while (it != std::string::npos) {
+            password.replace(it, 1, "\'");
+            it = password.find("'");
         }
     }
+}
+
+std::string AppFrame::sudo(std::string cmd) {
+    if (password.empty()) promptForPassword();
 
     std::string sudoCmd = "echo '" + password + std::string("' | sudo -S ") + cmd;
-    system(sudoCmd.c_str());
+    return run(sudoCmd);
 }
 
 void AppFrame::OnHello(wxCommandEvent &event) { wxLogMessage("Hello world from wxWidgets!"); }
