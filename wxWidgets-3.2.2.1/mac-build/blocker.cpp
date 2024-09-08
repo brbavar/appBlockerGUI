@@ -443,9 +443,9 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 if (password.empty()) promptForPassword();
 
-                std::string createSudoersTmp = "echo '" + run("whoami") +
-                                               " ALL=(ALL) NOPASSWD: " + block +
-                                               "' > /tmp/sudoers_temp";
+                std::string createSudoersTmp =
+                    "echo '" + run("whoami") +
+                    " ALL=(ALL) NOPASSWD: /bin/chmod' > /tmp/sudoers_temp";
                 system(createSudoersTmp.c_str());
 
                 std::string checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
@@ -470,22 +470,6 @@ void AppFrame::makeBlockPrompt(int i) {
                 std::string blockEndHr = std::to_string(blockEndTime.GetHour());
                 std::string blockEndDay = std::to_string(blockEndDate.GetDay());
                 std::string blockEndMonth = std::to_string(blockEndDate.GetMonth() + 1);
-
-                createSudoersTmp = "echo '" + run("whoami") + " ALL=(ALL) NOPASSWD: " + unblock +
-                                   "' > /tmp/sudoers_temp";
-                system(createSudoersTmp.c_str());
-
-                checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
-                if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
-                    std::cout << "No errors produced by unblock tmp\n\n";
-                    std::string displayTmp = "cat /tmp/sudoers_temp";
-                    std::string appendTmpToSudoers =
-                        "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
-                    this->sudo(appendTmpToSudoers);
-                }
-
-                deleteTmp = "rm /tmp/sudoers_temp";
-                system(deleteTmp.c_str());
 
                 addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr + ' ' +
                              blockEndDay + ' ' + blockEndMonth + " * /usr/bin/sudo " + unblock +
