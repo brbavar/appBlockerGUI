@@ -50,17 +50,7 @@ class CalendarDialog : public wxDialog {
 CalendarDialog::CalendarDialog(wxWindow *parent, wxWindowID id, const wxString &title)
     : wxDialog(parent, id, title, wxDefaultPosition, wxDefaultSize,
                wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) {
-    // wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
-
-    if (this->ShowModal() == wxID_OK) {
-        wxCalendarCtrl *calendar = new wxCalendarCtrl(this, wxID_ANY);
-        // calendar->Show(true);
-
-        // topSizer->Add(new wxCalendarCtrl(this, wxID_ANY), 1, wxEXPAND | wxALL, 10);
-        // SetSizer(topSizer);
-        // topSizer->Fit(this);
-        // topSizer->SetSizeHints(this);
-    }
+    if (this->ShowModal() == wxID_OK) wxCalendarCtrl *calendar = new wxCalendarCtrl(this, wxID_ANY);
 }
 
 class MyScrolled : public wxScrolledWindow {
@@ -127,7 +117,6 @@ class StaticTextCtrl : public wxTextCtrl {
 
 class PromptFrame : public wxFrame {
    public:
-    // PromptFrame() : wxFrame(NULL, wxID_ANY, "") {}
     PromptFrame(wxWindow *parent, wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize,
                 long style = 0)
         : wxFrame(parent, wxID_ANY, "", pos, size, style) {}
@@ -142,14 +131,6 @@ class AppFrame : public wxFrame {
     MyScrolled *getScrolled();
     void setTimePromptFrame(PromptFrame *timePromptWindow);
     PromptFrame *getTimePromptFrame();
-    // void setTimePromptPanel(wxPanel* timePromptPanel);
-    // wxPanel* getTimePromptPanel();
-    // void setTimePrompt(StaticTextCtrl* timePrompt);
-    // StaticTextCtrl* getTimePrompt();
-    // void setDatePicker(wxDatePickerCtrl* datePicker);
-    // wxDatePickerCtrl* getDatePicker();
-    // void setTimePicker(wxTimePickerCtrl* timePicker);
-    // wxTimePickerCtrl* getTimePicker();
     void makeBlockPrompt(int i);
     void promptForPassword();
     std::string sudo(std::string cmd);
@@ -158,10 +139,6 @@ class AppFrame : public wxFrame {
     std::string password = "";
     MyScrolled *scrolled = nullptr;
     PromptFrame *timePromptFrame = nullptr;
-    // wxPanel* timePromptPanel = nullptr;
-    // StaticTextCtrl* timePrompt = nullptr;
-    // wxDatePickerCtrl* datePicker = nullptr;
-    // wxTimePickerCtrl* timePicker = nullptr;
 
     void OnHello(wxCommandEvent &event);
     void OnExit(wxCommandEvent &event);
@@ -244,24 +221,10 @@ bool MyApp::OnInit() {
     wxImage::AddHandler(new wxPNGHandler);
 
     AppFrame *frame = new AppFrame();
-
-    // std::string plistPathFound =
-    //     run("find /Library/LaunchDaemons -name
-    //     com.app-blocker.launch-notification-tracker.plist");
-    // if (plistPathFound == "") {
-    //     std::string makePlist =
-    //         "/usr/libexec/PlistBuddy -c \"Save\" "
-    //         "com.app-blocker.launch-notification-tracker.plist";
-    //     frame->sudo(makePlist);
-    // }
-
     frame->Show(true);
 
     return true;
 }
-
-// void OnScrollEvent(wxScrollWinEvent &event) {}
-//     void OnMouseWheel(wxMouseEvent &event) {}
 
 wxBEGIN_EVENT_TABLE(StaticTextCtrl, wxTextCtrl) EVT_SCROLLWIN(StaticTextCtrl::OnScrollEvent)
     EVT_MOUSEWHEEL(StaticTextCtrl::OnMouseWheel) wxEND_EVENT_TABLE()
@@ -319,45 +282,6 @@ void AppFrame::setTimePromptFrame(PromptFrame *timePromptFrame) {
 
 PromptFrame *AppFrame::getTimePromptFrame() { return timePromptFrame; }
 
-// void AppFrame::setTimePromptPanel(wxPanel* timePromptPanel)
-// {
-//     this->timePromptPanel = timePromptPanel;
-// }
-
-// wxPanel* AppFrame::getTimePromptPanel() {
-//     return timePromptPanel;
-// }
-
-// void AppFrame::setTimePrompt(StaticTextCtrl* timePrompt)
-// {
-//     this->timePrompt = timePrompt;
-// }
-
-// StaticTextCtrl* AppFrame::getTimePrompt()
-// {
-//     return timePrompt;
-// }
-
-// void AppFrame::setDatePicker(wxDatePickerCtrl* datePicker)
-// {
-//     this->datePicker = datePicker;
-// }
-
-// wxDatePickerCtrl* AppFrame::getDatePicker()
-// {
-//     return datePicker;
-// }
-
-// void AppFrame::setTimePicker(wxTimePickerCtrl* timePicker)
-// {
-//     this->timePicker = timePicker;
-// }
-
-// wxTimePickerCtrl* AppFrame::getTimePicker()
-// {
-//     return timePicker;
-// }
-
 void AppFrame::makeBlockPrompt(int i) {
     MyScrolled *scrolled = getScrolled();
     std::string appName = scrolled->getAppNames()[i];
@@ -398,8 +322,6 @@ void AppFrame::makeBlockPrompt(int i) {
             new wxButton(timePromptFrame, wxID_ANY, "Next", wxPoint(0, 190), wxDefaultSize);
         nextBtn->CenterOnParent(wxHORIZONTAL);
 
-        // wxDateTime blockStartDate = blockStartTime = wxDefaultDateTime;
-
         nextBtn->Bind(wxEVT_BUTTON, [nextBtn, appName, timePrompt, datePicker, defaultDatePickerVal,
                                      timePicker, defaultTimePickerVal, appPath, scrolled,
                                      this](wxCommandEvent &event) {
@@ -410,17 +332,12 @@ void AppFrame::makeBlockPrompt(int i) {
             timePrompt->SetValue("When would you like to regain access to " + appName + '?');
             timePrompt->SetEditable(false);
 
-            // std::cout << defaultDatePickerVal.GetMonth() << ' ' <<
-            // defaultDatePickerVal.GetDay()
-            // << ' ' << defaultDatePickerVal.GetYear() << '\n';
             datePicker->SetValue(defaultDatePickerVal);
             timePicker->SetValue(defaultTimePickerVal);
 
             nextBtn->SetSize(100, nextBtn->GetSize().y);
             nextBtn->CenterOnParent(wxHORIZONTAL);
             nextBtn->SetLabel("Save choices");
-
-            // wxDateTime blockEndDate = blockEndTime = wxDefaultDateTime;
 
             nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker, blockStartDate, blockStartTime,
                                          appName, appPath, scrolled, this](wxCommandEvent &event) {
@@ -433,93 +350,13 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
 
-                // std::string moveApp =
-                //     "/bin/mv \"" + appPath + "\" /usr/local/ > /tmp/cronjob.log 2>&1";
-                // std::string exePath =
-                //     "/usr/local/" + appName + ".app" + std::string("/Contents/MacOS/") + exe;
-                // std::string moveApp =
-                //     "/bin/mv \"" + appPath + "\" ~/Applications/ > /tmp/cronjob.log 2>&1";
-                // std::string exePath =
-                //     "~/Applications/" + appName + ".app" + std::string("/Contents/MacOS/") + exe;
-                // std::string checkFlags = "ls -l0 " + exePath + " > /tmp/cronjob.log 2>&1";
-                // std::string makeExeMine =
-                //     "/usr/sbin/chown " + run("whoami") + ' ' + exePath + " > /tmp/cronjob.log
-                //     2>&1";
-                // std::string makeExeMutable = "/usr/bin/chflags noschg,norestricted,nosapp \"" +
-                //                              exePath + "\" > /tmp/cronjob.log 2>&1";
-
-                // std::string unquarantineApp = "/usr/bin/xattr -d com.apple.quarantine \"" +
-                //                               exePath + "\" > /tmp/cronjob.log 2>&1";
-                // std::string block = "/bin/chmod -x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
-
-                // std::string unblock = "/bin/chmod +x \"" + exePath + "\" > /tmp/cronjob.log
-                // 2>&1";
-
-                // std::string moveAppBack = "/bin/mv \"/usr/local/" + appName + ".app\" " +
-                //                           appPath.substr(0, appPath.size() - (appName.size() +
-                //                           5)) + " > /tmp/cronjob.log 2>&1";
-                // std::string moveAppBack = "/bin/mv \"~/Applications/" + appName + ".app\" " +
-                //                           appPath.substr(0, appPath.size() - (appName.size() +
-                //                           5)) + " > /tmp/cronjob.log 2>&1";
-
                 std::string blockStartMin = std::to_string(blockStartTime.GetMinute());
                 std::string blockStartHr = std::to_string(blockStartTime.GetHour());
                 std::string blockStartDay = std::to_string(blockStartDate.GetDay());
                 std::string blockStartMo = std::to_string(blockStartDate.GetMonth() + 1);
                 std::string blockStartYr = std::to_string(blockStartDate.GetYear());
 
-                if (password.empty()) {
-                    promptForPassword();
-
-                    // std::string setCronEnv =
-                    //     "(crontab -l; echo 'PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin') |
-                    //     " "crontab -";
-                    // system(setCronEnv.c_str());
-
-                    // std::string createSudoersTmp =
-                    //     "echo '" + run("whoami") +
-                    //     " ALL=(ALL) NOPASSWD: /usr/bin/xattr, /bin/chmod' > /tmp/sudoers_temp";
-                    // system(createSudoersTmp.c_str());
-
-                    // std::string createSudoersTmp =
-                    //     "echo '" + run("whoami") +
-                    //     " ALL=(ALL) NOPASSWD: crontab' > /tmp/sudoers_temp";
-                    // system(createSudoersTmp.c_str());
-
-                    // std::string createSudoersTmp =
-                    //     "echo '" + run("whoami") +
-                    //     " ALL=(ALL) NOPASSWD: /bin/chmod' > /tmp/sudoers_temp";
-                    // system(createSudoersTmp.c_str());
-
-                    // std::string checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
-                    // if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
-                    //     std::string displayTmp = "cat /tmp/sudoers_temp";
-                    //     std::string appendTmpToSudoers =
-                    //         "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
-                    //     std::cout << appendTmpToSudoers << "\n\n";
-                    //     this->sudo(appendTmpToSudoers);
-                    // }
-
-                    // std::string deleteTmp = "rm /tmp/sudoers_temp";
-                    // system(deleteTmp.c_str());
-                }
-
-                // std::string addCronJob =
-                //     "(crontab -l; echo '" + blockStartMin + ' ' + blockStartHr + ' ' +
-                //     blockStartDay + ' ' + blockStartMo + " * " + kill + "; /usr/bin/sudo " +
-                //     unquarantineApp + " && /usr/bin/sudo " + block + "') | crontab -";
-
-                // std::string addCronJob = "(sudo crontab -l; echo '" + blockStartMin + ' ' +
-                //                          blockStartHr + ' ' + blockStartDay + ' ' +
-                //                          blockStartMo + " * " + kill + "; " + unquarantineApp
-                //                          + " && " + block + "') | sudo crontab -";
-
-                // std::string addCronJob = "(sudo crontab -l; echo '" + blockStartMin + ' ' +
-                //                          blockStartHr + ' ' + blockStartDay + ' ' +
-                //                          blockStartMo + " * " + kill + "; " + block +
-                //                          "') | sudo crontab -";
-
-                // system(addCronJob.c_str());
+                if (password.empty()) promptForPassword();
 
                 std::string appNameNoCaps = "";
                 for (char c : appName) {
@@ -578,19 +415,6 @@ void AppFrame::makeBlockPrompt(int i) {
                 std::string blockEndDay = std::to_string(blockEndDate.GetDay());
                 std::string blockEndMo = std::to_string(blockEndDate.GetMonth() + 1);
                 std::string blockEndYr = std::to_string(blockEndDate.GetYear());
-
-                // addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr +
-                // ' ' +
-                //              blockEndDay + ' ' + blockEndMo + " * /usr/bin/sudo "
-                //              + unblock +
-                //              "') | crontab -";
-
-                // addCronJob = "(sudo crontab -l; echo '" + blockEndMin + ' ' +
-                // blockEndHr + ' ' +
-                //              blockEndDay + ' ' + blockEndMo + " * " + unblock +
-                //              "') | sudo crontab -";
-
-                // system(addCronJob.c_str());
 
                 plistPathFound = run("find /Library/LaunchDaemons -name com.example.testjob.plist");
                 if (plistPathFound == "") {
