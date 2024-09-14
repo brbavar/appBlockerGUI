@@ -223,6 +223,11 @@ bool MyApp::OnInit() {
     AppFrame *frame = new AppFrame();
     frame->Show(true);
 
+    // Possibly should put the if statement below elsewhere
+    if (run("ls /usr/local/dequarantiner.m > /dev/null 2>&1 || echo 'File not found'") ==
+        "File not found")
+        this->sudo("cp obj-c/dequarantiner.m /usr/local");
+
     return true;
 }
 
