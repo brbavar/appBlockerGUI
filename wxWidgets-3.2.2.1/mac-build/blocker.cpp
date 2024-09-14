@@ -423,58 +423,239 @@ void AppFrame::makeBlockPrompt(int i) {
             // wxDateTime blockEndDate = blockEndTime = wxDefaultDateTime;
 
             nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker, blockStartDate, blockStartTime,
-                                         appPath, scrolled, this](wxCommandEvent &event) {
+                                         appName, appPath, scrolled, this](wxCommandEvent &event) {
                 wxDateTime blockEndDate = datePicker->GetValue();
                 wxDateTime blockEndTime = timePicker->GetValue();
 
                 std::string exe = run("defaults read \"" + appPath +
                                       std::string("/Contents/Info.plist\" CFBundleExecutable"));
                 std::string kill = "/usr/bin/killall \"" + exe + std::string("\" > /dev/null 2>&1");
-                system(kill.c_str());
 
                 std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
-                std::string block = "/bin/chmod -x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
-                std::string unblock = "/bin/chmod +x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
+
+                // std::string moveApp =
+                //     "/bin/mv \"" + appPath + "\" /usr/local/ > /tmp/cronjob.log 2>&1";
+                // std::string exePath =
+                //     "/usr/local/" + appName + ".app" + std::string("/Contents/MacOS/") + exe;
+                // std::string moveApp =
+                //     "/bin/mv \"" + appPath + "\" ~/Applications/ > /tmp/cronjob.log 2>&1";
+                // std::string exePath =
+                //     "~/Applications/" + appName + ".app" + std::string("/Contents/MacOS/") + exe;
+                // std::string checkFlags = "ls -l0 " + exePath + " > /tmp/cronjob.log 2>&1";
+                // std::string makeExeMine =
+                //     "/usr/sbin/chown " + run("whoami") + ' ' + exePath + " > /tmp/cronjob.log
+                //     2>&1";
+                // std::string makeExeMutable = "/usr/bin/chflags noschg,norestricted,nosapp \"" +
+                //                              exePath + "\" > /tmp/cronjob.log 2>&1";
+
+                // std::string unquarantineApp = "/usr/bin/xattr -d com.apple.quarantine \"" +
+                //                               exePath + "\" > /tmp/cronjob.log 2>&1";
+                // std::string block = "/bin/chmod -x \"" + exePath + "\" > /tmp/cronjob.log 2>&1";
+
+                // std::string unblock = "/bin/chmod +x \"" + exePath + "\" > /tmp/cronjob.log
+                // 2>&1";
+
+                // std::string moveAppBack = "/bin/mv \"/usr/local/" + appName + ".app\" " +
+                //                           appPath.substr(0, appPath.size() - (appName.size() +
+                //                           5)) + " > /tmp/cronjob.log 2>&1";
+                // std::string moveAppBack = "/bin/mv \"~/Applications/" + appName + ".app\" " +
+                //                           appPath.substr(0, appPath.size() - (appName.size() +
+                //                           5)) + " > /tmp/cronjob.log 2>&1";
 
                 std::string blockStartMin = std::to_string(blockStartTime.GetMinute());
                 std::string blockStartHr = std::to_string(blockStartTime.GetHour());
                 std::string blockStartDay = std::to_string(blockStartDate.GetDay());
-                std::string blockStartMonth = std::to_string(blockStartDate.GetMonth() + 1);
+                std::string blockStartMo = std::to_string(blockStartDate.GetMonth() + 1);
+                std::string blockStartYr = std::to_string(blockStartDate.GetYear());
 
-                if (password.empty()) promptForPassword();
+                if (password.empty()) {
+                    promptForPassword();
 
-                std::string createSudoersTmp =
-                    "echo '" + run("whoami") +
-                    " ALL=(ALL) NOPASSWD: /bin/chmod' > /tmp/sudoers_temp";
-                system(createSudoersTmp.c_str());
+                    // std::string setCronEnv =
+                    //     "(crontab -l; echo 'PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin') |
+                    //     " "crontab -";
+                    // system(setCronEnv.c_str());
 
-                std::string checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
-                if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
-                    std::cout << "No errors produced by block tmp\n\n";
-                    std::string displayTmp = "cat /tmp/sudoers_temp";
-                    std::string appendTmpToSudoers =
-                        "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
-                    this->sudo(appendTmpToSudoers);
+                    // std::string createSudoersTmp =
+                    //     "echo '" + run("whoami") +
+                    //     " ALL=(ALL) NOPASSWD: /usr/bin/xattr, /bin/chmod' > /tmp/sudoers_temp";
+                    // system(createSudoersTmp.c_str());
+
+                    // std::string createSudoersTmp =
+                    //     "echo '" + run("whoami") +
+                    //     " ALL=(ALL) NOPASSWD: crontab' > /tmp/sudoers_temp";
+                    // system(createSudoersTmp.c_str());
+
+                    // std::string createSudoersTmp =
+                    //     "echo '" + run("whoami") +
+                    //     " ALL=(ALL) NOPASSWD: /bin/chmod' > /tmp/sudoers_temp";
+                    // system(createSudoersTmp.c_str());
+
+                    // std::string checkTmpForErrors = "visudo -cf /tmp/sudoers_temp";
+                    // if (this->sudo(checkTmpForErrors) == "/tmp/sudoers_temp: parsed OK") {
+                    //     std::string displayTmp = "cat /tmp/sudoers_temp";
+                    //     std::string appendTmpToSudoers =
+                    //         "tee -a /etc/sudoers <<< '" + this->sudo(displayTmp) + '\'';
+                    //     std::cout << appendTmpToSudoers << "\n\n";
+                    //     this->sudo(appendTmpToSudoers);
+                    // }
+
+                    // std::string deleteTmp = "rm /tmp/sudoers_temp";
+                    // system(deleteTmp.c_str());
                 }
 
-                std::string deleteTmp = "rm /tmp/sudoers_temp";
-                system(deleteTmp.c_str());
+                // std::string addCronJob =
+                //     "(crontab -l; echo '" + blockStartMin + ' ' + blockStartHr + ' ' +
+                //     blockStartDay + ' ' + blockStartMo + " * " + kill + "; /usr/bin/sudo " +
+                //     unquarantineApp + " && /usr/bin/sudo " + block + "') | crontab -";
 
-                std::string addCronJob = "(crontab -l; echo '" + blockStartMin + ' ' +
-                                         blockStartHr + ' ' + blockStartDay + ' ' +
-                                         blockStartMonth + " * " + kill + "&& /usr/bin/sudo " +
-                                         block + "') | crontab -";
-                system(addCronJob.c_str());
+                // std::string addCronJob = "(sudo crontab -l; echo '" + blockStartMin + ' ' +
+                //                          blockStartHr + ' ' + blockStartDay + ' ' +
+                //                          blockStartMo + " * " + kill + "; " + unquarantineApp
+                //                          + " && " + block + "') | sudo crontab -";
+
+                // std::string addCronJob = "(sudo crontab -l; echo '" + blockStartMin + ' ' +
+                //                          blockStartHr + ' ' + blockStartDay + ' ' +
+                //                          blockStartMo + " * " + kill + "; " + block +
+                //                          "') | sudo crontab -";
+
+                // system(addCronJob.c_str());
+
+                std::string appNameNoCaps = "";
+                for (char c : appName) {
+                    if (c == ' ')
+                        appNameNoCaps += '-';
+                    else
+                        appNameNoCaps += std::tolower(c);
+                }
+                std::string plistLabel = "com." + run("whoami") + ".block-" + appNameNoCaps;
+                std::string plistName = plistLabel + ".plist";
+
+                std::string plistPathFound = run("find /Library/LaunchDaemons -name " + plistName);
+                if (plistPathFound == "") {
+                    std::string makePlist =
+                        "/usr/libexec/PlistBuddy -c \"Save\" /Library/LaunchDaemons/" + plistName;
+                    this->sudo(makePlist);
+                }
+
+                std::string unquarantineApp = "/usr/bin/xattr -d com.apple.quarantine \"" +
+                                              exePath + "\" >> /tmp/launchdjob.log 2>&1";
+                std::string blockApp =
+                    "/bin/chmod -x \"" + exePath + "\" >> /tmp/launchdjob.log 2>&1";
+
+                std::string setLabel = "Add :Label string " + plistLabel;
+
+                std::string setProgArgs = "Add :ProgramArguments array";
+                std::string setProgArg0 = "Add :ProgramArguments:0 string /bin/bash";
+                std::string setProgArg1 = "Add :ProgramArguments:1 string -c";
+                std::string setProgArg2 =
+                    "Add :ProgramArguments:2 string '" + unquarantineApp + "; " + blockApp + '\'';
+
+                std::string setStartCalendarInterval = "Add :StartCalendarInterval dict";
+                std::string setStartYr = "Add :StartCalendarInterval:Year integer " + blockStartYr;
+                std::string setStartMo = "Add :StartCalendarInterval:Month integer " + blockStartMo;
+                std::string setStartDay = "Add :StartCalendarInterval:Day integer " + blockStartDay;
+                std::string setStartHr = "Add :StartCalendarInterval:Hour integer " + blockStartHr;
+                std::string setStartMin =
+                    "Add :StartCalendarInterval:Minute integer " + blockStartMin;
+
+                std::string disableRunAtLoad = "Add :RunAtLoad bool false";
+
+                std::string addEntriesToPlist =
+                    "/usr/libexec/PlistBuddy -c \"" + setLabel + "\" -c \"" + setProgArgs +
+                    "\" -c \"" + setProgArg0 + "\" -c \"" + setProgArg1 + "\" -c \"" + setProgArg2 +
+                    "\" -c \"" + setStartCalendarInterval + "\" -c \"" + setStartYr + "\" -c \"" +
+                    setStartMo + "\" -c \"" + setStartDay + "\" -c \"" + setStartHr + "\" -c \"" +
+                    setStartMin + "\" -c \"" + disableRunAtLoad + "\" /Library/LaunchDaemons/" +
+                    plistName;
+                this->sudo(addEntriesToPlist);
+
+                std::string loadPlist = "launchctl load /Library/LaunchDaemons/" + plistName;
+                this->sudo(loadPlist);
 
                 std::string blockEndMin = std::to_string(blockEndTime.GetMinute());
                 std::string blockEndHr = std::to_string(blockEndTime.GetHour());
                 std::string blockEndDay = std::to_string(blockEndDate.GetDay());
-                std::string blockEndMonth = std::to_string(blockEndDate.GetMonth() + 1);
+                std::string blockEndMo = std::to_string(blockEndDate.GetMonth() + 1);
+                std::string blockEndYr = std::to_string(blockEndDate.GetYear());
 
-                addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr + ' ' +
-                             blockEndDay + ' ' + blockEndMonth + " * /usr/bin/sudo " + unblock +
-                             "') | crontab -";
-                system(addCronJob.c_str());
+                // addCronJob = "(crontab -l; echo '" + blockEndMin + ' ' + blockEndHr +
+                // ' ' +
+                //              blockEndDay + ' ' + blockEndMo + " * /usr/bin/sudo "
+                //              + unblock +
+                //              "') | crontab -";
+
+                // addCronJob = "(sudo crontab -l; echo '" + blockEndMin + ' ' +
+                // blockEndHr + ' ' +
+                //              blockEndDay + ' ' + blockEndMo + " * " + unblock +
+                //              "') | sudo crontab -";
+
+                // system(addCronJob.c_str());
+
+                plistPathFound = run("find /Library/LaunchDaemons -name com.example.testjob.plist");
+                if (plistPathFound == "") {
+                    std::string makePlist =
+                        "/usr/libexec/PlistBuddy -c \"Save\" "
+                        "/Library/LaunchDaemons/com.example.testjob.plist";
+                    this->sudo(makePlist);
+                }
+
+                setLabel = "Add :Label string com.example.testjob";
+
+                setProgArg0 = "Add :ProgramArguments:0 string /bin/echo";
+                setProgArg1 = "Add :ProgramArguments:1 string 'Hello, world!'";
+
+                std::string enableRunAtLoad = "Add :RunAtLoad bool true";
+
+                addEntriesToPlist = "/usr/libexec/PlistBuddy -c \"" + setLabel + "\" -c \"" +
+                                    setProgArgs + "\" -c \"" + setProgArg0 + "\" -c \"" +
+                                    setProgArg1 + "\" -c \"" + enableRunAtLoad +
+                                    "\" /Library/LaunchDaemons/com.example.testjob.plist";
+                this->sudo(addEntriesToPlist);
+
+                loadPlist = "/bin/launchctl load /Library/LaunchDaemons com.example.testjob.plist";
+                this->sudo(loadPlist);
+
+                std::string unloadPlist =
+                    "/bin/launchctl unload /Library/LaunchDaemons/" + plistName;
+                std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
+
+                plistLabel = "com." + run("whoami") + ".unblock-" + appNameNoCaps;
+                plistName = plistLabel + ".plist";
+
+                plistPathFound = run("find /Library/LaunchDaemons -name " + plistName);
+                if (plistPathFound == "") {
+                    std::string makePlist =
+                        "/usr/libexec/PlistBuddy -c \"Save\" /Library/LaunchDaemons/" + plistName;
+                    this->sudo(makePlist);
+                }
+
+                setLabel = "Add :Label string " + plistLabel;
+
+                setProgArgs = "Add :ProgramArguments array";
+                setProgArg0 = "Add :ProgramArguments:0 string /bin/bash";
+                setProgArg1 = "Add :ProgramArguments:1 string -c";
+                setProgArg2 =
+                    "Add :ProgramArguments:2 string '" + unloadPlist + "; " + unblockApp + '\'';
+
+                setStartCalendarInterval = "Add :StartCalendarInterval dict";
+                setStartYr = "Add :StartCalendarInterval:Year integer " + blockEndYr;
+                setStartMo = "Add :StartCalendarInterval:Month integer " + blockEndMo;
+                setStartDay = "Add :StartCalendarInterval:Day integer " + blockEndDay;
+                setStartHr = "Add :StartCalendarInterval:Hour integer " + blockEndHr;
+                setStartMin = "Add :StartCalendarInterval:Minute integer " + blockEndMin;
+
+                addEntriesToPlist =
+                    "/usr/libexec/PlistBuddy -c \"" + setLabel + "\" -c \"" + setProgArgs +
+                    "\" -c \"" + setProgArg0 + "\" -c \"" + setProgArg1 + "\" -c \"" + setProgArg2 +
+                    "\" -c \"" + setStartCalendarInterval + "\" -c \"" + setStartYr + "\" -c \"" +
+                    setStartMo + "\" -c \"" + setStartDay + "\" -c \"" + setStartHr + "\" -c \"" +
+                    setStartMin + "\" -c \"" + disableRunAtLoad + "\" /Library/LaunchDaemons/" +
+                    plistName;
+                this->sudo(addEntriesToPlist);
+
+                loadPlist = "launchctl load /Library/LaunchDaemons/" + plistName;
+                this->sudo(loadPlist);
 
                 scrolled->addToList(appPath, ".blocklist.txt");
 
@@ -522,10 +703,10 @@ MyScrolled::MyScrolled(wxWindow *parent)
     Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this, wxID_ANY);
 }
 
-// Story for interview: At first I had put the code below inside definition of OnPaint method, but
-// that meant it was executed with every wxPaintEvent, such as when the window was resized (hence
-// repainted). Made the app extremely laggy, so I moved this code into its own separate function to
-// call once in OnInit.
+// Story for interview: At first I had put the code below inside definition of OnPaint method,
+// but that meant it was executed with every wxPaintEvent, such as when the window was resized
+// (hence repainted). Made the app extremely laggy, so I moved this code into its own separate
+// function to call once in OnInit.
 void MyScrolled::collectPaths() {
     std::vector<std::string> appDirs = {
         "/Applications",
