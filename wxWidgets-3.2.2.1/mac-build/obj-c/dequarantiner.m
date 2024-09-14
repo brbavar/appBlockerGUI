@@ -3,7 +3,9 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        CFURLRef fileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, CFSTR(argv[1]), kCFURLPOSIXPathStyle, false);
+        CFStringRef commandLineArg = CFStringCreateWithCString(kCFAllocatorDefault, argv[1], kCFStringEncodingUTF8);
+        CFURLRef fileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, commandLineArg, kCFURLPOSIXPathStyle, false);
+        CFRelease(commandLineArg);
 
         NSError *error = nil;
         NSURL *url = (__bridge NSURL *)fileURL;
