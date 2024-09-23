@@ -224,9 +224,9 @@ bool MyApp::OnInit() {
     frame->Show(true);
 
     // Possibly should put the if statement below elsewhere
-    if (run("ls /usr/local/dequarantiner > /dev/null 2>&1 || echo 'File not found'") ==
+    if (run("ls /usr/local/\"App Killer\" > /dev/null 2>&1 || echo 'File not found'") ==
         "File not found")
-        frame->sudo("cp obj-c/dequarantiner /usr/local");
+        frame->sudo("cp obj-c/\"App Killer\" /usr/local");
 
     return true;
 }
