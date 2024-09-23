@@ -382,16 +382,14 @@ void AppFrame::makeBlockPrompt(int i) {
                 }
 
                 std::string blockApp =
-                    "/bin/chmod -x \"" + exePath + "\" >> /tmp/launchdjob.log 2>&1";
+                    "/usr/local/\"App Killer\" \"" + exePath + "\" >> /tmp/launchdjob.log 2>&1";
 
                 std::string setLabel = "Add :Label string " + plistLabel;
 
                 std::string setProgArgs = "Add :ProgramArguments array";
                 std::string setProgArg0 = "Add :ProgramArguments:0 string /bin/bash";
                 std::string setProgArg1 = "Add :ProgramArguments:1 string -c";
-                std::string setProgArg2 = "Add :ProgramArguments:2 string '" + moveApp + "; " +
-                                          makeSymLink + "; " + unquarantineApp + "; " + blockApp +
-                                          '\'';
+                std::string setProgArg2 = "Add :ProgramArguments:2 string '" + blockApp + '\'';
 
                 std::string setStartCalendarInterval = "Add :StartCalendarInterval dict";
                 std::string setStartYr = "Add :StartCalendarInterval:Year integer " + blockStartYr;
@@ -425,7 +423,7 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 std::string unloadPlist =
                     "/bin/launchctl unload /Library/LaunchDaemons/" + plistName;
-                std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
+                // std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
 
                 plistLabel = "com." + run("whoami") + ".unblock-" + appNameNoCaps;
                 plistName = plistLabel + ".plist";
@@ -443,8 +441,7 @@ void AppFrame::makeBlockPrompt(int i) {
                 setProgArgs = "Add :ProgramArguments array";
                 setProgArg0 = "Add :ProgramArguments:0 string /bin/bash";
                 setProgArg1 = "Add :ProgramArguments:1 string -c";
-                setProgArg2 = "Add :ProgramArguments:2 string '" + unloadPlist + "; " + unblockApp +
-                              "; " + deleteSymLink + "; " + moveAppBack + '\'';
+                setProgArg2 = "Add :ProgramArguments:2 string '" + unloadPlist + '\'';
 
                 setStartCalendarInterval = "Add :StartCalendarInterval dict";
                 setStartYr = "Add :StartCalendarInterval:Year integer " + blockEndYr;
