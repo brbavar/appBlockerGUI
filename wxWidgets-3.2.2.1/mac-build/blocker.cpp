@@ -381,19 +381,8 @@ void AppFrame::makeBlockPrompt(int i) {
                     // sleep(1);
                 }
 
-                std::string tmpAppPath = "/usr/local/" + appName + ".app";
-                std::string tmpExePath = tmpAppPath + "/Contents/MacOS/" + exe;
-
-                // std::string unquarantineApp = "/usr/bin/xattr -d com.apple.quarantine \"" +
-                //                               exePath + "\" >> /tmp/launchdjob.log 2>&1";
-                std::string moveApp =
-                    "mv \"" + appPath + "\" /usr/local >> /tmp/launchdjob.log 2>&1";
-                std::string makeSymLink =
-                    "ln -s \"" + tmpAppPath + "\" \"" + appPath + "\" >> /tmp/launchdjob.log 2>&1";
-                std::string unquarantineApp =
-                    "/usr/local/dequarantiner \"" + tmpExePath + "\" >> /tmp/launchdjob.log 2>&1";
                 std::string blockApp =
-                    "/bin/chmod -x \"" + tmpExePath + "\" >> /tmp/launchdjob.log 2>&1";
+                    "/bin/chmod -x \"" + exePath + "\" >> /tmp/launchdjob.log 2>&1";
 
                 std::string setLabel = "Add :Label string " + plistLabel;
 
@@ -434,38 +423,9 @@ void AppFrame::makeBlockPrompt(int i) {
                 std::string blockEndMo = std::to_string(blockEndDate.GetMonth() + 1);
                 std::string blockEndYr = std::to_string(blockEndDate.GetYear());
 
-                // plistPathFound = run("find /Library/LaunchDaemons -name
-                // com.example.testjob.plist"); if (plistPathFound == "") {
-                //     std::string makePlist =
-                //         "/usr/libexec/PlistBuddy -c \"Save\" "
-                //         "/Library/LaunchDaemons/com.example.testjob.plist";
-                //     this->sudo(makePlist);
-                //     // sleep(1);
-                // }
-
-                // setLabel = "Add :Label string com.example.testjob";
-
-                // setProgArg0 = "Add :ProgramArguments:0 string /usr/bin/killall";
-                // setProgArg1 = "Add :ProgramArguments:1 string '" + exe + '\'';
-
-                // std::string enableRunAtLoad = "Add :RunAtLoad bool true";
-
-                // addEntriesToPlist = "/usr/libexec/PlistBuddy -c \"" + setLabel + "\" -c \"" +
-                //                     setProgArgs + "\" -c \"" + setProgArg0 + "\" -c \"" +
-                //                     setProgArg1 + "\" -c \"" + enableRunAtLoad +
-                //                     "\" /Library/LaunchDaemons/com.example.testjob.plist";
-                // this->sudo(addEntriesToPlist);
-                // // sleep(1);
-
-                // loadPlist = "/bin/launchctl load /Library/LaunchDaemons
-                // com.example.testjob.plist"; this->sudo(loadPlist); sleep(1);
-
                 std::string unloadPlist =
                     "/bin/launchctl unload /Library/LaunchDaemons/" + plistName;
-                std::string unblockApp = "/bin/chmod +x \"" + tmpExePath + "\"";
-                std::string deleteSymLink = "rm \"" + appPath + "\" >> /tmp/launchdjob.log 2>&1";
-                std::string moveAppBack =
-                    "mv \"" + tmpAppPath + "\" \"" + appPath + "\" >> /tmp/launchdjob.log 2>&1";
+                std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
 
                 plistLabel = "com." + run("whoami") + ".unblock-" + appNameNoCaps;
                 plistName = plistLabel + ".plist";
