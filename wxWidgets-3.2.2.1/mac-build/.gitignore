@@ -1,0 +1,7 @@
+.vscode/*
+.DS_Store
+.clang-format
+.appList.txt
+.blocklist.txt
+
+app-icons/*
