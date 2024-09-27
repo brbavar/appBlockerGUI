@@ -1,9 +1,6 @@
 #include <sys/stat.h>
-// #include <wx/bitmap.h>
 #include <wx/calctrl.h>
 #include <wx/datectrl.h>
-// #include <wx/image.h>
-// #include <wx/png.h>
 #include <wx/textctrl.h>
 #include <wx/timectrl.h>
 #include <wx/tooltip.h>
