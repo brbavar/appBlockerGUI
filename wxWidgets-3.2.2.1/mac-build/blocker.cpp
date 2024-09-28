@@ -69,7 +69,8 @@ class MyScrolled : public wxScrolledWindow {
     void setAppPaths(std::vector<std::string> appPaths);
     std::vector<std::string> getAppPaths();
     std::vector<std::string> getAppNames();
-    void establishLayout();
+    void establishAppsLayout();
+    void establishBlocklistLayout();
     wxPoint getLocationOf(const std::string &txt);
     wxPoint getLocationOf(const int &i, const int &j);
     wxSize getExtentOf(const std::string &txt);
@@ -651,7 +652,7 @@ void MyScrolled::collectIcns() {
     }
     this->setBMPs(bmps);
 
-    this->establishLayout();
+    this->establishAppsLayout();
 }
 
 void MyScrolled::setBMPs(wxVector<IcnBMP> bmps) {
@@ -729,7 +730,7 @@ std::vector<std::string> MyScrolled::getAppPaths() { return appPaths; }
 
 std::vector<std::string> MyScrolled::getAppNames() { return appNames; }
 
-void MyScrolled::establishLayout() {
+void MyScrolled::establishAppsLayout() {
     wxPaintDC *icnGridPaint = new wxPaintDC(this);
 
     wxVector<IcnBMP> updatedBMPs = bmps;
@@ -813,6 +814,8 @@ void MyScrolled::establishLayout() {
 
     this->setBMPs(updatedBMPs);
 }
+
+void MyScrolled::establishBlocklistLayout() { wxPaintDC *icnGridPaint = new wxPaintDC(this); }
 
 wxPoint MyScrolled::getLocationOf(const std::string &txt) { return locationOfTxtBlock[txt]; }
 
