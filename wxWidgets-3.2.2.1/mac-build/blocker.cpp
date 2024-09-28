@@ -911,7 +911,8 @@ void MyScrolled::OnPaint(wxPaintEvent &event) {
 void MyScrolled::OnClick(wxMouseEvent &event) {
     wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
     IcnBMP *clickedIcn = this->findClickedIcn(clickPos);
-    if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
+    if (clickedIcn != nullptr) addToList(appPaths[clickedIcn->getVectIndex()], ".blocklist.txt");
+    // if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
 }
 
 wxBEGIN_EVENT_TABLE(MyScrolled, wxScrolledWindow) EVT_PAINT(MyScrolled::OnPaint) wxEND_EVENT_TABLE()
