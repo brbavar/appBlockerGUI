@@ -98,7 +98,6 @@ class MyScrolled : public wxScrolledWindow {
     wxCoord icnW = 70;
     wxCoord icnH = 70;
     wxPaintDC *icnGridPaint;
-    // std::vector<std::string> blocklist;
 
     void OnPaint(wxPaintEvent &event);
     void OnClick(wxMouseEvent &event);
@@ -135,6 +134,8 @@ class AppFrame : public wxFrame {
     MyScrolled *getAppsView();
     void setBlocklistView(MyScrolled *blocklistView);
     MyScrolled *getBlocklistView();
+    void addBlocklistVectIndex(int i);
+    std::vector<int> getBlocklistVectIndices();
     void setTimePromptFrame(PromptFrame *timePromptWindow);
     PromptFrame *getTimePromptFrame();
     void makeBlockPrompt(int i);
@@ -145,6 +146,7 @@ class AppFrame : public wxFrame {
     std::string password = "";
     MyScrolled *appsView = nullptr;
     MyScrolled *blocklistView = nullptr;
+    std::vector<int> blocklistVectIndices;
     PromptFrame *timePromptFrame = nullptr;
 
     void OnApps(wxCommandEvent &event);
@@ -252,6 +254,13 @@ wxBEGIN_EVENT_TABLE(StaticTextCtrl, wxTextCtrl) EVT_SCROLLWIN(StaticTextCtrl::On
     blocklistView = new MyScrolled(this);
     blocklistView->Hide();
 
+    // CONSIDER WHETHER YOU CAN USE EVENT TABLES TO ACHIEVE THE SAME RESULT; NO NEED FOR DYNAMICALLY
+    // REBINDING
+    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickApps, appsView, wxID_ANY);
+    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickBlocklist, blocklistView, wxID_ANY);
+    Bind(wxEVT_PAINT, &MyScrolled::OnPaintApps, appsView, wxID_ANY);
+    Bind(wxEVT_PAINT, &MyScrolled::OnPaintBlocklist, blocklistView, wxID_ANY);
+
     wxImage appsImg("navigation-icons/apps-icon.png", wxBITMAP_TYPE_PNG);
     IcnBMP *appsBMP = nullptr;
     if (appsImg.IsOk()) {
@@ -302,6 +311,10 @@ MyScrolled *AppFrame::getAppsView() { return appsView; }
 void AppFrame::setBlocklistView(MyScrolled *blocklistView) { this->blocklistView = blocklistView; }
 
 MyScrolled *AppFrame::getBlocklistView() { return blocklistView; }
+
+void AppFrame::addBlocklistVectIndex(int i) { blocklistVectIndices.push_back(i); }
+
+std::vector<int> AppFrame::getBlocklistVectIndices() { return blocklistVectIndices; }
 
 void AppFrame::setTimePromptFrame(PromptFrame *timePromptFrame) {
     this->timePromptFrame = timePromptFrame;
@@ -534,8 +547,6 @@ MyScrolled::MyScrolled(wxWindow *parent)
     : wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, parent->GetSize()) {
     SetScrollRate(10, 10);
     SetBackgroundColour(wxColour(0, 0, 0));
-
-    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this, wxID_ANY);
 }
 
 // Story for interview: At first I had put the code below inside definition of OnPaint method,
@@ -884,7 +895,7 @@ void MyScrolled::blockApp(IcnBMP clickedIcn) {
     frame->getTimePromptFrame()->Show();
 }
 
-void MyScrolled::OnPaint(wxPaintEvent &event) {
+void MyScrolled::OnPaintApps(wxPaintEvent &event) {
     wxPaintDC *icnGridPaint = new wxPaintDC(this);
     this->setIcnGridPaint(icnGridPaint);
     DoPrepareDC(*icnGridPaint);
@@ -911,11 +922,28 @@ void MyScrolled::OnPaint(wxPaintEvent &event) {
     }
 }
 
-void MyScrolled::OnClick(wxMouseEvent &event) {
+void MyScrolled::OnPaintBlocklist(wxPaintEvent &event) {
+    wxPaintDC *icnGridPaint = new wxPaintDC(this);
+    this->setIcnGridPaint(icnGridPaint);
+    DoPrepareDC(*icnGridPaint);
+}
+
+void MyScrolled::OnClickApps(wxMouseEvent &event) {
     wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
     IcnBMP *clickedIcn = this->findClickedIcn(clickPos);
-    if (clickedIcn != nullptr) addToList(appPaths[clickedIcn->getVectIndex()], ".blocklist.txt");
+    if (clickedIcn != nullptr) {
+        int i = clickedIcn->getVectIndex();
+        addToList(appPaths[i], ".blocklist.txt");
+        AppFrame *frame = static_cast<AppFrame *>(GetParent());
+        frame->addBlocklistVectIndex(i);
+
+        // TODO: Add name of selected app to Blocklist view
+    }
     // if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
+}
+
+void MyScrolled::OnClickBlocklist(wxMouseEvent &event) {
+    wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
 }
 
 wxBEGIN_EVENT_TABLE(MyScrolled, wxScrolledWindow) EVT_PAINT(MyScrolled::OnPaint) wxEND_EVENT_TABLE()
