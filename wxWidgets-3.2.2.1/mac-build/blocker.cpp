@@ -56,10 +56,16 @@ CalendarDialog::CalendarDialog(wxWindow *parent, wxWindowID id, const wxString &
     if (this->ShowModal() == wxID_OK) wxCalendarCtrl *calendar = new wxCalendarCtrl(this, wxID_ANY);
 }
 
+class AppFrame;
+
 class MyScrolled : public wxScrolledWindow {
    public:
-    MyScrolled() : wxScrolledWindow() {}
+    MyScrolled();
     MyScrolled(wxWindow *parent);
+    void markAsAppsView();
+    void markAsBlocklistView();
+    bool markedAsAppsView();
+    bool markedAsBlocklistView();
     void collectPaths();
     void collectIcns();
     void setBMPs(wxVector<IcnBMP> bmps);
@@ -68,9 +74,10 @@ class MyScrolled : public wxScrolledWindow {
     std::vector<std::string> readList(const std::string &filename);
     void setAppPaths(std::vector<std::string> appPaths);
     std::vector<std::string> getAppPaths();
+    void setAppNames(std::vector<std::string> appNames);
     std::vector<std::string> getAppNames();
     void establishAppsLayout();
-    void establishBlocklistLayout();
+    // void establishBlocklistLayout();
     wxPoint getLocationOf(const std::string &txt);
     wxPoint getLocationOf(const int &i, const int &j);
     wxSize getExtentOf(const std::string &txt);
@@ -81,10 +88,15 @@ class MyScrolled : public wxScrolledWindow {
     wxCoord getIcnH();
     void setIcnGridPaint(wxPaintDC *icnGridPaint);
     wxPaintDC *getIcnGridPaint();
+    void setNameListPaint(wxPaintDC *nameListPaint);
+    wxPaintDC *getNameListPaint();
     IcnBMP *findClickedIcn(wxPoint clickPos);
     void blockApp(IcnBMP clickedIcn);
 
    private:
+    AppFrame *parentFrame = nullptr;
+    bool isAppsView = false;
+    bool isBlocklistView = false;
     wxVector<IcnBMP> bmps;
     std::vector<std::string> appNames;
     wxVector<wxVector<wxString>> linesInAppName;
@@ -98,9 +110,16 @@ class MyScrolled : public wxScrolledWindow {
     wxCoord icnW = 70;
     wxCoord icnH = 70;
     wxPaintDC *icnGridPaint;
+    wxPaintDC *nameListPaint;
 
+    // void OnPaintApps(wxPaintEvent &event);
+    // void OnPaintBlocklist(wxPaintEvent &event);
+    // void OnClickApps(wxMouseEvent &event);
+    // void OnClickBlocklist(wxMouseEvent &event);
     void OnPaint(wxPaintEvent &event);
     void OnClick(wxMouseEvent &event);
+
+    friend class AppFrame;
 
     wxDECLARE_EVENT_TABLE();
 };
@@ -138,7 +157,7 @@ class AppFrame : public wxFrame {
     std::vector<int> getBlocklistVectIndices();
     void setTimePromptFrame(PromptFrame *timePromptWindow);
     PromptFrame *getTimePromptFrame();
-    void makeBlockPrompt(int i);
+    void makeBlockPrompt();
     void promptForPassword();
     std::string sudo(std::string cmd);
 
@@ -251,15 +270,17 @@ wxBEGIN_EVENT_TABLE(StaticTextCtrl, wxTextCtrl) EVT_SCROLLWIN(StaticTextCtrl::On
         AppFrame::AppFrame()
     : wxFrame(NULL, wxID_ANY, "App Blocker", wxDefaultPosition, wxSize(1090, 828)) {
     appsView = new MyScrolled(this);
+    appsView->markAsAppsView();
     blocklistView = new MyScrolled(this);
+    blocklistView->markAsBlocklistView();
     blocklistView->Hide();
 
     // CONSIDER WHETHER YOU CAN USE EVENT TABLES TO ACHIEVE THE SAME RESULT; NO NEED FOR DYNAMICALLY
     // REBINDING
-    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickApps, appsView, wxID_ANY);
-    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickBlocklist, blocklistView, wxID_ANY);
-    Bind(wxEVT_PAINT, &MyScrolled::OnPaintApps, appsView, wxID_ANY);
-    Bind(wxEVT_PAINT, &MyScrolled::OnPaintBlocklist, blocklistView, wxID_ANY);
+    // Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickApps, appsView);
+    // Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClickBlocklist, blocklistView);
+    // Bind(wxEVT_PAINT, &MyScrolled::OnPaintApps, appsView);
+    // Bind(wxEVT_PAINT, &MyScrolled::OnPaintBlocklist, blocklistView);
 
     wxImage appsImg("navigation-icons/apps-icon.png", wxBITMAP_TYPE_PNG);
     IcnBMP *appsBMP = nullptr;
@@ -288,6 +309,7 @@ wxBEGIN_EVENT_TABLE(StaticTextCtrl, wxTextCtrl) EVT_SCROLLWIN(StaticTextCtrl::On
     else
         appsView->collectPaths();
     appsView->collectIcns();
+    blocklistView->setAppNames(appsView->getAppNames());
 
     appsView->SetVirtualSize(915, 135 * appsView->getRows() + 30);
 
@@ -322,11 +344,9 @@ void AppFrame::setTimePromptFrame(PromptFrame *timePromptFrame) {
 
 PromptFrame *AppFrame::getTimePromptFrame() { return timePromptFrame; }
 
-void AppFrame::makeBlockPrompt(int i) {
+void AppFrame::makeBlockPrompt() {
     MyScrolled *appsView = getAppsView();
-    std::string appName = appsView->getAppNames()[i];
-    std::string appPath = appsView->getAppPaths()[i];
-    if (!timePromptFrame && hasContents(appPath)) {
+    if (!timePromptFrame) {
         wxSize frameSize = wxSize(437, 250);
         timePromptFrame =
             new PromptFrame(this, wxDefaultPosition, frameSize,
@@ -337,7 +357,8 @@ void AppFrame::makeBlockPrompt(int i) {
         timePromptFrame->SetBackgroundColour(wxColour(100, 100, 100));
 
         StaticTextCtrl *timePrompt = new StaticTextCtrl(
-            timePromptFrame, "When would you like to start blocking " + appName + '?',
+            timePromptFrame,
+            "When would you like to start blocking all the apps on your blocklist?",
             wxPoint(10, 10), wxSize(400, 100),
             wxTE_READONLY | wxTE_MULTILINE | wxTE_NO_VSCROLL | wxBORDER_NONE);
         timePrompt->SetBackgroundColour(wxColour(81, 81, 81));
@@ -362,14 +383,14 @@ void AppFrame::makeBlockPrompt(int i) {
             new wxButton(timePromptFrame, wxID_ANY, "Next", wxPoint(0, 190), wxDefaultSize);
         nextBtn->CenterOnParent(wxHORIZONTAL);
 
-        nextBtn->Bind(wxEVT_BUTTON, [nextBtn, appName, timePrompt, datePicker, defaultDatePickerVal,
-                                     timePicker, defaultTimePickerVal, appPath, appsView,
+        nextBtn->Bind(wxEVT_BUTTON, [nextBtn, timePrompt, datePicker, defaultDatePickerVal,
+                                     timePicker, defaultTimePickerVal, appsView,
                                      this](wxCommandEvent &event) {
             wxDateTime blockStartDate = datePicker->GetValue();
             wxDateTime blockStartTime = timePicker->GetValue();
 
             timePrompt->SetEditable(true);
-            timePrompt->SetValue("When would you like to regain access to " + appName + '?');
+            timePrompt->SetValue("When would you like to regain access to all these apps?");
             timePrompt->SetEditable(false);
 
             datePicker->SetValue(defaultDatePickerVal);
@@ -380,15 +401,12 @@ void AppFrame::makeBlockPrompt(int i) {
             nextBtn->SetLabel("Save choices");
 
             nextBtn->Bind(wxEVT_BUTTON, [datePicker, timePicker, blockStartDate, blockStartTime,
-                                         appName, appPath, appsView, this](wxCommandEvent &event) {
+                                         appsView, this](wxCommandEvent &event) {
                 wxDateTime blockEndDate = datePicker->GetValue();
                 wxDateTime blockEndTime = timePicker->GetValue();
 
-                std::string exe = run("defaults read \"" + appPath +
-                                      std::string("/Contents/Info.plist\" CFBundleExecutable"));
-                std::string kill = "/usr/bin/killall \"" + exe + std::string("\" > /dev/null 2>&1");
-
-                std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
+                std::string exePath = "";  // For testing purposes; delete later
+                // std::string exePath = appPath + std::string("/Contents/MacOS/") + exe;
 
                 std::string blockStartMin = std::to_string(blockStartTime.GetMinute());
                 std::string blockStartHr = std::to_string(blockStartTime.GetHour());
@@ -398,14 +416,14 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 if (password.empty()) promptForPassword();
 
-                std::string appNameNoCaps = "";
-                for (char c : appName) {
-                    if (c == ' ')
-                        appNameNoCaps += '-';
-                    else
-                        appNameNoCaps += std::tolower(c);
-                }
-                std::string plistLabel = "com." + run("whoami") + ".block-" + appNameNoCaps;
+                // std::string appNameNoCaps = "";
+                // for (char c : appName) {
+                //     if (c == ' ')
+                //         appNameNoCaps += '-';
+                //     else
+                //         appNameNoCaps += std::tolower(c);
+                // }
+                std::string plistLabel = "com." + run("whoami") + ".block-apps";
                 std::string plistName = plistLabel + ".plist";
 
                 std::string plistPathFound = run("find /Library/LaunchDaemons -name " + plistName);
@@ -458,9 +476,9 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 std::string unloadPlist =
                     "/bin/launchctl unload /Library/LaunchDaemons/" + plistName;
-                // std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
+                std::string unblockApp = "/bin/chmod +x \"" + exePath + "\"";
 
-                plistLabel = "com." + run("whoami") + ".unblock-" + appNameNoCaps;
+                plistLabel = "com." + run("whoami") + ".unblock-apps";
                 plistName = plistLabel + ".plist";
 
                 plistPathFound = run("find /Library/LaunchDaemons -name " + plistName);
@@ -497,8 +515,6 @@ void AppFrame::makeBlockPrompt(int i) {
 
                 loadPlist = "launchctl load /Library/LaunchDaemons/" + plistName;
                 this->sudo(loadPlist);
-
-                appsView->addToList(appPath, ".blocklist.txt");
 
                 timePromptFrame = nullptr;
             });
@@ -543,11 +559,29 @@ void AppFrame::OnBlocklist(wxCommandEvent &event) {
     }
 }
 
+MyScrolled::MyScrolled() : wxScrolledWindow() {
+    parentFrame = static_cast<AppFrame *>(GetParent());
+
+    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this);
+}
+
 MyScrolled::MyScrolled(wxWindow *parent)
     : wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, parent->GetSize()) {
+    parentFrame = static_cast<AppFrame *>(GetParent());
+
     SetScrollRate(10, 10);
     SetBackgroundColour(wxColour(0, 0, 0));
+
+    Bind(wxEVT_LEFT_DOWN, &MyScrolled::OnClick, this);
 }
+
+void MyScrolled::markAsAppsView() { isAppsView = true; }
+
+void MyScrolled::markAsBlocklistView() { isBlocklistView = true; }
+
+bool MyScrolled::markedAsAppsView() { return isAppsView; }
+
+bool MyScrolled::markedAsBlocklistView() { return isBlocklistView; }
 
 // Story for interview: At first I had put the code below inside definition of OnPaint method,
 // but that meant it was executed with every wxPaintEvent, such as when the window was resized
@@ -741,6 +775,10 @@ std::vector<std::string> MyScrolled::getAppPaths() { return appPaths; }
 
 std::vector<std::string> MyScrolled::getAppNames() { return appNames; }
 
+void MyScrolled::setAppNames(std::vector<std::string> appNames) {
+    for (std::string appName : appNames) this->appNames.push_back(appName);
+}
+
 void MyScrolled::establishAppsLayout() {
     wxPaintDC *icnGridPaint = new wxPaintDC(this);
 
@@ -826,7 +864,7 @@ void MyScrolled::establishAppsLayout() {
     this->setBMPs(updatedBMPs);
 }
 
-void MyScrolled::establishBlocklistLayout() { wxPaintDC *icnGridPaint = new wxPaintDC(this); }
+// void MyScrolled::establishBlocklistLayout() { wxPaintDC *nameListPaint = new wxPaintDC(this); }
 
 wxPoint MyScrolled::getLocationOf(const std::string &txt) { return locationOfTxtBlock[txt]; }
 
@@ -847,6 +885,10 @@ wxCoord MyScrolled::getIcnH() { return icnH; }
 void MyScrolled::setIcnGridPaint(wxPaintDC *icnGridPaint) { this->icnGridPaint = icnGridPaint; }
 
 wxPaintDC *MyScrolled::getIcnGridPaint() { return icnGridPaint; }
+
+void MyScrolled::setNameListPaint(wxPaintDC *nameListPaint) { this->nameListPaint = nameListPaint; }
+
+wxPaintDC *MyScrolled::getNameListPaint() { return nameListPaint; }
 
 IcnBMP *MyScrolled::findClickedIcn(wxPoint clickPos) {
     for (IcnBMP bmp : bmps) {
@@ -890,60 +932,145 @@ IcnBMP *MyScrolled::findClickedIcn(wxPoint clickPos) {
 void MyScrolled::blockApp(IcnBMP clickedIcn) {
     int i = clickedIcn.getVectIndex();
 
-    AppFrame *frame = static_cast<AppFrame *>(GetParent());
-    frame->makeBlockPrompt(i);
-    frame->getTimePromptFrame()->Show();
+    parentFrame->makeBlockPrompt();
+    parentFrame->getTimePromptFrame()->Show();
 }
 
-void MyScrolled::OnPaintApps(wxPaintEvent &event) {
-    wxPaintDC *icnGridPaint = new wxPaintDC(this);
-    this->setIcnGridPaint(icnGridPaint);
-    DoPrepareDC(*icnGridPaint);
+void MyScrolled::OnPaint(wxPaintEvent &event) {
+    if (isAppsView) {
+        wxPaintDC *icnGridPaint = new wxPaintDC(this);
+        setIcnGridPaint(icnGridPaint);
+        DoPrepareDC(*icnGridPaint);
 
-    wxVector<IcnBMP> bmps = this->getBMPs();
-    for (int i = 0; i < this->getNumApps(); i++) {
-        IcnBMP bmp = bmps[i];
+        wxVector<IcnBMP> bmps = getBMPs();
+        for (int i = 0; i < getNumApps(); i++) {
+            IcnBMP bmp = bmps[i];
 
-        wxRect outerBounds = bmp.getRegion().GetBox();
-        wxCoord x = outerBounds.x, y = outerBounds.y, w = outerBounds.width, h = outerBounds.height;
+            wxRect outerBounds = bmp.getRegion().GetBox();
+            wxCoord x = outerBounds.x, y = outerBounds.y, w = outerBounds.width,
+                    h = outerBounds.height;
 
-        wxMemoryDC icnMem = wxMemoryDC();
-        icnMem.SelectObject(bmp);
+            wxMemoryDC icnMem = wxMemoryDC();
+            icnMem.SelectObject(bmp);
 
-        icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
+            icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
 
-        wxVector<wxString> appNameLines = linesInAppName[i];
-        for (int j = 0; j < std::min(appNameLines.size(), (size_t)2); j++) {
-            wxString line = appNameLines[j];
-            wxPoint lineLocation = this->locationOfTxtLine[i][j];
-            wxCoord x = lineLocation.x, y = lineLocation.y;
-            icnGridPaint->DrawText(line, x, y);
+            wxVector<wxString> appNameLines = linesInAppName[i];
+            for (int j = 0; j < std::min(appNameLines.size(), (size_t)2); j++) {
+                wxString line = appNameLines[j];
+                wxPoint lineLocation = this->locationOfTxtLine[i][j];
+                wxCoord x = lineLocation.x, y = lineLocation.y;
+                icnGridPaint->DrawText(line, x, y);
+            }
+        }
+    }
+    if (isBlocklistView) {
+        wxPaintDC *nameListPaint = new wxPaintDC(this);
+        setNameListPaint(nameListPaint);
+        DoPrepareDC(*nameListPaint);
+
+        wxButton *scheduleBtn =
+            new wxButton(this, wxID_ANY, "Schedule Block", wxPoint(545, 50), wxDefaultSize);
+        scheduleBtn->CenterOnParent(wxHORIZONTAL);
+
+        scheduleBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent &event) {
+            parentFrame->makeBlockPrompt();
+            parentFrame->getTimePromptFrame()->Show();
+        });
+
+        int indent = 50;
+        std::vector<int> blocklistVectIndices = parentFrame->getBlocklistVectIndices();
+        for (int i = 1; i < blocklistVectIndices.size() + 1; i++) {
+            std::string appName = appNames[blocklistVectIndices[i - 1]];
+            nameListPaint->DrawText(appName, indent, 40 * i + 150);
         }
     }
 }
 
-void MyScrolled::OnPaintBlocklist(wxPaintEvent &event) {
-    wxPaintDC *icnGridPaint = new wxPaintDC(this);
-    this->setIcnGridPaint(icnGridPaint);
-    DoPrepareDC(*icnGridPaint);
-}
+// void MyScrolled::OnPaintApps(wxPaintEvent &event) {
+//     wxPaintDC *icnGridPaint = new wxPaintDC(this);
+//     setIcnGridPaint(icnGridPaint);
+//     DoPrepareDC(*icnGridPaint);
 
-void MyScrolled::OnClickApps(wxMouseEvent &event) {
-    wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
-    IcnBMP *clickedIcn = this->findClickedIcn(clickPos);
-    if (clickedIcn != nullptr) {
-        int i = clickedIcn->getVectIndex();
-        addToList(appPaths[i], ".blocklist.txt");
-        AppFrame *frame = static_cast<AppFrame *>(GetParent());
-        frame->addBlocklistVectIndex(i);
+//     wxVector<IcnBMP> bmps = getBMPs();
+//     for (int i = 0; i < getNumApps(); i++) {
+//         IcnBMP bmp = bmps[i];
 
-        // TODO: Add name of selected app to Blocklist view
+//         wxRect outerBounds = bmp.getRegion().GetBox();
+//         wxCoord x = outerBounds.x, y = outerBounds.y, w = outerBounds.width, h =
+//         outerBounds.height;
+
+//         wxMemoryDC icnMem = wxMemoryDC();
+//         icnMem.SelectObject(bmp);
+
+//         std::cout << "x = " << x << "\ny = " << y << "\nw = " << w << "\nh = " << h << "\n\n";
+
+//         int paintDCwidth = icnGridPaint->GetSize().x;
+//         int paintDCheight = icnGridPaint->GetSize().y;
+//         int memDCwidth = icnMem.GetSize().x;
+//         int memDCheight = icnMem.GetSize().y;
+//         std::cout << ((paintDCwidth == memDCwidth && paintDCheight == memDCheight)
+//                           ? "DCs are same size"
+//                           : "DCs are different sizes");
+
+//         icnGridPaint->Blit(x, y, w, h, &icnMem, 0, 0);
+
+//         // wxVector<wxString> appNameLines = linesInAppName[i];
+//         // for (int j = 0; j < std::min(appNameLines.size(), (size_t)2); j++) {
+//         //     wxString line = appNameLines[j];
+//         //     wxPoint lineLocation = this->locationOfTxtLine[i][j];
+//         //     wxCoord x = lineLocation.x, y = lineLocation.y;
+//         //     icnGridPaint->DrawText(line, x, y);
+//         // }
+//     }
+// }
+
+// void MyScrolled::OnPaintBlocklist(wxPaintEvent &event) {
+//     wxPaintDC *nameListPaint = new wxPaintDC(this);
+//     setNameListPaint(nameListPaint);
+//     DoPrepareDC(*nameListPaint);
+
+//     int indent = 50;
+//     std::vector<int> blocklistVectIndices = parentFrame->getBlocklistVectIndices();
+//     for (int i = 1; i < blocklistVectIndices.size() + 1; i++) {
+//         std::string appName = appNames[blocklistVectIndices[i]];
+//         nameListPaint->DrawText(appName, indent, 40 * i);
+//     }
+// }
+
+void MyScrolled::OnClick(wxMouseEvent &event) {
+    if (isAppsView) {
+        wxPoint clickPos = event.GetLogicalPosition(*icnGridPaint);
+        IcnBMP *clickedIcn = this->findClickedIcn(clickPos);
+        if (clickedIcn != nullptr) {
+            int i = clickedIcn->getVectIndex();
+            addToList(appPaths[i], ".blocklist.txt");
+            parentFrame->addBlocklistVectIndex(i);
+
+            // TODO: Add name of selected app to Blocklist view
+        }
+        // if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
     }
-    // if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
+    if (isBlocklistView) {
+        wxPoint clickPos = event.GetLogicalPosition(*icnGridPaint);
+    }
 }
 
-void MyScrolled::OnClickBlocklist(wxMouseEvent &event) {
-    wxPoint clickPos = event.GetLogicalPosition(*(this->getIcnGridPaint()));
-}
+// void MyScrolled::OnClickApps(wxMouseEvent &event) {
+//     wxPoint clickPos = event.GetLogicalPosition(*icnGridPaint);
+//     IcnBMP *clickedIcn = this->findClickedIcn(clickPos);
+//     if (clickedIcn != nullptr) {
+//         int i = clickedIcn->getVectIndex();
+//         addToList(appPaths[i], ".blocklist.txt");
+//         parentFrame->addBlocklistVectIndex(i);
+
+//         // TODO: Add name of selected app to Blocklist view
+//     }
+//     // if (clickedIcn != nullptr) this->blockApp(*clickedIcn);
+// }
+
+// void MyScrolled::OnClickBlocklist(wxMouseEvent &event) {
+//     wxPoint clickPos = event.GetLogicalPosition(*icnGridPaint);
+// }
 
 wxBEGIN_EVENT_TABLE(MyScrolled, wxScrolledWindow) EVT_PAINT(MyScrolled::OnPaint) wxEND_EVENT_TABLE()
